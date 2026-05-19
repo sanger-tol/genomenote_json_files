@@ -116,6 +116,7 @@
         },
         "software_tools": {
             "type": "array",
+            "$comment": "KvN: Software tools describe methods rather than article-level metadata, so they may belong with methods/analysis or in a dedicated software section.",
             "items": {
                 "type": "object",
                 "properties": {
@@ -133,7 +134,7 @@
         },
         "publication_metadata": {
             "type": "object",
-            "$comment": "KvN: Some of these fields, e.g. e_location, are specific for journals. I guess it is yet to be determined what metadata will accompany the publication portal object.",
+            "$comment": "KvN: Some fields, e.g. e_location_id, are journal-specific. Other publication-level fields such as licence, funding and competing interests may still be needed by a publication portal; the portal metadata model needs to be defined separately from genome-note scientific metadata.",
             "properties": {
                 "funding": {
                     "type": "array",

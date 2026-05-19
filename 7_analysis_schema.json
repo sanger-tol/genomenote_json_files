@@ -88,12 +88,34 @@
                     },
                     "blobtoolkit": {
                         "type": "object",
+                        "$comment": "KvN: Genome notes include BlobToolKit figure assets and viewer links in the text. BUSCO values and software versions are represented elsewhere.",
                         "properties": {
-                            "blobdir": "string",
-                            "snail_plot": "string",
-                            "cumulative_plot": "string",
-                            "grid_plot": "string",
-                            "assembly_id": "string"
+                            "assembly_role": {
+                                "enum": [
+                                    "primary",
+                                    "hap1"
+                                ],
+                                "help": "Assembly role used for BlobToolKit publication figures and links."
+                            },
+                            "assembly_id": {
+                                "type": "string"
+                            },
+                            "snail_plot": {
+                                "type": "string",
+                                "help": "Publication figure asset for the BlobToolKit snail plot, usually generated for hap1 or the primary assembly."
+                            },
+                            "blob_plot": {
+                                "type": "string",
+                                "help": "Publication figure asset for the BlobToolKit blob plot, usually generated for hap1 or the primary assembly."
+                            },
+                            "snail_plot_url": {
+                                "type": "string",
+                                "help": "BlobToolKit viewer URL for the snail plot, included in the genome note text."
+                            },
+                            "blob_plot_url": {
+                                "type": "string",
+                                "help": "BlobToolKit viewer URL for the blob plot, included in the genome note text."
+                            }
                         }
                     },
                     "ancestral_linkage_group": {
