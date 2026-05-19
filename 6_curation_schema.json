@@ -5,32 +5,72 @@
         "curation": {
             "type": "object",
             "properties": {
+                "chromosome_naming": {
+                    "type": "object",
+                    "$comment": "KvN: data_note reads chromosome_naming, synteny_source, chromosome_result and autosomes from the curation/JIRA record. Chromosomes may be named by size or by synteny. The chromosome assignment percentage used in the genome note is perc_assembled/hap1_perc_assembled in the assembly schema, calculated separately from assembly chromosome lengths.",
+                    "properties": {
+                        "naming_method": {
+                            "enum": [
+                                "size",
+                                "synteny",
+                                "other"
+                            ],
+                            "help": "How chromosome names or numbers were assigned during curation."
+                        },
+                        "synteny_source": {
+                            "type": "string",
+                            "help": "Comparator assembly, species or reference source used when chromosomes were named by synteny."
+                        },
+                        "comparator_accessions": {
+                            "type": "array",
+                            "help": "Assembly accessions for comparator references used in synteny-based chromosome naming, where available.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "autosome_count": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Number of autosomes recorded by curation."
+                        },
+                        "chromosome_result": {
+                            "type": "string",
+                            "help": "Curation chromosome assignment summary from the curation/JIRA record. data_note may parse jira_perc_assem from this text, but that value is not used for the published percentage of assembly assigned to chromosomes."
+                        }
+                    }
+                },
                 "sex_annotation": {
                     "type": "object",
+                    "$comment": "KvN: data_note distinguishes the observed sex of the specimen, the curated/JIRA sex chromosome complement, and the chromosome labels identified in the assembly.",
                     "properties": {
-                        "comparator_reference": {
+                        "observed_sex": {
                             "type": "string",
-                            "help": "Name of comparator assembly TB: Better to have a list of GCA accessions"
+                            "help": "Observed or recorded sex of the specimen used for assembly, where curated."
                         },
-                        "source": {
+                        "sex_chromosome_complement": {
                             "type": "string",
-                            "help": "Web-address that the assembly was sourced from"
+                            "help": "Curated sex chromosome complement, for example XX, XY, ZZ, ZW or Z0."
                         },
-                        "identified_sex_system": {
+                        "identified_sex_chromosomes": {
                             "type": "string",
-                            "help": "Sex system identified in the assembly"
-                        },
-                        "specific_sex_chromosome": {
-                            "type": "string",
-                            "help": "What specific sex chromosomes were idendified in this assembly (What was it's sex?)"
+                            "help": "Sex chromosome labels identified in the assembly and reported in the genome note, for example X, X and Y, W and Z, or Z."
                         }
                     }
                 },
                 "curator_note": {
                     "type": "object",
                     "properties": {
-                        "assembly_text": "string",
-                        "curators_notes": "string"
+                        "assembly_type": {
+                            "type": "string",
+                            "help": "Assembly type recorded in the curation/JIRA record, for example Full VGP."
+                        },
+                        "assembly_text": {
+                            "type": "string"
+                        },
+                        "curator_note": {
+                            "type": "string",
+                            "help": "Free-text curator note from the curation/JIRA record, including chromosome assignment rationale or assembly caveats."
+                        }
                     }
                 },
                 "curation_statistics": {
@@ -51,13 +91,40 @@
                             "minimum": 0,
                             "help": "Joins performed across assembly"
                         },
+                        "haplotypic_duplications_removed": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Manual removals of haplotypic duplications during curation; used with breaks and joins to derive the curation intervention sentence."
+                        },
+                        "manual_inversions": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Manual inversions recorded in the curation/JIRA record. data_note pulls this field in."
+                        },
                         "change_in_length_bp": {
                             "type": "number",
-                            "help": "Change in the length of the assembly, can be positive or negative. Recorded in base pairs."
+                            "help": "Change in the length of the assembly, can be positive or negative. Recorded in base pairs. KvN: Report this as a percentage."
+                        },
+                        "change_in_length_percent": {
+                            "type": "number",
+                            "help": "Percentage change in total assembly length after curation; used in the derived curation intervention sentence."
+                        },
+                        "change_in_scaffold_count_percent": {
+                            "type": "number",
+                            "help": "Percentage change in scaffold count after curation; used in the derived curation intervention sentence."
                         },
                         "change_in_n50": {
                             "type": "number",
-                            "help": "Change in the scaffold N50 metric, recorded in base-pairs"
+                            "help": "Change in the scaffold N50 metric, recorded in base-pairs. KvN: report this as a percentage."
+                        },
+                        "change_in_n50_percent": {
+                            "type": "number",
+                            "help": "Percentage change in scaffold N50 after curation; used in the derived curation intervention sentence."
+                        },
+                        "manual_interventions_sentence": {
+                            "type": "string",
+                            "$comment": "KvN: In data_note this publication text is derived from intervention counts and percentage changes by the template, rather than entered as a raw pipeline field.",
+                            "help": "Publication-ready sentence or paragraph describing manual curation interventions and their effect on scaffold count, scaffold N50 and assembly length."
                         }
                     }
                 },

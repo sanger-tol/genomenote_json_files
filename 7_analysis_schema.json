@@ -5,6 +5,74 @@
         "analysis": {
             "type": "object",
             "properties": {
+                "ebp_metrics": {
+                    "type": "object",
+                    "$comment": "KvN: Although these fields are derived by data_note from assembly statistics, chromosome assignment percentage and Merqury QV, the EBP metric and reference-standard assessment are explicitly reported in the genome note table and should be represented in the schema.",
+                    "properties": {
+                        "ebp_metric": {
+                            "type": "string",
+                            "pattern": "^[0-9?]+\\.[0-9C?]+\\.Q[0-9?]+$",
+                            "help": "Derived EBP summary metric for the assembly used in the Genome Note table, for example 6.C.Q40."
+                        },
+                        "ebp_reference_standard": {
+                            "type": "string",
+                            "help": "EBP reference standard used as the benchmark for the table, for example 6.C.Q40 or 5.C.Q40."
+                        },
+                        "ebp_reference_standard_reason": {
+                            "type": "string",
+                            "help": "Reason this reference standard was selected, for example standard_input, manual_override, low_input_material or uli."
+                        },
+                        "ebp_reference_standard_met": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "help": "Whether the selected assembly meets the EBP reference standard; absent or null if required metrics are missing."
+                        },
+                        "ebp_reference_standard_status": {
+                            "enum": [
+                                "met",
+                                "not_met",
+                                "unknown"
+                            ],
+                            "help": "Derived status for the selected EBP reference standard."
+                        },
+                        "ebp_reference_standard_failures": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "help": "Derived list of failed EBP criteria, for example contig_n50_below_standard, percent_assigned_to_chromosomes_below_standard or qv_below_standard."
+                        },
+                        "ebp_reference_standard_missing_metrics": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "help": "Derived list of required EBP input metrics that were unavailable."
+                        },
+                        "ebp_contig_n50_benchmark_mb": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Contig N50 benchmark for the selected EBP reference standard, in megabases."
+                        },
+                        "ebp_contig_n50_benchmark_label": {
+                            "type": "string",
+                            "help": "Display label for the contig N50 benchmark, for example >= 1 Mb."
+                        },
+                        "ebp_perc_assembled_benchmark": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100,
+                            "help": "Percentage assigned to chromosomes required by the selected EBP reference standard."
+                        },
+                        "ebp_qv_benchmark": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "QV required by the selected EBP reference standard."
+                        }
+                    }
+                },
                 "GAP_analysis_data": {
                     "readmapping": {
                         "datablob_id": "string",
@@ -48,72 +116,108 @@
                     },
                     "merqury": {
                         "type": "array",
-                        "properties": {
-                            "assembly_id": "string",
-                            "haplotype": {
-                                "type": "string",
-                                "help": "Tool can be run once per haplotype + for a combined assembly. Every time, there will be overall AND per hap results.",
-                                "reads_used": {
-                                    "type": "array",
-                                    "properties": {
-                                        "file_path": "string"
-                                    }
-                                }
-                            },
-                            "kmer_length": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "help": "Length of the kmer used for analysis"
-                            },
-                            "statistics": {
-                                "type": "object",
-                                "properties": {
-                                    "qv_files": {
-                                        "type": "array",
-                                        "help": "All *.qv files TB: More likely to want one QV value (float) per assembly and combined"
-                                    },
-                                    "completeness_stats": "string TB: One completeness percentage per assembly and combined",
-                                    "spectra_plots": {
-                                        "type": "array",
-                                        "help": "multiple files are produced for spectra (ln, fl and st)."
-                                    },
-                                    "only_bed": {
-                                        "type": "string",
-                                        "help": "The *only.bed file"
-                                    }
+                        "$comment": "KvN: The schema should record results by assembly role, including combined results where available.",
+                        "help": "Merqury consensus quality and k-mer completeness values reported for each assembly role.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "assembly_role": {
+                                    "enum": [
+                                        "primary",
+                                        "alternate",
+                                        "hap1",
+                                        "hap2",
+                                        "combined"
+                                    ],
+                                    "help": "Assembly role for these Merqury values."
+                                },
+                                "assembly_id": {
+                                    "type": "string"
+                                },
+                                "qv": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "help": "Merqury consensus quality value."
+                                },
+                                "kmer_completeness_percent": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 100,
+                                    "help": "Merqury k-mer completeness percentage."
+                                },
+                                "kmer_length": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "help": "Length of the k-mer used for analysis."
+                                },
+                                "spectra_plot": {
+                                    "type": "string",
+                                    "help": "Optional publication figure or asset for the Merqury spectra plot."
                                 }
                             }
                         }
                     },
                     "busco": {
                         "type": "array",
-                        "properties": {
-                            "lineages": {
-                                "odb_name": "string",
-                                "complete": {
-                                    "type": "number",
-                                    "minimum": 0,
-                                    "help": "Number/Percentage of complete busco genes"
+                        "$comment": "KvN: BUSCO results may be recorded for hap1 and hap2, not just one set per genome note.",
+                        "help": "BUSCO completeness results reported for each assembly role.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "assembly_role": {
+                                    "enum": [
+                                        "primary",
+                                        "alternate",
+                                        "hap1",
+                                        "hap2"
+                                    ],
+                                    "help": "Assembly role for these BUSCO values."
                                 },
-                                "single": {
-                                    "type": "number",
-                                    "minimum": 0,
-                                    "help": "Number/Percentage of single busco genes"
+                                "assembly_id": {
+                                    "type": "string"
                                 },
-                                "duplicate": {
-                                    "type": "number",
-                                    "minimum": 0,
-                                    "help": "Number/Percentage of duplicate busco genes"
+                                "lineage": {
+                                    "type": "string",
+                                    "help": "BUSCO lineage dataset, for example lepidoptera_odb10."
                                 },
-                                "fragmented": {
+                                "complete_percent": {
                                     "type": "number",
                                     "minimum": 0,
-                                    "help": "Number/Percentage of fragmented busco genes"
+                                    "maximum": 100,
+                                    "help": "Percentage of complete BUSCOs."
                                 },
-                                "missing": {
+                                "single_percent": {
                                     "type": "number",
                                     "minimum": 0,
-                                    "help": "Number/Percentage of missing busco genes"
+                                    "maximum": 100,
+                                    "help": "Percentage of single-copy complete BUSCOs."
+                                },
+                                "duplicated_percent": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 100,
+                                    "help": "Percentage of duplicated complete BUSCOs."
+                                },
+                                "fragmented_percent": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 100,
+                                    "help": "Percentage of fragmented BUSCOs."
+                                },
+                                "missing_percent": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 100,
+                                    "help": "Percentage of missing BUSCOs."
+                                },
+                                "n_markers": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "help": "Number of BUSCOs in the lineage dataset."
+                                },
+                                "summary": {
+                                    "type": "string",
+                                    "help": "Display string, for example C:99.0% [S:98.6%, D:0.4%], F:0.2%, M:0.8%, n:5286."
                                 }
                             }
                         }

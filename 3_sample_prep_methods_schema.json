@@ -3,29 +3,275 @@
     "type": "object",
     "properties": {
         "methods": {
-            "type": "array",
+            "type": "object",
+            "help": "Methods used to collect, extract, prepare and sequence samples. These are kept as separate subsections because they are populated from different workflow sources.",
             "properties": {
                 "sample_acquisition": {
-                    "type": "object",
-                    "properties": {
-                        "acquisition_protocol": "string",
-                        "total_sample_mass_grams": {
-                            "type": "number",
-                            "minimum": 0,
-                            "help": "Total mass of sample taken"
-                        },
-                        "nucleic_acid_extraction": {
-                            "type": "array",
-                            "properties": {
-                                "protocol": {
+                    "type": "array",
+                    "help": "Collection, identification and preservation metadata for each source sample used in the genome note. Tissue mass is not included here; it belongs with extraction/tissue preparation.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sample_role": {
+                                "enum": [
+                                    "pacbio",
+                                    "hic",
+                                    "rna",
+                                    "isoseq",
+                                    "chromium",
+                                    "other"
+                                ],
+                                "help": "Role of this sample in the genome note workflow."
+                            },
+                            "sample_accession": {
+                                "type": "string",
+                                "help": "BioSample accession for the sample used for this workflow role."
+                            },
+                            "sample_derived_from": {
+                                "type": "string",
+                                "help": "Source individual or parent BioSample accession, where different from sample_accession."
+                            },
+                            "tolid": {
+                                "type": "string"
+                            },
+                            "specimen_id": {
+                                "type": "string"
+                            },
+                            "scientific_name": {
+                                "type": "string"
+                            },
+                            "organism_part": {
+                                "type": "string"
+                            },
+                            "sex": {
+                                "type": "string"
+                            },
+                            "lifestage": {
+                                "type": "string"
+                            },
+                            "collector": {
+                                "type": "string"
+                            },
+                            "collector_institute": {
+                                "type": "string"
+                            },
+                            "gal": {
+                                "type": "string",
+                                "help": "Genome Acquisition Lab."
+                            },
+                            "collection_date": {
+                                "type": "string"
+                            },
+                            "collection_location": {
+                                "type": "string"
+                            },
+                            "collection_latitude": {
+                                "type": "number"
+                            },
+                            "collection_longitude": {
+                                "type": "number"
+                            },
+                            "elevation_m": {
+                                "type": "number"
+                            },
+                            "identified_by": {
+                                "type": "string"
+                            },
+                            "identifier_affiliation": {
+                                "type": "string"
+                            },
+                            "identified_how": {
+                                "type": "string"
+                            },
+                            "collection_method": {
+                                "type": "string"
+                            },
+                            "preservation_method": {
+                                "type": "string"
+                            },
+                            "preservative_solution": {
+                                "type": "string"
+                            },
+                            "specimen_images": {
+                                "type": "array",
+                                "help": "Images of the collected specimen or source individual used in the genome note.",
+                                "items": {
                                     "type": "object",
-                                    "help": "Protocol followed by the Laboratory team for nucleic acid extraction",
                                     "properties": {
-                                        "name": "string",
-                                        "method": "string",
-                                        "doi": "string"
+                                        "image": {
+                                            "type": "string"
+                                        },
+                                        "link": {
+                                            "type": "string"
+                                        },
+                                        "caption": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
+                            }
+                        }
+                    }
+                },
+                "nucleic_acid_extraction": {
+                    "type": "array",
+                    "help": "Wet-lab extraction and tissue-preparation metadata.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sample_role": {
+                                "enum": [
+                                    "pacbio",
+                                    "hic",
+                                    "rna",
+                                    "isoseq",
+                                    "chromium",
+                                    "other"
+                                ]
+                            },
+                            "sample_accession": {
+                                "type": "string"
+                            },
+                            "sanger_sample_id": {
+                                "type": "string"
+                            },
+                            "submission_id": {
+                                "type": "string"
+                            },
+                            "submission_name": {
+                                "type": "string"
+                            },
+                            "extraction_uid": {
+                                "type": "string"
+                            },
+                            "tissue_prep_uid": {
+                                "type": "string"
+                            },
+                            "extraction_protocol": {
+                                "type": "string"
+                            },
+                            "protocol": {
+                                "type": "string",
+                                "help": "Display name for the extraction protocol, where separate from extraction_protocol."
+                            },
+                            "extraction_mode": {
+                                "type": "string"
+                            },
+                            "extraction_date": {
+                                "type": "string"
+                            },
+                            "date_complete": {
+                                "type": "string"
+                            },
+                            "dna_yield_ng": {
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "volume_ul": {
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "qubit_ngul": {
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "ratio_260_280": {
+                                "type": "number"
+                            },
+                            "ratio_260_230": {
+                                "type": "number"
+                            },
+                            "nanodrop_concentration_ngul": {
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "fragment_size_kb": {
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "gqn": {
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "spri_type": {
+                                "type": "string"
+                            },
+                            "disruption_method": {
+                                "type": "string"
+                            },
+                            "tissue_type": {
+                                "type": "string"
+                            },
+                            "tissue_weight_mg": {
+                                "type": "number",
+                                "minimum": 0,
+                                "help": "Mass/weight of tissue taken for extraction, in milligrams."
+                            }
+                        }
+                    }
+                },
+                "library_preparation_and_sequencing": {
+                    "type": "array",
+                    "help": "Library preparation, sequencing platform and method metadata. Counts and yields are represented under raw_data and raw_data_statistics.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "technology": {
+                                "enum": [
+                                    "PacBio HiFi",
+                                    "Hi-C",
+                                    "RNA-seq",
+                                    "Iso-Seq",
+                                    "10x Chromium",
+                                    "ONT",
+                                    "Bionano",
+                                    "Illumina",
+                                    "other"
+                                ],
+                                "help": "Sequencing or data-generation technology."
+                            },
+                            "sample_accession": {
+                                "type": "string"
+                            },
+                            "sample_derived_from": {
+                                "type": "string"
+                            },
+                            "sanger_sample_id": {
+                                "type": "string"
+                            },
+                            "library_name": {
+                                "type": "string"
+                            },
+                            "library_id": {
+                                "type": "string"
+                            },
+                            "library_construction_protocol": {
+                                "type": "string"
+                            },
+                            "library_selection": {
+                                "type": "string"
+                            },
+                            "library_source": {
+                                "type": "string"
+                            },
+                            "sequencing_protocol": {
+                                "type": "string"
+                            },
+                            "platform": {
+                                "type": "string"
+                            },
+                            "instrument_model": {
+                                "type": "string"
+                            },
+                            "sequencing_date": {
+                                "type": "string"
+                            },
+                            "pipeline_id_lims": {
+                                "type": "string"
+                            },
+                            "plex_level": {
+                                "type": "string",
+                                "help": "Multiplexing level used for this sequencing data, for example 2-plex."
                             }
                         }
                     }
@@ -34,81 +280,173 @@
         },
         "raw_data": {
             "type": "array",
-            "properties": {
-                "sample_derived_from": "string",
-                "data_type": {
-                    "enum": [
-                        "hic_arima2",
-                        "ont",
-                        "longread_pacbio",
-                        "hic_cifi",
-                        "10x_chromium",
-                        "bionano",
-			"wgs",
-			"rnaseq",
-			"isoseq_pacbio"
-                    ],
-                    "help": "Data type of the data"
-                },
-                "accession": "string",
-                "statistics": {
-                    "type": "object",
-                    "properties": {
-                        "reads_in_millions": {
-                            "type": "number",
-                            "minimum": 0,
-                            "help": "Total number of reads in millions"
-                        },
-                        "total_yield_mbp": {
-                            "type": "number",
-                            "minimum": 0,
-                            "help": "Total Yield of data in Mega Base Pairs"
-                        }
-                    }
-                },
-                "technology": {
-                    "type": "object",
-                    "properties": {
-                        "techonology": {
-                            "enum": [
-                                "ONT",
-                                "PacBio",
-                                "10x Chromium",
-                                "Bionano",
-				"Illumina"
-                            ],
-                            "help": "Technology used for sequencing"
-                        },
-                        "instrument": {
-                            "type": "string",
-                            "help": "Instrument/Platform that sequencing took place on"
-                        }
+            "help": "Public or internal raw sequencing data records. This is the data actually produced by the sequencing workflow, not the acquisition or extraction metadata.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "sample_accession": {
+                        "type": "string"
                     },
-                    "protocol": {
+                    "sample_derived_from": {
+                        "type": "string"
+                    },
+                    "data_type": {
+                        "enum": [
+                            "pacbio_hifi",
+                            "longread_pacbio",
+                            "hic",
+                            "hic_arima2",
+                            "hic_cifi",
+                            "rna_seq",
+                            "rnaseq",
+                            "isoseq",
+                            "isoseq_pacbio",
+                            "10x_chromium",
+                            "chromium",
+                            "ont",
+                            "bionano",
+                            "wgs",
+                            "other"
+                        ],
+                        "help": "Type of data represented by this raw-data record."
+                    },
+                    "accession": {
                         "type": "string",
-                        "help": "TEMP_TYPE - Links to one of methods.nucleic_acid_extraction"
+                        "help": "Public accession for the raw-data record, if a single generic accession field is used."
+                    },
+                    "read_accession": {
+                        "type": "string"
+                    },
+                    "run_accession": {
+                        "type": "string"
+                    },
+                    "experiment_accession": {
+                        "type": "string"
+                    },
+                    "library_name": {
+                        "type": "string"
+                    },
+                    "library_layout": {
+                        "type": "string"
+                    },
+                    "library_selection": {
+                        "type": "string"
+                    },
+                    "library_source": {
+                        "type": "string"
+                    },
+                    "instrument_model": {
+                        "type": "string"
+                    },
+                    "submitted_bytes": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "read_count": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "base_count_gb": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "metadata_source": {
+                        "type": "string"
+                    },
+                    "technology": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "enum": [
+                                    "ONT",
+                                    "PacBio",
+                                    "10x Chromium",
+                                    "Bionano",
+                                    "Illumina",
+                                    "other"
+                                ],
+                                "help": "Technology used for sequencing."
+                            },
+                            "instrument": {
+                                "type": "string",
+                                "help": "Instrument/platform that sequencing took place on."
+                            },
+                            "protocol": {
+                                "type": "string",
+                                "help": "Sequencing or library preparation protocol."
+                            }
+                        }
                     }
                 }
-            },
-            "raw_data_statistics": {
-                "type": "object",
-                "propteries": {
-                    "cumulative_stats": {
-                        "type": "array",
+            }
+        },
+        "raw_data_statistics": {
+            "type": "object",
+            "help": "Cumulative sequencing statistics, normally derived from raw_data records.",
+            "properties": {
+                "sequencing_data_source": {
+                    "type": "string",
+                    "help": "For example public, portal or public-with-portal."
+                },
+                "sequencing_public_source_accessions": {
+                    "type": "string"
+                },
+                "sequencing_portal_enrichment_applied": {
+                    "type": "boolean"
+                },
+                "sequencing_portal_matched_runs": {
+                    "type": "string"
+                },
+                "sequencing_portal_unmatched_runs": {
+                    "type": "string"
+                },
+                "sequencing_portal_excluded_runs": {
+                    "type": "string"
+                },
+                "sequencing_portal_warnings": {
+                    "type": "string"
+                },
+                "cumulative_stats": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
                         "properties": {
                             "data_type": {
                                 "type": "string",
-                                "help": "Per datatype in raw_data.data_type"
+                                "help": "Per datatype in raw_data.data_type."
+                            },
+                            "sample_accession": {
+                                "type": "string"
+                            },
+                            "instrument_model": {
+                                "type": "string"
+                            },
+                            "read_count_unit": {
+                                "type": "string",
+                                "help": "Unit used for read_count-derived totals, for example reads or read pairs."
+                            },
+                            "read_count_source": {
+                                "type": "string",
+                                "help": "Source used for read-count totals, for example ENA, NCBI RunInfo or portal_tolqc."
+                            },
+                            "base_count_source": {
+                                "type": "string",
+                                "help": "Source used for base-count totals, for example ENA, NCBI RunInfo or portal_tolqc."
                             },
                             "reads_in_millions": {
                                 "type": "number",
                                 "minimum": 0,
-                                "help": "Total number of reads in millions"
+                                "help": "Total number of reads in millions."
                             },
                             "total_yield_mbp": {
                                 "type": "number",
                                 "minimum": 0,
-                                "help": "Total Yield of data in Mega Base Pairs"
+                                "help": "Total yield of data in megabase pairs."
+                            },
+                            "total_yield_gbp": {
+                                "type": "number",
+                                "minimum": 0,
+                                "help": "Total yield of data in gigabase pairs."
                             }
                         }
                     }
