@@ -3,6 +3,124 @@
     "type": "object",
     "$comment": "KvN: Assembly needs an explicit assembly_role concept: primary, alternate, hap1, hap2. These are linked to analyses and to decision points in the genome note template about what is included.",
     "properties": {
+        "assembly_methods": {
+            "type": "object",
+            "$comment": "KvN: Assembly methods and curation methods are related but not the same. Assembly methods describe how the assembly was generated, scaffolded and purged before or during production of the submitted assembly.",
+            "properties": {
+                "assembly_method_text": {
+                    "type": "string",
+                    "help": "Publication-ready or template-generated text describing the assembly method."
+                },
+                "assembly_pipeline": {
+                    "type": "string",
+                    "help": "Assembly pipeline or workflow used, where recorded separately from individual software tools."
+                },
+                "assembly_software": {
+                    "type": "array",
+                    "help": "Software used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "version": {
+                                "type": "string"
+                            },
+                            "purpose": {
+                                "type": "string"
+                            },
+                            "parameters": {
+                                "type": "string"
+                            },
+                            "source": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "hifiasm_phasing_mode": {
+                    "enum": [
+                        "hic_phasing",
+                        "original",
+                        "other"
+                    ],
+                    "help": "Whether Hifiasm was run in Hi-C phasing mode or original/non-Hi-C mode."
+                },
+                "hifiasm_options": {
+                    "type": "string",
+                    "help": "Hifiasm command-line options where these affect the published assembly method, for example --primary -l0."
+                },
+                "hifiasm_primary_mode": {
+                    "type": "boolean",
+                    "help": "Whether Hifiasm primary mode was used."
+                },
+                "hifiasm_internal_purging_disabled": {
+                    "type": "boolean",
+                    "help": "Whether Hifiasm internal purging was disabled."
+                },
+                "hifiasm_options_sentence": {
+                    "type": "string",
+                    "help": "Publication-ready sentence derived from Hifiasm options by data_note."
+                },
+                "organelle_assembly": {
+                    "type": "array",
+                    "help": "Organelle assembly steps or decisions, including assembler and comparator where relevant.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organelle_type": {
+                                "enum": [
+                                    "mitochondrion",
+                                    "plastid",
+                                    "chloroplast",
+                                    "other"
+                                ]
+                            },
+                            "assembler": {
+                                "type": "string",
+                                "help": "Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk."
+                            },
+                            "comparator": {
+                                "type": "string",
+                                "help": "Comparator species, assembly or reference used for organelle assembly, where applicable."
+                            },
+                            "comparator_accession": {
+                                "type": "string"
+                            },
+                            "decision_notes": {
+                                "type": "string",
+                                "help": "Short note on organelle assembly choices or review decisions."
+                            }
+                        }
+                    }
+                },
+                "microchromosome_assignment": {
+                    "type": "object",
+                    "help": "Method or decision fields used for identifying or assigning bird microchromosomes, where relevant.",
+                    "properties": {
+                        "tool": {
+                            "type": "string",
+                            "help": "Tool or workflow used for microchromosome identification or assignment, for example MicroFinder."
+                        },
+                        "version": {
+                            "type": "string"
+                        },
+                        "comparator": {
+                            "type": "string",
+                            "help": "Comparator species, assembly or reference used for microchromosome assignment, where applicable."
+                        },
+                        "comparator_accession": {
+                            "type": "string"
+                        },
+                        "decision_notes": {
+                            "type": "string",
+                            "help": "Short note on microchromosome assignment choices or review decisions."
+                        }
+                    }
+                }
+            }
+        },
         "assembly_stats": {
             "type": "object",
             "properties": {

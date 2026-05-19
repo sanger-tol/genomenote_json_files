@@ -5,6 +5,44 @@
         "curation": {
             "type": "object",
             "properties": {
+                "curation_methods": {
+                    "type": "object",
+                    "$comment": "KvN: Curation methods describe manual review and changes made after assembly generation.",
+                    "properties": {
+                        "curation_method_text": {
+                            "type": "string",
+                            "help": "Publication-ready or template-generated text describing manual curation methods."
+                        },
+                        "curation_software": {
+                            "type": "array",
+                            "help": "Software used for curation, review or curation figure generation, for example PretextView, PretextSnapshot, curationpretext or gfastats.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    },
+                                    "purpose": {
+                                        "type": "string"
+                                    },
+                                    "source": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "curation_evidence": {
+                            "type": "array",
+                            "help": "Evidence or data types used during curation, for example Hi-C contact maps and JBrowse.",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
                 "chromosome_naming": {
                     "type": "object",
                     "$comment": "KvN: data_note reads chromosome_naming, synteny_source, chromosome_result and autosomes from the curation/JIRA record. Chromosomes may be named by size or by synteny. The chromosome assignment percentage used in the genome note is perc_assembled/hap1_perc_assembled in the assembly schema, calculated separately from assembly chromosome lengths.",
@@ -78,6 +116,7 @@
                     "properties": {
                         "manual_interventions_per_gb": {
                             "type": "number",
+                            "$comment": "KvN: I don't currently use this.",
                             "minimum": 0,
                             "help": "Manual interventions in the assembly, normalised per Giga-base"
                         },
@@ -130,6 +169,7 @@
                 },
                 "contaminants_removed": {
                     "type": "object",
+                    "$comment": "KvN: I don't currently represent this in the genome note.",
                     "properties": {
                         "scaffolds_removed": {
                             "type": "number",
