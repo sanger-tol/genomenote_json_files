@@ -27,7 +27,40 @@
                     "type": "string"
                 },
                 "bioproject": {
-                    "type": "string"
+                    "type": "string",
+                    "help": "Main or umbrella BioProject for the genome note."
+                },
+                "child_bioprojects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "help": "Child BioProjects associated with the main BioProject; used by data_note to find sequencing run metadata."
+                },
+                "parent_projects": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "accession": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "project_name": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "help": "Parent BioProjects associated with the main BioProject. Used by data_note to derive formatted_parent_projects."
+                },
+                "formatted_parent_projects": {
+                    "type": "string",
+                    "help": "Publication-ready parent project string derived from parent_projects by data_note. Describes, e.g. Project Psyche."
                 },
                 "authors": {
                     "type": "array",
@@ -100,6 +133,7 @@
         },
         "publication_metadata": {
             "type": "object",
+            "$comment": "KvN: Some of these fields, e.g. e_location, are specific for journals. I guess it is yet to be determined what metadata will accompany the publication portal object.",
             "properties": {
                 "funding": {
                     "type": "array",
