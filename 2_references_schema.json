@@ -1,13 +1,17 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema#",
     "type": "object",
-    "$comment": "KvN: To ensure fields are dealt with correctly, there could be  a different schema for different reference types, e.g. article, web page, protocol, conference proceedings. This is how it works in BibTeX",
+    "$comment": "KvN: To ensure fields are dealt with correctly, there could be  a different schema for different reference types, e.g. article, preprint, book/ book chapter, dataset, report, web page, protocol, conference proceedings.",
     "properties": {
         "references": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
+                    "citation_key": {
+                        "type": "string",
+                        "help": "Stable key used for in-text citations and bibliography matching. This should match the BibTeX key or CSL id used by Pandoc or by the portal citation processor."
+                    },
                     "id": {
                         "type": "string"
                     },
