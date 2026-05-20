@@ -116,7 +116,7 @@
                     "properties": {
                         "manual_interventions_per_gb": {
                             "type": "number",
-                            "$comment": "KvN: I don't currently use this.",
+                            "$comment": "KvN: I don't currently use this, but it could be useful for the overall project.",
                             "minimum": 0,
                             "help": "Manual interventions in the assembly, normalised per Giga-base"
                         },
@@ -141,8 +141,9 @@
                             "help": "Manual inversions recorded in the curation/JIRA record. data_note pulls this field in."
                         },
                         "change_in_length_bp": {
+                            "$comment": "KvN: Fetch this in bp, but report as a percentage.",
                             "type": "number",
-                            "help": "Change in the length of the assembly, can be positive or negative. Recorded in base pairs. KvN: Report this as a percentage."
+                            "help": "Change in the length of the assembly, can be positive or negative. Recorded in base pairs."
                         },
                         "change_in_length_percent": {
                             "type": "number",
@@ -153,8 +154,9 @@
                             "help": "Percentage change in scaffold count after curation; used in the derived curation intervention sentence."
                         },
                         "change_in_n50": {
+                            "$comment": "KvN: Fetch this in bp, but report as a percentage.",
                             "type": "number",
-                            "help": "Change in the scaffold N50 metric, recorded in base-pairs. KvN: report this as a percentage."
+                            "help": "Change in the scaffold N50 metric, recorded in base-pairs."
                         },
                         "change_in_n50_percent": {
                             "type": "number",
@@ -163,13 +165,13 @@
                         "manual_interventions_sentence": {
                             "type": "string",
                             "$comment": "KvN: In data_note this publication text is derived from intervention counts and percentage changes by the template, rather than entered as a raw pipeline field.",
-                            "help": "Publication-ready sentence or paragraph describing manual curation interventions and their effect on scaffold count, scaffold N50 and assembly length."
+                            "help": "Publication-ready sentences describing manual curation interventions and their effect on scaffold count, scaffold N50 and assembly length."
                         }
                     }
                 },
                 "contaminants_removed": {
                     "type": "object",
-                    "$comment": "KvN: I don't currently represent this in the genome note.",
+                    "$comment": "KvN: I don't currently represent this in the genome note, but is useful if there is an abnormal contamination report.",
                     "properties": {
                         "scaffolds_removed": {
                             "type": "number",
