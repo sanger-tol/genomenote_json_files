@@ -154,7 +154,7 @@
                                         "sample_derived_from": {
                                             "type": "string"
                                         },
-                                        "gal_sample_id": {
+                                        "gal_sample_id": { <-- same as above
                                             "type": "string"
                                         },
                                         "library_name": {
