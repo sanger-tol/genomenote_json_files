@@ -9,32 +9,6 @@
             "type": "object",
             "$comment": "KvN: Assembly methods and curation methods are related but not the same. Assembly methods describe how the assembly was generated, scaffolded and purged before or during production of the submitted assembly.",
             "properties": {
-                "involved_persons": {
-                    "type": "array",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "help": "Name of assembler"
-                        },
-                        "role": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "enum": [
-                                    "assembler",
-                                    "annotation",
-                                    "other"
-                                ]
-                            },
-                            "minItems": 1,
-                            "uniqueItems": true
-                        },
-                        "affiliation": {
-                            "type": "string",
-                            "help": "Affiliated group"
-                        }
-                    }
-                },
                 "assembly_method_text": {
                     "type": "string",
                     "help": "Publication-ready or template-generated text describing the assembly method."

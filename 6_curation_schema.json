@@ -5,31 +5,6 @@
         "curation": {
             "type": "object",
             "properties": {
-                "involved_persons": {
-                    "type": "array",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "help": "Name of assembler"
-                        },
-                        "role": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "enum": [
-                                    "curator",
-                                    "other"
-                                ]
-                            },
-                            "minItems": 1,
-                            "uniqueItems": true
-                        },
-                        "affiliation": {
-                            "type": "string",
-                            "help": "Affiliated group"
-                        }
-                    }
-                },
                 "extra-numerary-chromosomes": {
                     "type": "array",
                     "help": "Method or decision fields used for identifying or assigning microchromosomes (Such as B Chromosomes), where relevant.",
@@ -201,7 +176,7 @@
                         }
                     }
                 },
-                "contaminants_removed": {
+                "contaminants_removed": { <-- Question as to whether to keep or not
                     "type": "object",
                     "properties": {
                         "scaffolds_removed": {

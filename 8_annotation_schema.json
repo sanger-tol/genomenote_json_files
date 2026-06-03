@@ -19,10 +19,10 @@
                     "type": "object",
                     "help": "Key statistics of annotation outcomes, to be updated in future",
                     "properties": {
-                        "no_genes": "integer",
+                        "total_gene_count": "integer",
                         "mean_gene_length": "number",
                         "mean_mrna_length": "number",
-                        "no_single_exon_genes": "integer",
+                        "number_single_exon_genes": "integer",
                         "busco": {
                             "type": "array",
                             "properties": {

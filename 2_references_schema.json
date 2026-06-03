@@ -7,6 +7,10 @@
             "source": [
                 "bibtex"
             ],
+            "uniqueItemProperties": [ <-- JSON Schema extension to use unique props
+                "citation_key",
+                "title"
+            ],
             "help": "References in bibtex format - inpired by https://github.com/brianrabern/bib2json/blob/main/README.md",
             "items": {
                 "type": "object",

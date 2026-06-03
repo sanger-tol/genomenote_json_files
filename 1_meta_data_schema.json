@@ -1,6 +1,10 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema#",
     "type": "object",
+    "source": [
+        "tolqc",
+        "STS"
+    ],
     "properties": {
         "metadata": {
             "type": "object",
@@ -9,7 +13,8 @@
                     "type": "string"
                 },
                 "doi": {
-                    "type": "string"
+                    "type": "string",
+                    pattern <--
                 },
                 "data_availability": {
                     "type": "string"
@@ -18,7 +23,8 @@
                     "type": "string"
                 },
                 "abstract": {
-                    "type": "string"
+                    "type": "string",
+                    "help": "Markdown is fine"
                 },
                 "keywords": {
                     "type": "array",
@@ -72,17 +78,44 @@
                     "items": {
                         "type": "object",
                         "properties": {
+                            "authorsdb_id": {
+                                "type": "string",
+                                "help": "ID from AuthorsDB"
+                            },
                             "surname": {
-                                "type": "string"
+                                "type": "string",
+                                "help": "Family name of the author"
+                            },
+                            "middle_names": {
+                                "type": "string",
+                                "help": "Middle names of the author"
                             },
                             "given_names": {
-                                "type": "string"
+                                "type": "string",
+                                "help": "Given names of the author (First name)"
                             },
-                            "roles": {
+                            "gal_association": {
+                                "type": "string",
+                                "help": "GAL association if applicable - Collectors ONLY"
+                            },
+                            "role": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "type": "string",
+                                    "enum": [
+                                        "assembler",
+                                        "curator",
+                                        "data_generator",
+                                        "annotation",
+                                        "collection",
+                                        "extraction",
+                                        "sequencing",
+                                        "researcher",
+                                        "other"
+                                    ]
+                                },
+                                "minItems": 1,
+                                "uniqueItems": true
                             },
                             "orcid": {
                                 "type": "string"
@@ -160,7 +193,7 @@
                     "publication_date": "string"
                 },
                 "ebp_analysis_metrics": {
-                    "type": "array"
+                    "type": "array" <-- already exists somewhere else
                 },
                 "acknowledgements": {
                     "type": "string"

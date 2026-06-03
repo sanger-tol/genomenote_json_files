@@ -57,6 +57,7 @@
         "collection_data": {
             "type": "array",
             "properties": {
+                <-- "Museum Voucher ID",
                 "sample_id": "string",
                 "method": {
                     "type": "string",
@@ -107,7 +108,7 @@
                 "gal": {
                     "type": "string",
                     "help": "Genome Acquisition Lab."
-                }
+                } <-- move into the meta data with if else on collector for gal info - Source of author will change depending on role too.
             }
         },
         "specimen_images": {

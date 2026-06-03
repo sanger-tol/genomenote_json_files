@@ -29,6 +29,9 @@
                             },
                             "nucleic_acid_extraction": {
                                 "type": "array",
+                                "source": [
+                                    "STS"
+                                ],
                                 "help": "Wet-lab extraction and tissue-preparation metadata.",
                                 "items": {
                                     "type": "object",
@@ -44,9 +47,10 @@
                                             ]
                                         },
                                         "sample_accession": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "help": "Biospecimen"
                                         },
-                                        "sanger_sample_id": {
+                                        "gal_sample_id": { <-- get annotation from Karen, was originally sanger_sample_id We need to be more specific
                                             "type": "string"
                                         },
                                         "submission_id": {
@@ -150,13 +154,13 @@
                                         "sample_derived_from": {
                                             "type": "string"
                                         },
-                                        "sanger_sample_id": {
+                                        "gal_sample_id": {
                                             "type": "string"
                                         },
                                         "library_name": {
                                             "type": "string"
                                         },
-                                        "library_id": {
+                                        "library_id": { <-- ena experiment id maybe?
                                             "type": "string"
                                         },
                                         "library_construction_protocol": {
