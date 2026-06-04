@@ -14,7 +14,7 @@
                         "accession": "string"
                     }
                 },
-                "method": "string",
+                "methods": "string",
                 "statistics": {
                     "type": "object",
                     "help": "Key statistics of annotation outcomes, to be updated in future",
@@ -24,34 +24,307 @@
                         "mean_mrna_length": "number",
                         "number_single_exon_genes": "integer",
                         "busco": {
-                            "type": "array",
+                            "type": "object",
                             "properties": {
-                                "lineages": {
-                                    "odb_name": "string",
-                                    "complete": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "help": "Number/Percentage of complete busco genes"
-                                    },
-                                    "single": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "help": "Number/Percentage of single busco genes"
-                                    },
-                                    "duplicate": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "help": "Number/Percentage of duplicate busco genes"
-                                    },
-                                    "fragmented": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "help": "Number/Percentage of fragmented busco genes"
-                                    },
-                                    "missing": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "help": "Number/Percentage of missing busco genes"
+                                "tool_version": "string",
+                                "results": {
+                                    "type": "array",
+                                    "properties": {
+                                        "mode": {
+                                            "enum": [
+                                                "genome",
+                                                "proteome"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "lineages": {
+                                            "odb_name": "string",
+                                            "web_url": "string",
+                                            "complete": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "help": "Number/Percentage of complete busco genes"
+                                            },
+                                            "single": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "help": "Number/Percentage of single busco genes"
+                                            },
+                                            "duplicate": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "help": "Number/Percentage of duplicate busco genes"
+                                            },
+                                            "fragmented": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "help": "Number/Percentage of fragmented busco genes"
+                                            },
+                                            "missing": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "help": "Number/Percentage of missing busco genes"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "omark": {
+                            "type": "object",
+                            "properties": {
+                                "tool_version": "string",
+                                "assessments": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "clades": {
+                                                "clade_name": "string",
+                                                "web_url": "string",
+                                                "conserved_HOGs": {
+                                                    "source": "Completeness Assessment",
+                                                    "type": "number",
+                                                    "minimum": 0
+                                                },
+                                                "completeness": {
+                                                    "source": "Completeness Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "count": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "help": "Completeness count"
+                                                        },
+                                                        "percentage": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "maximum": 100,
+                                                            "help": "Completeness percentage"
+                                                        }
+                                                    }
+                                                },
+                                                "inc_single": {
+                                                    "source": "Completeness Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "count": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "help": "Including single count, from completeness assessment"
+                                                        },
+                                                        "percentage": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "maximum": 100,
+                                                            "help": "Including single percentage, from completeness assessment"
+                                                        }
+                                                    }
+                                                },
+                                                "duplicated": {
+                                                    "source": "Completeness Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "summary": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Overall duplicated count"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Overall duplicated percentage"
+                                                                }
+                                                            }
+                                                        },
+                                                        "expected": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Including expected duplicated count, from completeness assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Including expected duplicated percentage, from completeness assessment"
+                                                                }
+                                                            }
+                                                        },
+                                                        "unexpected": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Including unexpected duplicated count, from completeness assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Including unexpected duplicated percentage, from completeness assessment"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "missing": {
+                                                    "source": "Completeness Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "count": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "help": "Number of missing genes from completeness assessment"
+                                                        },
+                                                        "percentage": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "maximum": 100,
+                                                            "help": "Percentage of missing genes from completeness assessment"
+                                                        }
+                                                    }
+                                                },
+                                                "total_unknown_proteins": {
+                                                    "source": "Whole Proteome Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "count": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "help": "Number of unknown proteins"
+                                                        },
+                                                        "percentage": {
+                                                            "type": "number",
+                                                            "minimum": 0,
+                                                            "maximum": 100,
+                                                            "help": "Percentage of unknown proteins"
+                                                        }
+                                                    }
+                                                },
+                                                "protein_count": {
+                                                    "source": "Whole Proteome Assessment",
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "help": "Number of proteins in whole proteome, from whole proteome assessment"
+                                                },
+                                                "consistent_lineage_placement": {
+                                                    "source": "Whole Proteome Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "summary": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Number of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Percentage of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                }
+                                                            }
+                                                        },
+                                                        "consistent": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Number of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Percentage of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                }
+                                                            }
+                                                        },
+                                                        "inconsistent": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Number of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Percentage of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "contamination": {
+                                                    "source": "Whole Proteome Assessment",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "summary": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Number of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Percentage of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                }
+                                                            }
+                                                        },
+                                                        "consistent": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Number of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Percentage of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                }
+                                                            }
+                                                        },
+                                                        "inconsistent": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "count": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "help": "Number of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                },
+                                                                "percentage": {
+                                                                    "type": "number",
+                                                                    "minimum": 0,
+                                                                    "maximum": 100,
+                                                                    "help": "Percentage of proteins with consistent lineage placement, from partial proteome assessment"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
