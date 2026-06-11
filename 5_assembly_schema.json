@@ -7,37 +7,37 @@
     "properties": {
         "assembly_methods": {
             "type": "object",
-            "$comment": "KvN: Assembly methods and curation methods are related but not the same. Assembly methods describe how the assembly was generated, scaffolded and purged before or during production of the submitted assembly.",
             "properties": {
+                "involved_persons": {
+                    "type": "array",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "help": "ID from author list of those who assembled the genome(s)"
+                        }
+                    }
+                },
                 "assembly_method_text": {
                     "type": "string",
                     "help": "Publication-ready or template-generated text describing the assembly method."
                 },
                 "assembly_software": {
                     "type": "array",
-                    "help": "Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS.",
+                    "help": "Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.",
                     "items": {
                         "type": "object",
                         "properties": {
                             "name": {
                                 "type": "string"
                             },
-                            "version": {
-                                "type": "string"
-                            },
-                            "purpose": {
-                                "type": "string"
-                            },
-                            "parameters": {
-                                "type": "string"
-                            },
-                            "source": {
-                                "type": "string"
+                            "ID": {
+                                "type": "string",
+				"help": "Identifier from the references list"
                             }
                         }
                     }
                 },
-                "hifiasm_data": {
+                "contig_assembly_details": { //I don't really like this, as it's not agnostic to tools/assemblers. Perhaps it would be better to have an array of properties such as CLI options and notes for tools such as hifiasm, verkko, purge-dups, Flye, whatever other tools people want to use to generate their assemblies with
                     "type": "object",
                     "source": [
                         "ToLQC"
@@ -46,14 +46,15 @@
                         "phasing_mode": {
                             "enum": [
                                 "hic_phasing",
+				"trio_illumina",
                                 "original",
                                 "other"
                             ],
-                            "help": "Whether Hifiasm was run in Hi-C phasing mode or original/non-Hi-C mode."
+                            "help": "Whether the contig assembly was generated in a haplotype-aware mode using Hi-C, parental or other data. NB: HiFiasm is not the only assembler"
                         },
                         "cli_options": {
                             "type": "string",
-                            "help": "Hifiasm command-line options where these affect the published assembly method, for example --primary -l0."
+                            "help": "Command-line options passed to the contig assemblier where these affect the published assembly method, for example --primary -l0. NB: Setting -l0 disables internal purging, so this is reduntant with the option below"
                         },
                         "formatted_cli_options": {
                             "type": "string",
@@ -61,11 +62,7 @@
                         },
                         "primary_mode": {
                             "type": "boolean",
-                            "help": "Whether Hifiasm primary mode was used."
-                        },
-                        "internal_purging_disabled": {
-                            "type": "boolean",
-                            "help": "Whether Hifiasm internal purging was disabled."
+                            "help": "Whether the contig assembler generated primary/alternate contig sets, or haplotype sets. NB: I also feel this is reduntant with the CLI options above, but maybe good to keep in case other assemblers have different modes"
                         }
                     }
                 },
@@ -87,11 +84,9 @@
                                 "type": "object",
                                 "properties": {
                                     "name": "string",
-                                    "version": "string",
-                                    "doi": "string",
-                                    "url": "string"
+                                    "ID": "string"
                                 },
-                                "help": "Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk."
+                                "help": "Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk. Should be a link to an object in the reference list"
                             },
                             "comparator": {
                                 "type": "array",
@@ -110,7 +105,7 @@
                 }
             }
         },
-        "assembly_stats": {
+        "assembly_stats": {//This is also not clear to me - do we mean the stats before curation? It will likely not be possible to collect this information for all assemblies. Should we move this to the "Analysis" section and only base these on the final assemblies?
             "type": "array",
             "properties": {
                 "assembly_information": {
