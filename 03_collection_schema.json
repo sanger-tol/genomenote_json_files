@@ -1,0 +1,124 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "source": [
+        "STS"
+    ],
+    "properties": {
+        "sample_accession": {
+            "type": "string",
+            "help": "BioSample accession for the sample used for this workflow role."
+        },
+        "sample_derived_from": {
+            "type": "string",
+            "help": "Source individual or parent BioSample accession, where different from sample_accession."
+        },
+        "tolid": {
+            "type": "string"
+        },
+        "specimen_id": {
+            "type": "string"
+        },
+        "organism_part": {
+            "type": "string"
+        },
+        "preservation_data": {
+            "type": "array",
+            "properties": {
+                "sample_id": "string",
+                "method": {
+                    "type": "string",
+                    "help": "Method of preservation used"
+                },
+                "solution": {
+                    "type": "string",
+                    "help": "Storage solution"
+                }
+            }
+        },
+        "identification_data": {
+            "type": "array",
+            "properties": {
+                "sample_id": "string",
+                "scientific_name": "string",
+                "method": {
+                    "type": "string",
+                    "help": "How was the organism identified?"
+                },
+                "sex": {
+                    "type": "string"
+                },
+                "lifestage": {
+                    "type": "string"
+                }
+            }
+        },
+        "collection_data": {
+            "type": "array",
+            "properties": {
+                "museum_voucher_id": {
+                    "type": "string",
+                    "help": "Museum Voucher ID"
+                },
+                "sample_id": "string",
+                "method": {
+                    "type": "string",
+                    "help": "How was the sample collected"
+                },
+                "date": {
+                    "type": "string",
+                    "help": "Date of collection"
+                },
+                "location": {
+                    "help": "Name of town/city/region",
+                    "type": "string"
+                },
+                "country": {
+                    "help": "Country of Origin",
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "elevation": {
+                    "type": "number",
+                    "help": "Elevation the sample was collected at, in metres"
+                }
+            }
+        },
+        "involved_persons": {
+            "type": "array",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "help": "Name of the collector/identifier of sample"
+                },
+                "ID": {
+                    "type": "string",
+                    "help": "Identifier from the author list"
+                }
+            }
+        },
+        "specimen_images": {
+            "type": "array",
+            "help": "Images of the collected specimen or source individual used in the genome note.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "image": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "caption": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

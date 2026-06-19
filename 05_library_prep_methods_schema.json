@@ -1,0 +1,77 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "source": [
+        "ToLPortal"
+    ],
+    "properties": {
+        "methods": {
+            "type": "object",
+            "help": "Methods used to prepare a genomic library for sequencing. These are kept as separate subsections because they are populated from different workflow sources.",
+            "properties": {
+                "library_prep": {
+                    "type": "array",
+                    "help": "Details of library preparation methods/protocols.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sample_role": {
+                                "enum": [
+                                    "pacbio",
+                                    "hic",
+                                    "ont",
+                                    "rna",
+                                    "isoseq",
+                                    "chromium",
+                                    "other"
+                                ],
+                                "help": "Role of this sample in the genome note workflow."
+                            },
+                            "library_preparation_and_sequencing": {
+                                "type": "array",
+                                "help": "Library preparation, sequencing platform and method metadata.",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "technology": {
+                                            "enum": [
+                                                "PacBio HiFi",
+                                                "Hi-C",
+                                                "RNA-seq",
+                                                "Iso-Seq",
+                                                "10x Chromium",
+                                                "ONT",
+                                                "Bionano",
+                                                "Illumina",
+                                                "other"
+                                            ],
+                                            "help": "Sequencing or data-generation technology."
+                                        },
+                                        "sample_accession": {
+                                            "type": "string"
+                                        },
+                                        "experiment_accession": {
+                                            "type": "string",
+                                            "help": "Accession from INSDC of output sequencing data from this library (ERR/ERX/SRR/SRX)"
+                                        },
+                                        "library_name": {
+                                            "type": "string"
+                                        },
+                                        "library_construction_protocol": {
+                                            "type": "string",
+                                            "help": "Give identifier of protocol detailed in references"
+                                        },
+                                        "library_construction_protocol_plaintext": {
+                                            "type": "string",
+                                            "help": "Short publication-ready plaintext-summary of the library construction protocol"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

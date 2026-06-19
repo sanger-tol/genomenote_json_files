@@ -1,0 +1,213 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "properties": {
+        "references": {
+            "type": "array",
+            "source": [
+                "bibtex"
+            ],
+            "uniqueItemProperties": [
+                "citation_key",
+                "title"
+            ],
+            "help": "References in bibtex format - inpired by https://github.com/brianrabern/bib2json/blob/main/README.md",
+            "items": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "citation_key",
+                    "publication_type",
+                    "authors",
+                    "entry_type",
+                    "accession",
+                    "accession_type"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "help": "Name of reference material"
+                    },
+                    "note": {
+                        "type": "string",
+                        "help": "Sub-title or note about the reference material"
+                    },
+                    "citation_key": {
+                        "type": "string",
+                        "help": "Stable key used for in-text citations and bibliography matching. This should match the BibTeX key or CSL id used by Pandoc or by the portal citation processor."
+                    },
+                    "entry_type": {
+                        "enum": [
+                            "article",
+                            "preprint",
+                            "book/chapter",
+                            "dataset",
+                            "report",
+                            "webpage",
+                            "protocol",
+                            "conference_proceedings",
+                            "software/workflow"
+                        ],
+                        "help": "Type of reference entry"
+                    },
+                    "identifier": {
+                        "type": "object",
+                        "properties": {
+                            "format": {
+                                "type": "string",
+                                "enum": [
+                                    "DOI",
+                                    "ISBN",
+                                    "PMID",
+                                    "Other"
+                                ]
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "format",
+                            "value"
+                        ],
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "format": {
+                                        "const": "DOI"
+                                    },
+                                    "value": {
+                                        "help": "DOI, without the https://doi.org/ prefix, example is: 10.1080/10509585.2015.1092083",
+                                        "pattern": "^10\\.\\d{4,9}/\\S+$"
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "format": {
+                                        "const": "PMID"
+                                    },
+                                    "value": {
+                                        "help": "PMID, without the https://www.ncbi.nlm.nih.gov/pmc/ prefix, example is: 34567890",
+                                        "pattern": "^\\d+$"
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "format": {
+                                        "const": "ISBN"
+                                    },
+                                    "value": {
+                                        "help": "ISBN (13) code example is: 978-3-16-148410-0, ISBN (10) code example is: 3-16-148410-0",
+                                        "pattern": "NEED A PATTERN HERE TO VALIDATE"
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "format": {
+                                        "const": "Other"
+                                    },
+                                    "value": {
+                                        "help": "An alternative identification system, this will need validating!",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "pages": {
+                        "type": "object",
+                        "help": "Pages of the reference if applicable, output would be as {start}-{end}",
+                        "properties": {
+                            "start": {
+                                "type": "string"
+                            },
+                            "end": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "volume": {
+                        "type": "string"
+                    },
+                    "journal": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "string"
+                    },
+                    "issue": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "authors": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "surname": {
+                                    "type": "string"
+                                },
+                                "middle_names": {
+                                    "type": "string"
+                                },
+                                "given_names": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "formatted_bibtex": {
+                        "type": "string",
+                        "help": "Formatted BibTeX entry for the reference"
+                    }
+                },
+                "if": {
+                    "properties": {
+                        "entry_type": {
+                            "const": "dataset"
+                        }
+                    }
+                },
+                "then": {
+                    "properties": {
+                        "data_accession": {
+                            "type": "object",
+                            "help": "Field for the source of genome reference data if applicable",
+                            "properties": {
+                                "source": {
+                                    "enum": [
+                                        "GenBank",
+                                        "SRA",
+                                        "BioSamples",
+                                        "Ensembl",
+                                        "Other"
+                                    ],
+                                    "help": "Source of genome reference data"
+                                },
+                                "accession": {
+                                    "type": "string",
+                                    "help": "Accession number of the genome reference data"
+                                }
+                            }
+                        }
+                    },
+                    "required": [
+                        "data_accession"
+                    ]
+                },
+                "else": {
+                    "not": {
+                        "required": [
+                            "data_accession"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

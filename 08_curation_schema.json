@@ -1,0 +1,203 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "properties": {
+        "curation": {
+            "type": "object",
+            "properties": {
+                "involved_persons": {
+                    "type": "array",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "help": "Name of assembler, should be taken from the author list defined in the metadata NB: Should probably be replaced by an ID"
+                        }
+                    }
+                },
+                "extra-numerary-chromosomes": {
+                    "type": "array",
+                    "help": "Method or decision fields used for identifying or assigning microchromosomes (Such as B Chromosomes), where relevant.",
+                    "properties": {
+                        "tool": {
+                            "type": "object",
+                            "properties": {
+                                "ID": "string"
+                            },
+                            "help": "Tool or workflow used for microchromosome identification or assignment, for example MicroFinder. NB: Should be replaced by an identifier to a reference"
+                        },
+                        "comparator": {
+                            "type": "array",
+                            "properties": {
+                                "name": "string",
+                                "accession": "string"
+                            },
+                            "help": "Comparator species, assembly or reference used for assembly, where applicable."
+                        },
+                        "decision_notes": {
+                            "type": "string",
+                            "help": "Short note on extra-numerary-chromosome assignment, choices, or review decisions."
+                        }
+                    }
+                },
+                "chromosome_naming": {
+                    "type": "object",
+                    "properties": {
+                        "naming_method": {
+                            "enum": [
+                                "size",
+                                "synteny",
+                                "other"
+                            ],
+                            "help": "How chromosome names or numbers were assigned during curation."
+                        },
+                        "synteny_source": {
+                            "type": "string",
+                            "help": "Comparator assembly, species or reference source used when chromosomes were named by synteny."
+                        },
+                        "comparator": {
+                            "type": "array",
+                            "properties": {
+                                "name": "string",
+                                "accession": "string"
+                            },
+                            "help": "Comparator species, assembly or reference used for chromosome assignment, where applicable."
+                        },
+                        "autosome_count": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Number of autosomes recorded by curation."
+                        },
+                        "chromosome_result": {
+                            "type": "string",
+                            "help": "Curation chromosome assignment summary from the curation/JIRA record. data_note may parse jira_perc_assem from this text, but that value is not used for the published percentage of assembly assigned to chromosomes."
+                        }
+                    }
+                },
+                "sex_annotation": {
+                    "type": "array",
+                    "properties": {
+                        "observed_sex": {
+                            "type": "string",
+                            "help": "Observed or recorded sex of the specimen used for assembly, where curated."
+                        },
+                        "sex_chromosome_complement": {
+                            "type": "string",
+                            "help": "Curated sex chromosome complement, for example XX, XY, ZZ, ZW or Z0."
+                        },
+                        "identified_sex_chromosomes": {
+                            "source": [
+                                "Tree of Sex Database (in the future)"
+                            ],
+                            "type": "string",
+                            "help": "Sex chromosome labels identified in the assembly and reported in the genome note, for example X, X and Y, W and Z, or Z."
+                        },
+                        "comparator": {
+                            "type": "array",
+                            "properties": {
+                                "name": "string",
+                                "accession": "string"
+                            },
+                            "help": "Comparator species, assembly or reference used for sex chromosome assignment, where applicable."
+                        }
+                    }
+                },
+                "curator_note": {
+                    "type": "array",
+                    "properties": {
+                        "assembly_type": {
+                            "type": "string",
+                            "help": "Assembly type recorded in the curation/JIRA record, NB: I'm not really sure what this means - does it make sense to include this for assemblies outside of Tol?"
+                        },
+                        "assembly_text": {
+                            "type": "string",
+                            "help": "NB: I'm also not sure what this means"
+                        },
+                        "curator_note": {
+                            "type": "string",
+                            "help": "Free-text curator note from the curation record, including chromosome assignment rationale or assembly caveats."
+                        }
+                    }
+                },
+                "curation_evidence": {
+                    "type": "array",
+                    "help": "Evidence or data types used during curation, for example Hi-C contact maps and JBrowse.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "curation_statistics": {
+                    "type": "object",
+                    "properties": {
+                        "manual_interventions_per_gb": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Manual interventions in the assembly, normalised per Giga-base"
+                        },
+                        "breaks": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Breaks performed across assembly"
+                        },
+                        "joins": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Joins performed across assembly"
+                        },
+                        "haplotypic_duplications_removed": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Manual removals of haplotypic duplications during curation; used with breaks and joins to derive the curation intervention sentence."
+                        },
+                        "manual_inversions": {
+                            "type": "number",
+                            "minimum": 0,
+                            "help": "Manual inversions recorded in the curation/JIRA record. data_note pulls this field in."
+                        },
+                        "change_in_length_bp": {
+                            "type": "number",
+                            "help": "Change in the length of the assembly, can be positive or negative. Recorded in base pairs."
+                        },
+                        "change_in_length_percent": {
+                            "type": "number",
+                            "help": "Percentage change in total assembly length after curation; used in the derived curation intervention sentence."
+                        },
+                        "change_in_scaffold_count_percent": {
+                            "type": "number",
+                            "help": "Percentage change in scaffold count after curation; used in the derived curation intervention sentence."
+                        },
+                        "change_in_n50": {
+                            "type": "number",
+                            "help": "Change in the scaffold N50 metric, recorded in base-pairs."
+                        },
+                        "change_in_n50_percent": {
+                            "type": "number",
+                            "help": "Percentage change in scaffold N50 after curation; used in the derived curation intervention sentence."
+                        },
+                        "manual_interventions_notes": {
+                            "type": "string",
+                            "help": "Short summary description of the interventions made during manual curation and their effect on scaffold count, scaffold N50 and assembly length."
+                        }
+                    }
+                },
+                "contaminants_removed": {
+                    "type": "object",
+                    "help": "Generalised statistics about the contaminats removed, do we need to include a file for specific data?",
+                    "properties": {
+                        "scaffolds_removed": {
+                            "type": "number",
+                            "help": "Number of scaffolds marked as contaminant and removed from the assembly"
+                        },
+                        "percentage_scaffolds_removed": {
+                            "type": "number",
+                            "help": "Percentage of scaffolds marked as contaminant and removed from the assembly"
+                        },
+                        "total_length_of_scaffolds_removed": {
+                            "type": "number",
+                            "help": "Total length of scaffolds removed, recorded in base-pairs"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

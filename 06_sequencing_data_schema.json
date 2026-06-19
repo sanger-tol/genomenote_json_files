@@ -1,0 +1,224 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "source": [
+        "ToLPortal"
+    ],
+    "properties": {
+        "methods": {
+            "type": "object",
+            "help": "Methods used to sequence genomic material.",
+            "properties": {
+                "sample_processing": {
+                    "type": "array",
+                    "help": "Details of sequencing methods/protocols.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sample_role": {
+                                "enum": [
+                                    "pacbio",
+                                    "hic",
+                                    "ont",
+                                    "rna",
+                                    "isoseq",
+                                    "chromium",
+                                    "other"
+                                ],
+                                "help": "Role of this sample in the genome note workflow."
+                            },
+                            "library_sequencing": {
+                                "type": "array",
+                                "help": "Library sequencing platform and method metadata. Counts and yields are represented under raw_data and raw_data_statistics.",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "technology": {
+                                            "enum": [
+                                                "PacBio HiFi",
+                                                "Hi-C",
+                                                "RNA-seq",
+                                                "Iso-Seq",
+                                                "10x Chromium",
+                                                "ONT",
+                                                "Bionano",
+                                                "Illumina",
+                                                "other"
+                                            ],
+                                            "help": "Sequencing or data-generation technology."
+                                        },
+                                        "sample_accession": {
+                                            "type": "string"
+                                        },
+                                        "sample_derived_from": {
+                                            "type": "string"
+                                        },
+                                        "sequencing_accession": {
+                                            "type": "string",
+                                            "help": "INSDC accession of data derived from this sequencing run (ERR/SRR)"
+                                        },
+                                        "sequencing_protocol": {
+                                            "type": "string",
+                                            "help": "Identifier of sequencing protocol from reference list"
+                                        },
+                                        "sequencing_protocol_plaintext": {
+                                            "type": "string",
+                                            "help": "Publication-ready plaintext summary of the sequencing protocol"
+                                        },
+                                        "platform": {
+                                            "type": "string"
+                                        },
+                                        "instrument_model": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "raw_data": {
+                        "type": "array",
+                        "help": "Public data records. This is the data actually produced by the sequencing workflow, not the acquisition or extraction metadata.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "sample_accession": {
+                                    "type": "string"
+                                },
+                                "data_type": {
+                                    "enum": [
+                                        "pacbio_hifi",
+                                        "longread_pacbio",
+                                        "hic",
+                                        "hic_arima2",
+                                        "hic_cifi",
+                                        "rna_seq",
+                                        "rnaseq",
+                                        "isoseq",
+                                        "isoseq_pacbio",
+                                        "10x_chromium",
+                                        "chromium",
+                                        "ont",
+                                        "bionano",
+                                        "wgs",
+                                        "other"
+                                    ],
+                                    "help": "Type of data represented by this raw-data record."
+                                },
+                                "run_accession": {
+                                    "type": "string"
+                                },
+                                "experiment_accession": {
+                                    "type": "string"
+                                },
+                                "library_name": {
+                                    "type": "string"
+                                },
+                                "library_layout": {
+                                    "type": "string"
+                                },
+                                "library_selection": {
+                                    "type": "string"
+                                },
+                                "library_source": {
+                                    "type": "string"
+                                },
+                                "instrument_model": {
+                                    "type": "string"
+                                },
+                                "submitted_bytes": {
+                                    "type": "number",
+                                    "minimum": 0
+                                },
+                                "read_count": {
+                                    "type": "number",
+                                    "minimum": 0
+                                },
+                                "base_count_gb": {
+                                    "type": "number",
+                                    "minimum": 0
+                                },
+                                "metadata_source": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "cumulative_raw_data_statistics": {
+                        "type": "object",
+                        "help": "Cumulative sequencing statistics, normally derived from raw_data records.",
+                        "properties": {
+                            "sequencing_data_source": {
+                                "type": "string",
+                                "help": "For example public, portal or public-with-portal."
+                            },
+                            "sequencing_public_source_accessions": {
+                                "type": "string"
+                            },
+                            "sequencing_portal_enrichment_applied": {
+                                "type": "boolean"
+                            },
+                            "sequencing_portal_matched_runs": {
+                                "type": "string"
+                            },
+                            "sequencing_portal_unmatched_runs": {
+                                "type": "string"
+                            },
+                            "sequencing_portal_excluded_runs": {
+                                "type": "string"
+                            },
+                            "sequencing_portal_warnings": {
+                                "type": "string"
+                            },
+                            "cumulative_stats": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data_type": {
+                                            "type": "string",
+                                            "help": "Per datatype in raw_data.data_type."
+                                        },
+                                        "sample_accession": {
+                                            "type": "string"
+                                        },
+                                        "instrument_model": {
+                                            "type": "string"
+                                        },
+                                        "read_count_unit": {
+                                            "type": "string",
+                                            "help": "Unit used for read_count-derived totals, for example reads or read pairs."
+                                        },
+                                        "read_count_source": {
+                                            "type": "string",
+                                            "help": "Source used for read-count totals, for example ENA, NCBI RunInfo or portal_tolqc."
+                                        },
+                                        "base_count_source": {
+                                            "type": "string",
+                                            "help": "Source used for base-count totals, for example ENA, NCBI RunInfo or portal_tolqc."
+                                        },
+                                        "reads_in_millions": {
+                                            "type": "number",
+                                            "minimum": 0,
+                                            "help": "Total number of reads in millions."
+                                        },
+                                        "total_yield_mbp": {
+                                            "type": "number",
+                                            "minimum": 0,
+                                            "help": "Total yield of data in megabase pairs."
+                                        },
+                                        "total_yield_gbp": {
+                                            "type": "number",
+                                            "minimum": 0,
+                                            "help": "Total yield of data in gigabase pairs."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
