@@ -32,7 +32,7 @@
                             },
                             "ID": {
                                 "type": "string",
-				"help": "Identifier from the references list"
+                                "help": "Identifier from the references list"
                             }
                         }
                     }
@@ -46,7 +46,7 @@
                         "phasing_mode": {
                             "enum": [
                                 "hic_phasing",
-				"trio_illumina",
+                                "trio_illumina",
                                 "original",
                                 "other"
                             ],
@@ -106,7 +106,7 @@
             }
         },
         "assembly_stats": {
-	    "type": "array",
+            "type": "array",
             "properties": {
                 "assembly_information": {
                     "type": "object",

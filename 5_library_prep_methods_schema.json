@@ -52,18 +52,18 @@
                                         },
                                         "experiment_accession": {
                                             "type": "string",
-					    "help": "Accession from INSDC of output sequencing data from this library (ERR/ERX/SRR/SRX)"
+                                            "help": "Accession from INSDC of output sequencing data from this library (ERR/ERX/SRR/SRX)"
                                         },
                                         "library_name": {
                                             "type": "string"
                                         },
                                         "library_construction_protocol": {
                                             "type": "string",
-					    "help": "Give identifier of protocol detailed in references"
+                                            "help": "Give identifier of protocol detailed in references"
                                         },
                                         "library_construction_protocol_plaintext": {
                                             "type": "string",
-					    "help": "Short publication-ready plaintext-summary of the library construction protocol"
+                                            "help": "Short publication-ready plaintext-summary of the library construction protocol"
                                         }
                                     }
                                 }

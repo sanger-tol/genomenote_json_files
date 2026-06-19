@@ -110,7 +110,7 @@
                         },
                         "assembly_text": {
                             "type": "string",
-			    "help": "NB: I'm also not sure what this means"
+                            "help": "NB: I'm also not sure what this means"
                         },
                         "curator_note": {
                             "type": "string",

@@ -53,17 +53,17 @@
                                         "sample_derived_from": {
                                             "type": "string"
                                         },
-					"sequencing_accession": {
-						"type": "string",
-						"help": "INSDC accession of data derived from this sequencing run (ERR/SRR)"
-					},
+                                        "sequencing_accession": {
+                                            "type": "string",
+                                            "help": "INSDC accession of data derived from this sequencing run (ERR/SRR)"
+                                        },
                                         "sequencing_protocol": {
                                             "type": "string",
-					    "help": "Identifier of sequencing protocol from reference list"
+                                            "help": "Identifier of sequencing protocol from reference list"
                                         },
                                         "sequencing_protocol_plaintext": {
                                             "type": "string",
-					    "help": "Publication-ready plaintext summary of the sequencing protocol"
+                                            "help": "Publication-ready plaintext summary of the sequencing protocol"
                                         },
                                         "platform": {
                                             "type": "string"

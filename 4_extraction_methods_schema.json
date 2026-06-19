@@ -48,11 +48,11 @@
                                         },
                                         "extraction_protocol": {
                                             "type": "string",
-					    "help": "Give identifier of protocol in References"
+                                            "help": "Give identifier of protocol in References"
                                         },
                                         "extraction_protocol_plaintext": {
                                             "type": "string",
-					    "help": "Publication-ready plaintext summary of the extraction protocol"
+                                            "help": "Publication-ready plaintext summary of the extraction protocol"
                                         },
                                         "protocol": {
                                             "type": "string",

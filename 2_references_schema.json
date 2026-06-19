@@ -20,8 +20,8 @@
                     "publication_type",
                     "authors",
                     "entry_type",
-		    "accession",
-		    "accession_type"
+                    "accession",
+                    "accession_type"
                 ],
                 "properties": {
                     "title": {
@@ -135,9 +135,9 @@
                     "journal": {
                         "type": "string"
                     },
-		    "year": {
-			    "type": "string"
-		    },
+                    "year": {
+                        "type": "string"
+                    },
                     "issue": {
                         "type": "string"
                     },

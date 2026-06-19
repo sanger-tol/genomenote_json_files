@@ -38,7 +38,7 @@
                 },
                 "bioproject": {
                     "type": "string",
-		    "help": "Umbrella BioProject in INSDC containing all sequencing data, genome assembly/assemblies and links to relevant BioSample information."
+                    "help": "Umbrella BioProject in INSDC containing all sequencing data, genome assembly/assemblies and links to relevant BioSample information."
                 },
                 "child_bioprojects": {
                     "type": "array",
@@ -118,7 +118,7 @@
                                 },
                                 "minItems": 1,
                                 "uniqueItems": true,
-				"help": "Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section"
+                                "help": "Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section"
                             },
                             "orcid": {
                                 "type": "string"
@@ -131,7 +131,7 @@
                                 "items": {
                                     "type": "string"
                                 },
-				"help": "Array of affiliations for each author should be a list of IDs, determined by the affiliation array below"
+                                "help": "Array of affiliations for each author should be a list of IDs, determined by the affiliation array below"
                             }
                         }
                     }
@@ -154,10 +154,10 @@
             "required": [
                 "doi",
                 "title",
-		"bioproject",
-		"authors",
-		"affiliations",
-		"data_availability"
+                "bioproject",
+                "authors",
+                "affiliations",
+                "data_availability"
             ]
         },
         "publication_metadata": {
@@ -195,7 +195,7 @@
                         "submission_date": "string",
                         "publication_date": "string"
                     },
-		    "help": "If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here"
+                    "help": "If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here"
                 },
                 "genome_note_data": {
                     "submission_date": "string",
@@ -209,19 +209,19 @@
                 },
                 "ethics_and_consent": {
                     "type": "string",
-		    "help": "Where necessary, please detail any ethical or legal permits that were acquired in order to carry out the steps to generate this genome report. If not applicaable, please put N/A"
+                    "help": "Where necessary, please detail any ethical or legal permits that were acquired in order to carry out the steps to generate this genome report. If not applicaable, please put N/A"
                 },
                 "competing_interests": {
                     "type": "string",
-		    "help": "Please details any conflicting interests. If not applicable, please put N/A"
+                    "help": "Please details any conflicting interests. If not applicable, please put N/A"
                 }
             },
             "required": [
                 "genome_note_data",
                 "ebp_analysis_metrics",
-		"ethics_and_consent",
-		"competeing_interests",
-		"genome_note_data"
+                "ethics_and_consent",
+                "competeing_interests",
+                "genome_note_data"
             ]
         }
     }
