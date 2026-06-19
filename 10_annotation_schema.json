@@ -5,7 +5,7 @@
     "properties": {
         "annotation": {
             "type": "array",
-            "help": "Annotation method performed and output TB: Ideally link to workflow (doi) and optional free text description",
+            "help": "Annotation method performed and output. Ideally link to workflow (doi) and optional free text description",
             "properties": {
                 "accession": "string",
                 "data_used": {

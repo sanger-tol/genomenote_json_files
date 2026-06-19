@@ -202,7 +202,7 @@
                     "publication_date": "string"
                 },
                 "ebp_analysis_metrics": {
-                    "type": "array" <-- already exists in analysis, do we need it in two places? TB: I think it makes sense in the metadata, yes
+                    "type": "array"
                 },
                 "acknowledgements": {
                     "type": "string"

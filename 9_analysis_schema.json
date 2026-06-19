@@ -87,7 +87,7 @@
                 },
                 "GAP_analysis_data": {
                     "readmapping": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "datablob_id": "string",
                         "aligned_reads": {
                             "type": "array",
@@ -100,7 +100,7 @@
                         }
 		    },
                     "sequence_composition": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
 		        "type": "array",
 		        "help": "K-mer based sequence composition track of each asssembly role",
                         "items": {
@@ -113,7 +113,7 @@
 			}
 		    },
                     "blobtoolkit": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "type": "object",
                         "properties": {
                             "snail_plot": {
@@ -135,28 +135,28 @@
                         }
                     },
                     "ancestral_linkage_group": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "assembly_id": "string",
                         "lineage_odb": "string",
                         "ancestral_linkage_tsv": "string",
                         "ancestral_linkage_plot": "string"
                     },
                     "pretext": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "assembly_id": "string",
                         "haplotype": "string",
                         "file_path": "string",
                         "weblink": "string"
                     },
                     "higlass": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "assembly_id": "string",
                         "haplotype": "string",
                         "mcool_file": "string",
                         "weblink": "string"
                     },
                     "merqury": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "type": "array",
                         "help": "Merqury consensus quality and k-mer completeness values reported for each assembly role.",
                         "items": {
@@ -186,7 +186,7 @@
                         }
                     },
                     "busco": {
-			"worfklow": "id",//Link to a workflow in the references list - ideally a doi from zenodo or WorkFlowHub
+			"worfklow": "id",
                         "type": "array",
                         "help": "BUSCO completeness results.",
                         "items": {

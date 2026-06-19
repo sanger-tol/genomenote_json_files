@@ -20,8 +20,7 @@
             "type": "string"
         },
         "organism_part": {
-            "type": "string",
-            "help": "SHOULD THIS BE IN A SUBGROUP? WHICH ONE, PRESERVATION?"
+            "type": "string"
         },
         "preservation_data": {
             "type": "array",

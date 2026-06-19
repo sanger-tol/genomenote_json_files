@@ -105,10 +105,6 @@
                                     ],
                                     "help": "Type of data represented by this raw-data record."
                                 },
-                                "accession": {//Not sure what this is supposed to be if separate from run and experiment accession. BioProject?
-                                    "type": "string",
-                                    "help": "Public accession for the raw-data record, if a single generic accession field is used."
-                                },
                                 "run_accession": {
                                     "type": "string"
                                 },
@@ -144,30 +140,6 @@
                                 },
                                 "metadata_source": {
                                     "type": "string"
-                                },
-                                "technology": {//Is this redundant with above?
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "enum": [
-                                                "ONT",
-                                                "PacBio",
-                                                "10x Chromium",
-                                                "Bionano",
-                                                "Illumina",
-                                                "other"
-                                            ],
-                                            "help": "Technology used for sequencing."
-                                        },
-                                        "instrument": {
-                                            "type": "string",
-                                            "help": "Instrument/platform that sequencing took place on."
-                                        },
-                                        "protocol": {
-                                            "type": "string",
-                                            "help": "Sequencing or library preparation protocol."
-                                        }
-                                    }
                                 }
                             }
                         }

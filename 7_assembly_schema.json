@@ -37,7 +37,7 @@
                         }
                     }
                 },
-                "contig_assembly_details": { //I don't really like this, as it's not agnostic to tools/assemblers. Perhaps it would be better to have an array of properties such as CLI options and notes for tools such as hifiasm, verkko, purge-dups, Flye, whatever other tools people want to use to generate their assemblies with
+                "contig_assembly_details": {
                     "type": "object",
                     "source": [
                         "ToLQC"
@@ -105,8 +105,8 @@
                 }
             }
         },
-        "assembly_stats": {//This is also not clear to me - do we mean the stats before curation? It will likely not be possible to collect this information for all assemblies. Should we move this to the "Analysis" section and only base these on the final assemblies?
-            "type": "array",
+        "assembly_stats": {
+	    "type": "array",
             "properties": {
                 "assembly_information": {
                     "type": "object",

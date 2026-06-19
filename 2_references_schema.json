@@ -7,7 +7,7 @@
             "source": [
                 "bibtex"
             ],
-            "uniqueItemProperties": [ <-- JSON Schema extension to use unique props
+            "uniqueItemProperties": [
                 "citation_key",
                 "title"
             ],
@@ -141,7 +141,7 @@
                     "issue": {
                         "type": "string"
                     },
-                    "source": {//Not sure what this means
+                    "source": {
                         "type": "string"
                     },
                     "authors": {

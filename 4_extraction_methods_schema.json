@@ -46,12 +46,6 @@
                                         "sample_accession": {
                                             "type": "string"
                                         },
-                                        "extraction_uid": {//Is this needed in this schema? Try to separate IDs used to extract data internally vs. what is presented in the final "publication"
-                                            "type": "string"
-                                        },
-                                        "tissue_prep_uid": {//Same as above
-                                            "type": "string"
-                                        },
                                         "extraction_protocol": {
                                             "type": "string",
 					    "help": "Give identifier of protocol in References"
@@ -60,11 +54,11 @@
                                             "type": "string",
 					    "help": "Publication-ready plaintext summary of the extraction protocol"
                                         },
-                                        "protocol": {//Not sure what this means
+                                        "protocol": {
                                             "type": "string",
                                             "help": "Display name for the extraction protocol, where separate from extraction_protocol."
                                         },
-                                        "dna_yield_ng": {//Happy to include these as optional fields, but it is a lot
+                                        "dna_yield_ng": {
                                             "type": "number",
                                             "minimum": 0
                                         },

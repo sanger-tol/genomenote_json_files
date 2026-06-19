@@ -64,12 +64,6 @@
                                         "library_construction_protocol_plaintext": {
                                             "type": "string",
 					    "help": "Short publication-ready plaintext-summary of the library construction protocol"
-                                        },
-                                        "library_selection": {//Not sure what this means
-                                            "type": "string"
-                                        },
-                                        "library_source": {//Not sure what this means
-                                            "type": "string"
                                         }
                                     }
                                 }
