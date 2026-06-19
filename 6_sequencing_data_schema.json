@@ -7,11 +7,11 @@
     "properties": {
         "methods": {
             "type": "object",
-            "help": "Methods used to collect, extract, prepare and sequence samples. These are kept as separate subsections because they are populated from different workflow sources.",
+            "help": "Methods used to sequence genomic material.",
             "properties": {
-                "sample_acquisition": {
+                "sample_processing": {
                     "type": "array",
-                    "help": "Collection, identification and preservation metadata for each source sample used in the genome note. Tissue mass is not included here; it belongs with extraction/tissue preparation.",
+                    "help": "Details of sequencing methods/protocols.",
                     "items": {
                         "type": "object",
                         "properties": {
@@ -27,106 +27,9 @@
                                 ],
                                 "help": "Role of this sample in the genome note workflow."
                             },
-                            "nucleic_acid_extraction": {
+                            "library_sequencing": {
                                 "type": "array",
-                                "help": "Wet-lab extraction and tissue-preparation metadata.",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "sample_role": {
-                                            "enum": [
-                                                "pacbio",
-                                                "hic",
-                                                "rna",
-                                                "isoseq",
-                                                "chromium",
-                                                "other"
-                                            ]
-                                        },
-                                        "sample_accession": {
-                                            "type": "string"
-                                        },
-                                        "sanger_sample_id": {
-                                            "type": "string"
-                                        },
-                                        "submission_id": {
-                                            "type": "string"
-                                        },
-                                        "submission_name": {
-                                            "type": "string"
-                                        },
-                                        "extraction_uid": {
-                                            "type": "string"
-                                        },
-                                        "tissue_prep_uid": {
-                                            "type": "string"
-                                        },
-                                        "extraction_protocol": {
-                                            "type": "string"
-                                        },
-                                        "protocol": {
-                                            "type": "string",
-                                            "help": "Display name for the extraction protocol, where separate from extraction_protocol."
-                                        },
-                                        "extraction_mode": {
-                                            "type": "string"
-                                        },
-                                        "extraction_date": {
-                                            "type": "string"
-                                        },
-                                        "date_complete": {
-                                            "type": "string"
-                                        },
-                                        "dna_yield_ng": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "volume_ul": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "qubit_ngul": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "ratio_260_280": {
-                                            "type": "number"
-                                        },
-                                        "ratio_260_230": {
-                                            "type": "number"
-                                        },
-                                        "nanodrop_concentration_ngul": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "fragment_size_kb": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "gqn": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "spri_type": {
-                                            "type": "string"
-                                        },
-                                        "disruption_method": {
-                                            "type": "string"
-                                        },
-                                        "tissue_type": {
-                                            "type": "string"
-                                        },
-                                        "tissue_weight_mg": {
-                                            "type": "number",
-                                            "minimum": 0,
-                                            "help": "Mass/weight of tissue taken for extraction, in milligrams."
-                                        }
-                                    }
-                                }
-                            },
-                            "library_preparation_and_sequencing": {
-                                "type": "array",
-                                "help": "Library preparation, sequencing platform and method metadata. Counts and yields are represented under raw_data and raw_data_statistics.",
+                                "help": "Library sequencing platform and method metadata. Counts and yields are represented under raw_data and raw_data_statistics.",
                                 "items": {
                                     "type": "object",
                                     "properties": {
@@ -150,42 +53,23 @@
                                         "sample_derived_from": {
                                             "type": "string"
                                         },
-                                        "sanger_sample_id": {
-                                            "type": "string"
-                                        },
-                                        "library_name": {
-                                            "type": "string"
-                                        },
-                                        "library_id": {
-                                            "type": "string"
-                                        },
-                                        "library_construction_protocol": {
-                                            "type": "string"
-                                        },
-                                        "library_selection": {
-                                            "type": "string"
-                                        },
-                                        "library_source": {
-                                            "type": "string"
-                                        },
+					"sequencing_accession": {
+						"type": "string",
+						"help": "INSDC accession of data derived from this sequencing run (ERR/SRR)"
+					},
                                         "sequencing_protocol": {
-                                            "type": "string"
+                                            "type": "string",
+					    "help": "Identifier of sequencing protocol from reference list"
+                                        },
+                                        "sequencing_protocol_plaintext": {
+                                            "type": "string",
+					    "help": "Publication-ready plaintext summary of the sequencing protocol"
                                         },
                                         "platform": {
                                             "type": "string"
                                         },
                                         "instrument_model": {
                                             "type": "string"
-                                        },
-                                        "sequencing_date": {
-                                            "type": "string"
-                                        },
-                                        "pipeline_id_lims": {
-                                            "type": "string"
-                                        },
-                                        "plex_level": {
-                                            "type": "string",
-                                            "help": "Multiplexing level used for this sequencing data, for example 2-plex."
                                         }
                                     }
                                 }
@@ -194,14 +78,11 @@
                     },
                     "raw_data": {
                         "type": "array",
-                        "help": "Public or internal raw sequencing data records. This is the data actually produced by the sequencing workflow, not the acquisition or extraction metadata.",
+                        "help": "Public data records. This is the data actually produced by the sequencing workflow, not the acquisition or extraction metadata.",
                         "items": {
                             "type": "object",
                             "properties": {
                                 "sample_accession": {
-                                    "type": "string"
-                                },
-                                "sample_derived_from": {
                                     "type": "string"
                                 },
                                 "data_type": {
@@ -223,13 +104,6 @@
                                         "other"
                                     ],
                                     "help": "Type of data represented by this raw-data record."
-                                },
-                                "accession": {
-                                    "type": "string",
-                                    "help": "Public accession for the raw-data record, if a single generic accession field is used."
-                                },
-                                "read_accession": {
-                                    "type": "string"
                                 },
                                 "run_accession": {
                                     "type": "string"
@@ -266,35 +140,11 @@
                                 },
                                 "metadata_source": {
                                     "type": "string"
-                                },
-                                "technology": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "enum": [
-                                                "ONT",
-                                                "PacBio",
-                                                "10x Chromium",
-                                                "Bionano",
-                                                "Illumina",
-                                                "other"
-                                            ],
-                                            "help": "Technology used for sequencing."
-                                        },
-                                        "instrument": {
-                                            "type": "string",
-                                            "help": "Instrument/platform that sequencing took place on."
-                                        },
-                                        "protocol": {
-                                            "type": "string",
-                                            "help": "Sequencing or library preparation protocol."
-                                        }
-                                    }
                                 }
                             }
                         }
                     },
-                    "raw_data_statistics": {
+                    "cumulative_raw_data_statistics": {
                         "type": "object",
                         "help": "Cumulative sequencing statistics, normally derived from raw_data records.",
                         "properties": {

@@ -10,16 +10,7 @@
                     "properties": {
                         "name": {
                             "type": "string",
-                            "help": "Name of assembler"
-                        },
-                        "role": {
-                            "enum": [
-                                "assembler"
-                            ]
-                        },
-                        "affiliation": {
-                            "type": "string",
-                            "help": "Affiliated group"
+                            "help": "Name of assembler, should be taken from the author list defined in the metadata NB: Should probably be replaced by an ID"
                         }
                     }
                 },
@@ -30,12 +21,9 @@
                         "tool": {
                             "type": "object",
                             "properties": {
-                                "name": "string",
-                                "version": "string",
-                                "doi": "string",
-                                "url": "string"
+                                "ID": "string"
                             },
-                            "help": "Tool or workflow used for microchromosome identification or assignment, for example MicroFinder."
+                            "help": "Tool or workflow used for microchromosome identification or assignment, for example MicroFinder. NB: Should be replaced by an identifier to a reference"
                         },
                         "comparator": {
                             "type": "array",
@@ -43,11 +31,11 @@
                                 "name": "string",
                                 "accession": "string"
                             },
-                            "help": "Comparator species, assembly or reference used for organelle assembly, where applicable."
+                            "help": "Comparator species, assembly or reference used for assembly, where applicable."
                         },
                         "decision_notes": {
                             "type": "string",
-                            "help": "Short note on microchromosome assignment choices or review decisions."
+                            "help": "Short note on extra-numerary-chromosome assignment, choices, or review decisions."
                         }
                     }
                 },
@@ -72,7 +60,7 @@
                                 "name": "string",
                                 "accession": "string"
                             },
-                            "help": "Comparator species, assembly or reference used for organelle assembly, where applicable."
+                            "help": "Comparator species, assembly or reference used for chromosome assignment, where applicable."
                         },
                         "autosome_count": {
                             "type": "number",
@@ -97,6 +85,9 @@
                             "help": "Curated sex chromosome complement, for example XX, XY, ZZ, ZW or Z0."
                         },
                         "identified_sex_chromosomes": {
+                            "source": [
+                                "Tree of Sex Database (in the future)"
+                            ],
                             "type": "string",
                             "help": "Sex chromosome labels identified in the assembly and reported in the genome note, for example X, X and Y, W and Z, or Z."
                         },
@@ -106,7 +97,7 @@
                                 "name": "string",
                                 "accession": "string"
                             },
-                            "help": "Comparator species, assembly or reference used for organelle assembly, where applicable."
+                            "help": "Comparator species, assembly or reference used for sex chromosome assignment, where applicable."
                         }
                     }
                 },
@@ -115,14 +106,15 @@
                     "properties": {
                         "assembly_type": {
                             "type": "string",
-                            "help": "Assembly type recorded in the curation/JIRA record, for example Full VGP."
+                            "help": "Assembly type recorded in the curation/JIRA record, NB: I'm not really sure what this means - does it make sense to include this for assemblies outside of Tol?"
                         },
                         "assembly_text": {
-                            "type": "string"
+                            "type": "string",
+			    "help": "NB: I'm also not sure what this means"
                         },
                         "curator_note": {
                             "type": "string",
-                            "help": "Free-text curator note from the curation/JIRA record, including chromosome assignment rationale or assembly caveats."
+                            "help": "Free-text curator note from the curation record, including chromosome assignment rationale or assembly caveats."
                         }
                     }
                 },
@@ -138,7 +130,6 @@
                     "properties": {
                         "manual_interventions_per_gb": {
                             "type": "number",
-                            "$comment": "KvN: I don't currently use this, but it could be useful for the overall project.",
                             "minimum": 0,
                             "help": "Manual interventions in the assembly, normalised per Giga-base"
                         },
@@ -163,7 +154,6 @@
                             "help": "Manual inversions recorded in the curation/JIRA record. data_note pulls this field in."
                         },
                         "change_in_length_bp": {
-                            "$comment": "KvN: Fetch this in bp, but report as a percentage.",
                             "type": "number",
                             "help": "Change in the length of the assembly, can be positive or negative. Recorded in base pairs."
                         },
@@ -176,7 +166,6 @@
                             "help": "Percentage change in scaffold count after curation; used in the derived curation intervention sentence."
                         },
                         "change_in_n50": {
-                            "$comment": "KvN: Fetch this in bp, but report as a percentage.",
                             "type": "number",
                             "help": "Change in the scaffold N50 metric, recorded in base-pairs."
                         },
@@ -184,15 +173,15 @@
                             "type": "number",
                             "help": "Percentage change in scaffold N50 after curation; used in the derived curation intervention sentence."
                         },
-                        "manual_interventions_sentence": {
+                        "manual_interventions_notes": {
                             "type": "string",
-                            "$comment": "KvN: In data_note this publication text is derived from intervention counts and percentage changes by the template, rather than entered as a raw pipeline field.",
-                            "help": "Publication-ready sentences describing manual curation interventions and their effect on scaffold count, scaffold N50 and assembly length."
+                            "help": "Short summary description of the interventions made during manual curation and their effect on scaffold count, scaffold N50 and assembly length."
                         }
                     }
                 },
                 "contaminants_removed": {
                     "type": "object",
+                    "help": "Generalised statistics about the contaminats removed, do we need to include a file for specific data?",
                     "properties": {
                         "scaffolds_removed": {
                             "type": "number",
@@ -201,14 +190,6 @@
                         "percentage_scaffolds_removed": {
                             "type": "number",
                             "help": "Percentage of scaffolds marked as contaminant and removed from the assembly"
-                        },
-                        "largest_scaffold_removed": {
-                            "type": "number",
-                            "help": "Length of the largest scaffold removed from the assembly"
-                        },
-                        "percentage_largest_scaffold_removed": {
-                            "type": "number",
-                            "help": "Percentage of the assembly that the largest scaffold removed accounted for"
                         },
                         "total_length_of_scaffolds_removed": {
                             "type": "number",

@@ -20,8 +20,7 @@
             "type": "string"
         },
         "organism_part": {
-            "type": "string",
-            "help": "SHOULD THIS BE IN A SUBGROUP? WHICH ONE, PRESERVATION?"
+            "type": "string"
         },
         "preservation_data": {
             "type": "array",
@@ -57,6 +56,10 @@
         "collection_data": {
             "type": "array",
             "properties": {
+                "museum_voucher_id": {
+                    "type": "string",
+                    "help": "Museum Voucher ID"
+                },
                 "sample_id": "string",
                 "method": {
                     "type": "string",
@@ -93,20 +96,9 @@
                     "type": "string",
                     "help": "Name of the collector/identifier of sample"
                 },
-                "role": {
-                    "enum": [
-                        "collector",
-                        "identifier",
-                        "other"
-                    ]
-                },
-                "affiliation": {
+                "ID": {
                     "type": "string",
-                    "help": "Affiliation of person"
-                },
-                "gal": {
-                    "type": "string",
-                    "help": "Genome Acquisition Lab."
+                    "help": "Identifier from the author list"
                 }
             }
         },

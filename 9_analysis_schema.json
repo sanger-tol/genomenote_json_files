@@ -12,7 +12,7 @@
             "properties": {
                 "sample_id": {
                     "type": "string",
-                    "help": "Links to HAP_KEY"
+                    "help": "Links to HAP_KEY, e.g. Haplotype_1, Primary, etc."
                 },
                 "assembly_role": {
                     "assembly": "string",
@@ -87,6 +87,7 @@
                 },
                 "GAP_analysis_data": {
                     "readmapping": {
+			"worfklow": "id",
                         "datablob_id": "string",
                         "aligned_reads": {
                             "type": "array",
@@ -96,10 +97,23 @@
                                 "file_path": "string",
                                 "weblink": "string"
                             }
-                        },
-                        "sequence_composition": {}
-                    },
+                        }
+		    },
+                    "sequence_composition": {
+			"worfklow": "id",
+		        "type": "array",
+		        "help": "K-mer based sequence composition track of each asssembly role",
+                        "items": {
+                            "type": "object",
+			    "properties": {
+			        "accession": "string",
+			        "file_path": "string",
+			        "weblink": "string"
+			    }
+			}
+		    },
                     "blobtoolkit": {
+			"worfklow": "id",
                         "type": "object",
                         "properties": {
                             "snail_plot": {
@@ -121,24 +135,28 @@
                         }
                     },
                     "ancestral_linkage_group": {
+			"worfklow": "id",
                         "assembly_id": "string",
                         "lineage_odb": "string",
                         "ancestral_linkage_tsv": "string",
                         "ancestral_linkage_plot": "string"
                     },
                     "pretext": {
+			"worfklow": "id",
                         "assembly_id": "string",
                         "haplotype": "string",
                         "file_path": "string",
                         "weblink": "string"
                     },
                     "higlass": {
+			"worfklow": "id",
                         "assembly_id": "string",
                         "haplotype": "string",
                         "mcool_file": "string",
                         "weblink": "string"
                     },
                     "merqury": {
+			"worfklow": "id",
                         "type": "array",
                         "help": "Merqury consensus quality and k-mer completeness values reported for each assembly role.",
                         "items": {
@@ -168,6 +186,7 @@
                         }
                     },
                     "busco": {
+			"worfklow": "id",
                         "type": "array",
                         "help": "BUSCO completeness results.",
                         "items": {

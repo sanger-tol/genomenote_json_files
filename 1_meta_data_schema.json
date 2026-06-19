@@ -1,12 +1,21 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema#",
     "type": "object",
+    "source": [
+        "tolqc",
+        "STS"
+    ],
     "properties": {
         "metadata": {
             "type": "object",
             "properties": {
-                "doi": {
+                "template_version": {
                     "type": "string"
+                },
+                "doi": {
+                    "type": "string",
+                    "help": "DOI, without the https://doi.org/ prefix, example is: 10.1080/10509585.2015.1092083",
+                    "pattern": "^10\\.\\d{4,9}/\\S+$"
                 },
                 "data_availability": {
                     "type": "string"
@@ -15,7 +24,8 @@
                     "type": "string"
                 },
                 "abstract": {
-                    "type": "string"
+                    "type": "string",
+                    "help": "Markdown is fine"
                 },
                 "keywords": {
                     "type": "array",
@@ -27,7 +37,8 @@
                     "type": "string"
                 },
                 "bioproject": {
-                    "type": "string"
+                    "type": "string",
+		    "help": "Umbrella BioProject in INSDC containing all sequencing data, genome assembly/assemblies and links to relevant BioSample information."
                 },
                 "child_bioprojects": {
                     "type": "array",
@@ -55,7 +66,7 @@
                             }
                         }
                     },
-                    "help": "Parent BioProjects associated with the main BioProject. Used to derive formatted_parent_projects."
+                    "help": "Parent (i.e. Project-level) BioProjects associated with the main BioProject. Used to derive formatted_parent_projects."
                 },
                 "formatted_parent_projects": {
                     "type": "string",
@@ -69,17 +80,45 @@
                     "items": {
                         "type": "object",
                         "properties": {
+                            "authorsdb_id": {
+                                "type": "string",
+                                "help": "ID from AuthorsDB"
+                            },
                             "surname": {
-                                "type": "string"
+                                "type": "string",
+                                "help": "Family name of the author"
+                            },
+                            "middle_names": {
+                                "type": "string",
+                                "help": "Middle names of the author"
                             },
                             "given_names": {
-                                "type": "string"
+                                "type": "string",
+                                "help": "Given names of the author (First name)"
                             },
-                            "roles": {
+                            "gal_association": {
+                                "type": "string",
+                                "help": "GAL association if applicable - Collectors ONLY"
+                            },
+                            "role": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "type": "string",
+                                    "enum": [
+                                        "assembler",
+                                        "curator",
+                                        "data_generator",
+                                        "annotation",
+                                        "collection",
+                                        "extraction",
+                                        "sequencing",
+                                        "researcher",
+                                        "other"
+                                    ]
+                                },
+                                "minItems": 1,
+                                "uniqueItems": true,
+				"help": "Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section"
                             },
                             "orcid": {
                                 "type": "string"
@@ -91,7 +130,8 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string"
-                                }
+                                },
+				"help": "Array of affiliations for each author should be a list of IDs, determined by the affiliation array below"
                             }
                         }
                     }
@@ -113,7 +153,11 @@
             },
             "required": [
                 "doi",
-                "title"
+                "title",
+		"bioproject",
+		"authors",
+		"affiliations",
+		"data_availability"
             ]
         },
         "publication_metadata": {
@@ -150,7 +194,8 @@
                         "license": "string",
                         "submission_date": "string",
                         "publication_date": "string"
-                    }
+                    },
+		    "help": "If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here"
                 },
                 "genome_note_data": {
                     "submission_date": "string",
@@ -163,12 +208,21 @@
                     "type": "string"
                 },
                 "ethics_and_consent": {
-                    "type": "object"
+                    "type": "string",
+		    "help": "Where necessary, please detail any ethical or legal permits that were acquired in order to carry out the steps to generate this genome report. If not applicaable, please put N/A"
                 },
                 "competing_interests": {
-                    "type": "string"
+                    "type": "string",
+		    "help": "Please details any conflicting interests. If not applicable, please put N/A"
                 }
-            }
+            },
+            "required": [
+                "genome_note_data",
+                "ebp_analysis_metrics",
+		"ethics_and_consent",
+		"competeing_interests",
+		"genome_note_data"
+            ]
         }
     }
 }
