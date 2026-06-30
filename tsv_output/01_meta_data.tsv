@@ -1,0 +1,41 @@
+property_name	parent_property	type	description	pattern	required
+metadata		object			Yes
+template_version	metadata	string			No
+doi	metadata	string	DOI, without the https://doi.org/ prefix, example is: 10.1080/10509585.2015.1092083	^10\.\d{4,9}/\S+$	No
+data_availability	metadata	string			No
+title	metadata	string			No
+abstract	metadata	string	Markdown is fine		No
+keywords	metadata	array			No
+background	metadata	string			No
+bioproject	metadata	string	Umbrella BioProject in INSDC containing all sequencing data, genome assembly/assemblies and links to relevant BioSample information.		No
+child_bioprojects	metadata	array	Child BioProjects associated with the main BioProject; used to ID sequencing run metadata.		No
+parent_projects	metadata	array	Parent (i.e. Project-level) BioProjects associated with the main BioProject. Used to derive formatted_parent_projects.		No
+accession	parent_projects	string			No
+name	parent_projects	string			No
+project_name	parent_projects	string			No
+title	parent_projects	string			No
+formatted_parent_projects	metadata	string	Publication-ready parent project string derived from parent_projects by data_note. Describes, e.g. Project Psyche.		No
+authors	metadata	array			No
+authorsdb_id	authors	string	ID from AuthorsDB		No
+surname	authors	string	Family name of the author		No
+middle_names	authors	string	Middle names of the author		No
+given_names	authors	string	Given names of the author (First name)		No
+gal_association	authors	string	GAL association if applicable - Collectors ONLY		No
+role	authors	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section		No
+orcid	authors	string			No
+corresponding	authors	boolean			No
+affiliations	authors	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below		No
+affiliations	metadata	array			No
+id	affiliations	string			No
+affiliation	affiliations	string			No
+publication_metadata		object			Yes
+funding	publication_metadata	array			No
+source	funding	string			No
+award_ids	funding	array			No
+funding_statement	funding	string			No
+journal_data	publication_metadata	array	If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here		No
+genome_note_data	publication_metadata				No
+ebp_analysis_metrics	publication_metadata	array			No
+acknowledgements	publication_metadata	string			No
+ethics_and_consent	publication_metadata	string	Where necessary, please detail any ethical or legal permits that were acquired in order to carry out the steps to generate this genome report. If not applicaable, please put N/A		No
+competing_interests	publication_metadata	string	Please details any conflicting interests. If not applicable, please put N/A		No

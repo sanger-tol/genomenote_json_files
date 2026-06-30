@@ -1,0 +1,31 @@
+property_name	parent_property	type	description	pattern	required
+assembly_methods		object			No
+involved_persons	assembly_methods	array			No
+id	involved_persons	string	ID from author list of those who assembled the genome(s)		No
+assembly_method_text	assembly_methods	string	Publication-ready or template-generated text describing the assembly method.		No
+assembly_software	assembly_methods	array	Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.		No
+name	assembly_software	string			No
+ID	assembly_software	string	Identifier from the references list		No
+contig_assembly_details	assembly_methods	object			No
+phasing_mode	contig_assembly_details		Whether the contig assembly was generated in a haplotype-aware mode using Hi-C, parental or other data. NB: HiFiasm is not the only assembler		No
+cli_options	contig_assembly_details	string	Command-line options passed to the contig assemblier where these affect the published assembly method, for example --primary -l0. NB: Setting -l0 disables internal purging, so this is reduntant with the option below		No
+formatted_cli_options	contig_assembly_details	string	Publication-ready sentence derived from Hifiasm options by data_note.		No
+primary_mode	contig_assembly_details	boolean	Whether the contig assembler generated primary/alternate contig sets, or haplotype sets. NB: I also feel this is reduntant with the CLI options above, but maybe good to keep in case other assemblers have different modes		No
+organelle_assembly	assembly_methods	array	Organelle assembly steps or decisions, including assembler and comparator where relevant.		No
+organelle_type	organelle_assembly				No
+assembler	organelle_assembly	object	Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk. Should be a link to an object in the reference list		No
+comparator	organelle_assembly	array	Comparator species, assembly or reference used for organelle assembly, where applicable.		No
+decision_notes	organelle_assembly	string	Short note on organelle assembly choices or review decisions.		No
+assembly_stats		array			No
+assembly_information	assembly_stats	object			No
+assembly_level	assembly_information				No
+accession_haplotype	assembly_information	string	This should be Primary, Alternate OR Primary followed by Haplotype_{int}. This should act as a key where noted HAP_KEY		No
+assembly_accession	assembly_information	string			No
+assembly_id	assembly_information	string			No
+no_of_contigs	assembly_information	integer			No
+contig_n50_length	assembly_information	number			No
+no_of_scaffolds	assembly_information	integer			No
+scaffold_n50_length	assembly_information	number			No
+longest_scaffold_length	assembly_information	number			No
+genome_size	assembly_information	number			No
+percent_assembled	assembly_information	array			No

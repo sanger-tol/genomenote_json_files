@@ -1,0 +1,17 @@
+property_name	parent_property	type	description	pattern	required
+analysis		array			No
+sample_id	analysis	string	Links to HAP_KEY, e.g. Haplotype_1, Primary, etc.		No
+assembly_role	analysis		Links to HAP_KEY, e.g. Haplotype_1		No
+ebp_statistics	analysis	object			No
+ebp_metric	ebp_statistics	string	Derived EBP summary metric for the assembly used in the Genome Note table, for example 6.C.Q40.	^[0-9?]+\.[0-9C?]+\.Q[0-9?]+$	No
+ebp_reference_standard	ebp_statistics	string	EBP reference standard used as the benchmark for the table, for example 6.C.Q40 or 5.C.Q40.		No
+ebp_reference_standard_reason	ebp_statistics	string	Reason this reference standard was selected, for example standard_input, manual_override, low_input_material or uli.		No
+ebp_reference_standard_met	ebp_statistics	['boolean', 'null']	Whether the selected assembly meets the EBP reference standard; absent or null if required metrics are missing.		No
+ebp_reference_standard_status	ebp_statistics		Derived status for the selected EBP reference standard.		No
+ebp_reference_standard_failures	ebp_statistics	array	Derived list of failed EBP criteria, for example contig_n50_below_standard, percent_assigned_to_chromosomes_below_standard or qv_below_standard.		No
+ebp_reference_standard_missing_metrics	ebp_statistics	array	Derived list of required EBP input metrics that were unavailable.		No
+ebp_contig_n50_benchmark_mb	ebp_statistics	number	Contig N50 benchmark for the selected EBP reference standard, in megabases.		No
+ebp_contig_n50_benchmark_label	ebp_statistics	string	Display label for the contig N50 benchmark, for example >= 1 Mb.		No
+ebp_perc_assembled_benchmark	ebp_statistics	number	Percentage assigned to chromosomes required by the selected EBP reference standard.		No
+ebp_qv_benchmark	ebp_statistics	number	QV required by the selected EBP reference standard.		No
+GAP_analysis_data	analysis				No

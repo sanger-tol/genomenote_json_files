@@ -1,0 +1,11 @@
+property_name	parent_property	type	description	pattern	required
+methods		object	Methods used to prepare a genomic library for sequencing. These are kept as separate subsections because they are populated from different workflow sources.		No
+library_prep	methods	array	Details of library preparation methods/protocols.		No
+sample_role	library_prep		Role of this sample in the genome note workflow.		No
+library_preparation_and_sequencing	library_prep	array	Library preparation, sequencing platform and method metadata.		No
+technology	library_preparation_and_sequencing		Sequencing or data-generation technology.		No
+sample_accession	library_preparation_and_sequencing	string			No
+experiment_accession	library_preparation_and_sequencing	string	Accession from INSDC of output sequencing data from this library (ERR/ERX/SRR/SRX)		No
+library_name	library_preparation_and_sequencing	string			No
+library_construction_protocol	library_preparation_and_sequencing	string	Give identifier of protocol detailed in references		No
+library_construction_protocol_plaintext	library_preparation_and_sequencing	string	Short publication-ready plaintext-summary of the library construction protocol		No

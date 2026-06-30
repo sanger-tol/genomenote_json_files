@@ -1,0 +1,11 @@
+property_name	parent_property	type	description	pattern	required
+annotation		array	Annotation method performed and output. Ideally link to workflow (doi) and optional free text description		No
+data_used	annotation	array			No
+statistics	annotation	object	Key statistics of annotation outcomes, to be updated in future		No
+busco	statistics	object			No
+results	busco	array			No
+mode	results	string			No
+lineages	results				No
+omark	statistics	object			No
+assessments	omark	array			No
+clades	assessments				No

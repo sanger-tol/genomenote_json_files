@@ -1,0 +1,22 @@
+property_name	parent_property	type	description	pattern	required
+methods		object	Methods used to extract genomic material from provided samples. These are kept as separate subsections because they are populated from different workflow sources.		No
+sample_processing	methods	array	Details of extraction methods/protocols.		No
+sample_role	sample_processing		Role of this sample in the genome note workflow.		No
+nucleic_acid_extraction	sample_processing	array	Wet-lab extraction and tissue-preparation metadata.		No
+sample_role	nucleic_acid_extraction				No
+sample_accession	nucleic_acid_extraction	string			No
+extraction_protocol	nucleic_acid_extraction	string	Give identifier of protocol in References		No
+extraction_protocol_plaintext	nucleic_acid_extraction	string	Publication-ready plaintext summary of the extraction protocol		No
+protocol	nucleic_acid_extraction	string	Display name for the extraction protocol, where separate from extraction_protocol.		No
+dna_yield_ng	nucleic_acid_extraction	number			No
+volume_ul	nucleic_acid_extraction	number			No
+qubit_ngul	nucleic_acid_extraction	number			No
+ratio_260_280	nucleic_acid_extraction	number			No
+ratio_260_230	nucleic_acid_extraction	number			No
+nanodrop_concentration_ngul	nucleic_acid_extraction	number			No
+fragment_size_kb	nucleic_acid_extraction	number			No
+gqn	nucleic_acid_extraction	number			No
+spri_type	nucleic_acid_extraction	string			No
+disruption_method	nucleic_acid_extraction	string			No
+tissue_type	nucleic_acid_extraction	string			No
+tissue_weight_mg	nucleic_acid_extraction	number	Mass/weight of tissue taken for extraction, in milligrams.		No

@@ -1,0 +1,29 @@
+property_name	parent_property	type	description	pattern	required
+sample_accession		string	BioSample accession for the sample used for this workflow role.		No
+sample_derived_from		string	Source individual or parent BioSample accession, where different from sample_accession.		No
+tolid		string			No
+specimen_id		string			No
+organism_part		string			No
+preservation_data		array			No
+method	preservation_data	string	Method of preservation used		No
+solution	preservation_data	string	Storage solution		No
+identification_data		array			No
+method	identification_data	string	How was the organism identified?		No
+sex	identification_data	string			No
+lifestage	identification_data	string			No
+collection_data		array			No
+museum_voucher_id	collection_data	string	Museum Voucher ID		No
+method	collection_data	string	How was the sample collected		No
+date	collection_data	string	Date of collection		No
+location	collection_data	string	Name of town/city/region		No
+country	collection_data	string	Country of Origin		No
+latitude	collection_data	number			No
+longitude	collection_data	number			No
+elevation	collection_data	number	Elevation the sample was collected at, in metres		No
+involved_persons		array			No
+name	involved_persons	string	Name of the collector/identifier of sample		No
+ID	involved_persons	string	Identifier from the author list		No
+specimen_images		array	Images of the collected specimen or source individual used in the genome note.		No
+image	specimen_images	string			No
+link	specimen_images	string			No
+caption	specimen_images	string			No
