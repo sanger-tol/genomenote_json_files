@@ -1,0 +1,40 @@
+property_name	parent_property	type	description	pattern	required
+curation		object			No
+involved_persons	curation	array			No
+name	involved_persons	string	Name of assembler, should be taken from the author list defined in the metadata NB: Should probably be replaced by an ID		No
+extra-numerary-chromosomes	curation	array	Method or decision fields used for identifying or assigning microchromosomes (Such as B Chromosomes), where relevant.		No
+tool	extra-numerary-chromosomes	object	Tool or workflow used for microchromosome identification or assignment, for example MicroFinder. NB: Should be replaced by an identifier to a reference		No
+comparator	extra-numerary-chromosomes	array	Comparator species, assembly or reference used for assembly, where applicable.		No
+decision_notes	extra-numerary-chromosomes	string	Short note on extra-numerary-chromosome assignment, choices, or review decisions.		No
+chromosome_naming	curation	object			No
+naming_method	chromosome_naming		How chromosome names or numbers were assigned during curation.		No
+synteny_source	chromosome_naming	string	Comparator assembly, species or reference source used when chromosomes were named by synteny.		No
+comparator	chromosome_naming	array	Comparator species, assembly or reference used for chromosome assignment, where applicable.		No
+autosome_count	chromosome_naming	number	Number of autosomes recorded by curation.		No
+chromosome_result	chromosome_naming	string	Curation chromosome assignment summary from the curation/JIRA record. data_note may parse jira_perc_assem from this text, but that value is not used for the published percentage of assembly assigned to chromosomes.		No
+sex_annotation	curation	array			No
+observed_sex	sex_annotation	string	Observed or recorded sex of the specimen used for assembly, where curated.		No
+sex_chromosome_complement	sex_annotation	string	Curated sex chromosome complement, for example XX, XY, ZZ, ZW or Z0.		No
+identified_sex_chromosomes	sex_annotation	string	Sex chromosome labels identified in the assembly and reported in the genome note, for example X, X and Y, W and Z, or Z.		No
+comparator	sex_annotation	array	Comparator species, assembly or reference used for sex chromosome assignment, where applicable.		No
+curator_note	curation	array			No
+assembly_type	curator_note	string	Assembly type recorded in the curation/JIRA record, NB: I'm not really sure what this means - does it make sense to include this for assemblies outside of Tol?		No
+assembly_text	curator_note	string	NB: I'm also not sure what this means		No
+curator_note	curator_note	string	Free-text curator note from the curation record, including chromosome assignment rationale or assembly caveats.		No
+curation_evidence	curation	array	Evidence or data types used during curation, for example Hi-C contact maps and JBrowse.		No
+curation_statistics	curation	object			No
+manual_interventions_per_gb	curation_statistics	number	Manual interventions in the assembly, normalised per Giga-base		No
+breaks	curation_statistics	number	Breaks performed across assembly		No
+joins	curation_statistics	number	Joins performed across assembly		No
+haplotypic_duplications_removed	curation_statistics	number	Manual removals of haplotypic duplications during curation; used with breaks and joins to derive the curation intervention sentence.		No
+manual_inversions	curation_statistics	number	Manual inversions recorded in the curation/JIRA record. data_note pulls this field in.		No
+change_in_length_bp	curation_statistics	number	Change in the length of the assembly, can be positive or negative. Recorded in base pairs.		No
+change_in_length_percent	curation_statistics	number	Percentage change in total assembly length after curation; used in the derived curation intervention sentence.		No
+change_in_scaffold_count_percent	curation_statistics	number	Percentage change in scaffold count after curation; used in the derived curation intervention sentence.		No
+change_in_n50	curation_statistics	number	Change in the scaffold N50 metric, recorded in base-pairs.		No
+change_in_n50_percent	curation_statistics	number	Percentage change in scaffold N50 after curation; used in the derived curation intervention sentence.		No
+manual_interventions_notes	curation_statistics	string	Short summary description of the interventions made during manual curation and their effect on scaffold count, scaffold N50 and assembly length.		No
+contaminants_removed	curation	object	Generalised statistics about the contaminats removed, do we need to include a file for specific data?		No
+scaffolds_removed	contaminants_removed	number	Number of scaffolds marked as contaminant and removed from the assembly		No
+percentage_scaffolds_removed	contaminants_removed	number	Percentage of scaffolds marked as contaminant and removed from the assembly		No
+total_length_of_scaffolds_removed	contaminants_removed	number	Total length of scaffolds removed, recorded in base-pairs		No

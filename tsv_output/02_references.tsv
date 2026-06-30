@@ -1,0 +1,22 @@
+property_name	parent_property	type	description	pattern	required
+references		array	References in bibtex format - inpired by https://github.com/brianrabern/bib2json/blob/main/README.md		No
+title	references	string	Name of reference material		No
+note	references	string	Sub-title or note about the reference material		No
+citation_key	references	string	Stable key used for in-text citations and bibliography matching. This should match the BibTeX key or CSL id used by Pandoc or by the portal citation processor.		No
+entry_type	references		Type of reference entry		No
+identifier	references	object			Yes
+format	identifier	string			No
+value	identifier	string			No
+pages	references	object	Pages of the reference if applicable, output would be as {start}-{end}		No
+start	pages	string			No
+end	pages	string			No
+volume	references	string			No
+journal	references	string			No
+year	references	string			No
+issue	references	string			No
+source	references	string			No
+authors	references	array			No
+surname	authors	string			No
+middle_names	authors	string			No
+given_names	authors	string			No
+formatted_bibtex	references	string	Formatted BibTeX entry for the reference		No

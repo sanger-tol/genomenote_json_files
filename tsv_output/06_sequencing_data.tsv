@@ -1,0 +1,13 @@
+property_name	parent_property	type	description	pattern	required
+methods		object	Methods used to sequence genomic material.		No
+sample_processing	methods	array	Details of sequencing methods/protocols.		No
+sample_role	sample_processing		Role of this sample in the genome note workflow.		No
+library_sequencing	sample_processing	array	Library sequencing platform and method metadata. Counts and yields are represented under raw_data and raw_data_statistics.		No
+technology	library_sequencing		Sequencing or data-generation technology.		No
+sample_accession	library_sequencing	string			No
+sample_derived_from	library_sequencing	string			No
+sequencing_accession	library_sequencing	string	INSDC accession of data derived from this sequencing run (ERR/SRR)		No
+sequencing_protocol	library_sequencing	string	Identifier of sequencing protocol from reference list		No
+sequencing_protocol_plaintext	library_sequencing	string	Publication-ready plaintext summary of the sequencing protocol		No
+platform	library_sequencing	string			No
+instrument_model	library_sequencing	string			No
