@@ -16,6 +16,13 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
+                "annotation_software": {
+                    "type": "array",
+                    "help": "Software/Pipelines used for the annotation of the assembly set. Should be listed in the references.",
+                    "items": {
+                        "$ref": "_protocol_schema.json#/$defs/protocol"
+                    }
+                },
                 "accession": "string",
                 "data_used": {
                     "type": "array",

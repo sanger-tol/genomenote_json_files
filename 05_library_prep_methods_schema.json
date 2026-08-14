@@ -18,6 +18,13 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
+                "prep_protocol": {
+                    "type": "array",
+                    "help": "Protocols used for the library preparation of the assembly set. Should be listed in the references.",
+                    "items": {
+                        "$ref": "_protocol_schema.json#/$defs/protocol"
+                    }
+                },
                 "library_prep": {
                     "type": "array",
                     "help": "Details of library preparation methods/protocols.",

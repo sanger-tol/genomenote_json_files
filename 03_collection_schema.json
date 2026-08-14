@@ -25,6 +25,13 @@
             "type": "string",
             "required": true
         },
+        "collection_protocol": {
+            "type": "array",
+            "help": "Protocols used for the collection of the assembly set. Should be listed in the references.",
+            "items": {
+                "$ref": "_protocol_schema.json#/$defs/protocol"
+            }
+        },
         "preservation_data": {
             "type": "array",
             "properties": {

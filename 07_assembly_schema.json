@@ -26,16 +26,7 @@
                     "type": "array",
                     "help": "Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "ID": {
-                                "type": "string",
-                                "help": "Identifier from the references list"
-                            }
-                        }
+                        "$ref": "_protocol_schema.json#/$defs/protocol"
                     }
                 },
                 "contig_assembly_details": {
