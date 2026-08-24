@@ -60,8 +60,7 @@
                                             ]
                                         },
                                         "sample_accession": {
-                                            "type": "string",
-                                            "required": true
+                                            "type": "string"
                                         },
                                         "extraction_protocol": {
                                             "type": "string",
@@ -112,15 +111,18 @@
                                             "type": "string"
                                         },
                                         "tissue_type": {
-                                            "type": "string",
-                                            "required": true
+                                            "type": "string"
                                         },
                                         "tissue_weight_mg": {
                                             "type": "number",
                                             "minimum": 0,
                                             "help": "Mass/weight of tissue taken for extraction, in milligrams."
                                         }
-                                    }
+                                    },
+                                    "required": [
+                                        "sample_accession",
+                                        "tissue_type"
+                                    ]
                                 }
                             }
                         }

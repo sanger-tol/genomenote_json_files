@@ -109,8 +109,8 @@
                 "affiliations",
                 "data_availability",
                 "child_bioprojects",
-                "parent_bioprojects",
-                "formatted_parent_bioprojects"
+                "parent_projects",
+                "formatted_parent_projects"
             ]
         },
         "publication_metadata": {
@@ -181,10 +181,10 @@
                 "ethics_and_consent",
                 "competing_interests"
             ]
-        },
-        "required": [
-            "metadata",
-            "publication_metadata"
-        ]
-    }
+        }
+    },
+    "required": [
+        "metadata",
+        "publication_metadata"
+    ]
 }

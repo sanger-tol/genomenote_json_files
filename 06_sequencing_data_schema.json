@@ -64,33 +64,35 @@
                                             "help": "Sequencing or data-generation technology."
                                         },
                                         "sample_accession": {
-                                            "type": "string",
-                                            "required": true
+                                            "type": "string"
                                         },
                                         "sample_derived_from": {
                                             "type": "string"
                                         },
                                         "sequencing_accession": {
                                             "type": "string",
-                                            "help": "INSDC accession of data derived from this sequencing run (ERR/SRR)",
-                                            "required": true
+                                            "help": "INSDC accession of data derived from this sequencing run (ERR/SRR)"
                                         },
                                         "sequencing_protocol": {
                                             "type": "string",
-                                            "help": "Identifier of sequencing protocol from reference list",
-                                            "required": true
+                                            "help": "Identifier of sequencing protocol from reference list"
                                         },
                                         "sequencing_protocol_plaintext": {
                                             "type": "string",
-                                            "help": "Publication-ready plaintext summary of the sequencing protocol",
-                                            "required": true
+                                            "help": "Publication-ready plaintext summary of the sequencing protocol"
                                         },
                                         "instrument_model": {
                                             "type": "string",
-                                            "help": "Model of sequencing instrument used",
-                                            "required": true
+                                            "help": "Model of sequencing instrument used"
                                         }
-                                    }
+                                    },
+                                    "required": [
+                                        "sample_accession",
+                                        "sequencing_accession",
+                                        "sequencing_protocol",
+                                        "sequencing_protocol_plaintext",
+                                        "instrument_model"
+                                    ]
                                 }
                             }
                         }

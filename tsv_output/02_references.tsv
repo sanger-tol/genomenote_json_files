@@ -1,25 +1,33 @@
-property_name	parent_property	type	description	pattern	required
-references		array	References in bibtex format - inpired by https://github.com/brianrabern/bib2json/blob/main/README.md		No
-title	references	string	Name of reference material		No
-note	references	string	Sub-title or note about the reference material		No
-citation_key	references	string	Stable key used for in-text citations and bibliography matching. This should match the BibTeX key or CSL id used by Pandoc or by the portal citation processor.		No
-entry_type	references		Type of reference entry		No
-identifier	references	object			Yes
-format	identifier	string			No
-value	identifier	string			No
-pages	references	object	Pages of the reference if applicable, output would be as {start}-{end}		No
-start	pages	string			No
-end	pages	string			No
-volume	references	string			No
-journal	references	string			No
-year	references	string			No
-issue	references	string			No
-source	references	string			No
-authors	references	array			No
-surname	authors	string			No
-middle_names	authors	string			No
-given_names	authors	string			No
-formatted_bibtex	references	string	Formatted BibTeX entry for the reference		No
-data_accession	references	object	Field for the source of genome reference data if applicable		No
-source	data_accession		Source of genome reference data		No
-accession	data_accession	string	Accession number of the genome reference data		No
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+references		references	array	References in bibtex format - inpired by https://github.com/brianrabern/bib2json/blob/main/README.md			No	No	bibtex	
+title	references	references.title	string	Name of reference material			Yes	No	bibtex	
+note	references	references.note	string	Sub-title or note about the reference material			No	No	bibtex	
+citation_key	references	references.citation_key	string	Stable key used for in-text citations and bibliography matching. This should match the BibTeX key or CSL id used by Pandoc or by the portal citation processor.			Yes	No	bibtex	
+entry_type	references	references.entry_type		Type of reference entry	article, preprint, book/chapter, dataset, report, webpage, protocol, conference_proceedings, software/workflow		Yes	No	bibtex	
+identifier	references	references.identifier	object				No	No	bibtex	
+format	identifier	references.identifier.format	string		DOI, ISBN, PMID, Other		Yes	No	bibtex	
+value	identifier	references.identifier.value	string				Yes	No	bibtex	
+format	identifier	references.identifier.format			DOI		No	No	bibtex	oneOf[0]
+value	identifier	references.identifier.value		DOI, without the https://doi.org/ prefix, example is: 10.1080/10509585.2015.1092083		^10\.\d{4,9}/\S+$	No	No	bibtex	oneOf[0]
+format	identifier	references.identifier.format			PMID		No	No	bibtex	oneOf[1]
+value	identifier	references.identifier.value		PMID, without the https://www.ncbi.nlm.nih.gov/pmc/ prefix, example is: 34567890		^\d+$	No	No	bibtex	oneOf[1]
+format	identifier	references.identifier.format			ISBN		No	No	bibtex	oneOf[2]
+value	identifier	references.identifier.value		ISBN (13) code example is: 978-3-16-148410-0, ISBN (10) code example is: 3-16-148410-0		NEED A PATTERN HERE TO VALIDATE	No	No	bibtex	oneOf[2]
+format	identifier	references.identifier.format			Other		No	No	bibtex	oneOf[3]
+value	identifier	references.identifier.value	string	An alternative identification system, this will need validating!			No	No	bibtex	oneOf[3]
+pages	references	references.pages	object	Pages of the reference if applicable, output would be as {start}-{end}			No	No	bibtex	
+start	pages	references.pages.start	string				No	No	bibtex	
+end	pages	references.pages.end	string				No	No	bibtex	
+volume	references	references.volume	string				No	No	bibtex	
+journal	references	references.journal	string				No	No	bibtex	
+year	references	references.year	string				No	No	bibtex	
+issue	references	references.issue	string				No	No	bibtex	
+source	references	references.source	string				No	No	bibtex	
+authors	references	references.authors	array				Yes	No	bibtex	
+surname	authors	references.authors.surname	string				No	No	bibtex	
+middle_names	authors	references.authors.middle_names	string				No	No	bibtex	
+given_names	authors	references.authors.given_names	string				No	No	bibtex	
+formatted_bibtex	references	references.formatted_bibtex	string	Formatted BibTeX entry for the reference			No	No	bibtex	
+data_accession	references	references.data_accession	object	Field for the source of genome reference data if applicable			Conditional	No	bibtex	if/then
+source	data_accession	references.data_accession.source		Source of genome reference data	GenBank, SRA, BioSamples, Ensembl, Other		No	No	bibtex	if/then
+accession	data_accession	references.data_accession.accession	string	Accession number of the genome reference data			No	No	bibtex	if/then

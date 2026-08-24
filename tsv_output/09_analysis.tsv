@@ -1,17 +1,67 @@
-property_name	parent_property	type	description	pattern	required
-analysis		array			No
-sample_id	analysis	string	Links to HAP_KEY, e.g. Haplotype_1, Primary, etc.		No
-assembly_role	analysis		Links to HAP_KEY, e.g. Haplotype_1		No
-ebp_statistics	analysis	object			No
-ebp_metric	ebp_statistics	string	Derived EBP summary metric for the assembly used in the Genome Note table, for example 6.C.Q40.	^[0-9?]+\.[0-9C?]+\.Q[0-9?]+$	No
-ebp_reference_standard	ebp_statistics	string	EBP reference standard used as the benchmark for the table, for example 6.C.Q40 or 5.C.Q40.		No
-ebp_reference_standard_reason	ebp_statistics	string	Reason this reference standard was selected, for example standard_input, manual_override, low_input_material or uli.		No
-ebp_reference_standard_met	ebp_statistics	['boolean', 'null']	Whether the selected assembly meets the EBP reference standard; absent or null if required metrics are missing.		No
-ebp_reference_standard_status	ebp_statistics		Derived status for the selected EBP reference standard.		No
-ebp_reference_standard_failures	ebp_statistics	array	Derived list of failed EBP criteria, for example contig_n50_below_standard, percent_assigned_to_chromosomes_below_standard or qv_below_standard.		No
-ebp_reference_standard_missing_metrics	ebp_statistics	array	Derived list of required EBP input metrics that were unavailable.		No
-ebp_contig_n50_benchmark_mb	ebp_statistics	number	Contig N50 benchmark for the selected EBP reference standard, in megabases.		No
-ebp_contig_n50_benchmark_label	ebp_statistics	string	Display label for the contig N50 benchmark, for example >= 1 Mb.		No
-ebp_perc_assembled_benchmark	ebp_statistics	number	Percentage assigned to chromosomes required by the selected EBP reference standard.		No
-ebp_qv_benchmark	ebp_statistics	number	QV required by the selected EBP reference standard.		No
-GAP_analysis_data	analysis				No
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+analysis		analysis	array				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+involved_persons	analysis	analysis.involved_persons	array				No	No	AuthorsDB	
+authorsdb_id	involved_persons	analysis.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
+role	involved_persons	analysis.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+email	involved_persons	analysis.involved_persons.email	string				Yes	No	AuthorsDB	
+corresponding	involved_persons	analysis.involved_persons.corresponding	boolean				No	No	AuthorsDB	
+affiliations	involved_persons	analysis.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
+name	involved_persons	analysis.involved_persons.name	string	Name of the consortia or contributing group			Conditional	No	AuthorsDB	if/then
+surname	involved_persons	analysis.involved_persons.surname	string	Family name of the author			Conditional	No	AuthorsDB	if/else
+middle_names	involved_persons	analysis.involved_persons.middle_names	string	Middle names of the author			No	No	AuthorsDB	if/else
+given_names	involved_persons	analysis.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
+gal_association	involved_persons	analysis.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
+gal_hub	involved_persons	analysis.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
+orcid	involved_persons	analysis.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+analysis_software	analysis	analysis.analysis_software	array	Software/Pipelines used for the analysis of the assembly set. Should be listed in the references.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+protocol_id	analysis_software	analysis.analysis_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+type	analysis_software	analysis.analysis_software.type	array	Type of Protocol			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+role	analysis_software	analysis.analysis_software.role	array				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+version	analysis_software	analysis.analysis_software.version	string	Version of the protocol/workflow/tool/software			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+source	analysis_software	analysis.analysis_software.source	string	Source of the Protocol			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+doi	analysis_software	analysis.analysis_software.doi	string	DOI of the Protocol			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+parameters	analysis_software	analysis.analysis_software.parameters	string	Any specific parameters for the Protocol			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+notes	analysis_software	analysis.analysis_software.notes	string	Any notes or comments about the Protocol			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+sample_id	analysis	analysis.sample_id	string	Links to HAP_KEY, e.g. Haplotype_1, Primary, etc.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+assembly_role	analysis	analysis.assembly_role		Links to HAP_KEY, e.g. Haplotype_1			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+assembly	assembly_role	analysis.assembly_role.assembly	string				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_statistics	analysis	analysis.ebp_statistics	object				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_metric	ebp_statistics	analysis.ebp_statistics.ebp_metric	string	Derived EBP summary metric for the assembly used in the Genome Note table, for example 6.C.Q40.		^[0-9?]+\.[0-9C?]+\.Q[0-9?]+$	No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_reference_standard	ebp_statistics	analysis.ebp_statistics.ebp_reference_standard	string	EBP reference standard used as the benchmark for the table, for example 6.C.Q40 or 5.C.Q40.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_reference_standard_reason	ebp_statistics	analysis.ebp_statistics.ebp_reference_standard_reason	string	Reason this reference standard was selected, for example standard_input, manual_override, low_input_material or uli.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_reference_standard_met	ebp_statistics	analysis.ebp_statistics.ebp_reference_standard_met	boolean | null	Whether the selected assembly meets the EBP reference standard; absent or null if required metrics are missing.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_reference_standard_status	ebp_statistics	analysis.ebp_statistics.ebp_reference_standard_status		Derived status for the selected EBP reference standard.	met, not_met, unknown		No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_reference_standard_failures	ebp_statistics	analysis.ebp_statistics.ebp_reference_standard_failures	array	Derived list of failed EBP criteria, for example contig_n50_below_standard, percent_assigned_to_chromosomes_below_standard or qv_below_standard.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_reference_standard_missing_metrics	ebp_statistics	analysis.ebp_statistics.ebp_reference_standard_missing_metrics	array	Derived list of required EBP input metrics that were unavailable.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_contig_n50_benchmark_mb	ebp_statistics	analysis.ebp_statistics.ebp_contig_n50_benchmark_mb	number	Contig N50 benchmark for the selected EBP reference standard, in megabases.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_contig_n50_benchmark_label	ebp_statistics	analysis.ebp_statistics.ebp_contig_n50_benchmark_label	string	Display label for the contig N50 benchmark, for example >= 1 Mb.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_perc_assembled_benchmark	ebp_statistics	analysis.ebp_statistics.ebp_perc_assembled_benchmark	number	Percentage assigned to chromosomes required by the selected EBP reference standard.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+ebp_qv_benchmark	ebp_statistics	analysis.ebp_statistics.ebp_qv_benchmark	number	QV required by the selected EBP reference standard.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+GAP_analysis_data	analysis	analysis.GAP_analysis_data					No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+sequence_composition	GAP_analysis_data	analysis.GAP_analysis_data.sequence_composition	array	K-mer based sequence composition track of each asssembly role			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+worfklow	sequence_composition	analysis.GAP_analysis_data.sequence_composition.worfklow	id				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+accession	sequence_composition	analysis.GAP_analysis_data.sequence_composition.accession	string				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+file_path	sequence_composition	analysis.GAP_analysis_data.sequence_composition.file_path	string				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+weblink	sequence_composition	analysis.GAP_analysis_data.sequence_composition.weblink	string				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+blobtoolkit	GAP_analysis_data	analysis.GAP_analysis_data.blobtoolkit	object				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+snail_plot	blobtoolkit	analysis.GAP_analysis_data.blobtoolkit.snail_plot	string	Publication figure asset for the BlobToolKit snail plot, usually generated for hap1 or the primary assembly.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+blob_plot	blobtoolkit	analysis.GAP_analysis_data.blobtoolkit.blob_plot	string	Publication figure asset for the BlobToolKit blob plot, usually generated for hap1 or the primary assembly.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+snail_plot_url	blobtoolkit	analysis.GAP_analysis_data.blobtoolkit.snail_plot_url	string	BlobToolKit viewer URL for the snail plot, included in the genome note text.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+blob_plot_url	blobtoolkit	analysis.GAP_analysis_data.blobtoolkit.blob_plot_url	string	BlobToolKit viewer URL for the blob plot, included in the genome note text.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+worfklow	blobtoolkit	analysis.GAP_analysis_data.blobtoolkit.worfklow	id				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+merqury	GAP_analysis_data	analysis.GAP_analysis_data.merqury	array	Merqury consensus quality and k-mer completeness values reported for each assembly role.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+worfklow	merqury	analysis.GAP_analysis_data.merqury.worfklow	id				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+qv	merqury	analysis.GAP_analysis_data.merqury.qv	number	Merqury consensus quality value.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+kmer_completeness_percent	merqury	analysis.GAP_analysis_data.merqury.kmer_completeness_percent	number	Merqury k-mer completeness percentage.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+kmer_length	merqury	analysis.GAP_analysis_data.merqury.kmer_length	integer	Length of the k-mer used for analysis.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+spectra_plot	merqury	analysis.GAP_analysis_data.merqury.spectra_plot	string	Optional publication figure or asset for the Merqury spectra plot.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+busco	GAP_analysis_data	analysis.GAP_analysis_data.busco	array	BUSCO completeness results.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+worfklow	busco	analysis.GAP_analysis_data.busco.worfklow	id				No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+lineage	busco	analysis.GAP_analysis_data.busco.lineage	string	BUSCO lineage dataset, for example lepidoptera_odb10.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+complete_percent	busco	analysis.GAP_analysis_data.busco.complete_percent	number	Percentage of complete BUSCOs.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+single_percent	busco	analysis.GAP_analysis_data.busco.single_percent	number	Percentage of single-copy complete BUSCOs.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+duplicated_percent	busco	analysis.GAP_analysis_data.busco.duplicated_percent	number	Percentage of duplicated complete BUSCOs.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+fragmented_percent	busco	analysis.GAP_analysis_data.busco.fragmented_percent	number	Percentage of fragmented BUSCOs.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+missing_percent	busco	analysis.GAP_analysis_data.busco.missing_percent	number	Percentage of missing BUSCOs.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+n_markers	busco	analysis.GAP_analysis_data.busco.n_markers	integer	Number of BUSCOs in the lineage dataset.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	
+summary	busco	analysis.GAP_analysis_data.busco.summary	string	Display string, for example C:99.0% [S:98.6%, D:0.4%], F:0.2%, M:0.8%, n:5286.			No	No	ToLQC, GAP/WorkflowsDB, meta-notes	

@@ -41,8 +41,7 @@
                                     "chromium",
                                     "other"
                                 ],
-                                "help": "Role of this sample in the genome note workflow.",
-                                "required": true
+                                "help": "Role of this sample in the genome note workflow."
                             },
                             "library_preparation_and_sequencing": {
                                 "type": "array",
@@ -85,7 +84,10 @@
                                     }
                                 }
                             }
-                        }
+                        },
+                        "required": [
+                            "sample_role"
+                        ]
                     }
                 }
             }

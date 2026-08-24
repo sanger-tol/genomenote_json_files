@@ -47,9 +47,13 @@
                         "type": "string"
                     },
                     "help": "Array of affiliations for each author should be a list of IDs, determined by the affiliation array below"
-                },
-                "required": ["role", "email", "affiliations"]
+                }
             },
+            "required": [
+                "role",
+                "email",
+                "affiliations"
+            ],
             "if": {
                 "anyOf": [
                     {
@@ -81,7 +85,9 @@
                         "help": "Name of the consortia or contributing group"
                     }
                 },
-                "required": ["name"]
+                "required": [
+                    "name"
+                ]
             },
             "else": {
                 "properties": {
@@ -109,14 +115,27 @@
                     "orcid": {
                         "type": "string",
                         "help": "ORCID of the author/person"
-                    },
-                    "if": {
-                        "role": "collector",
-                        "then": {
-                            "required": ["gal_association"]
+                    }
+                },
+                "required": [
+                    "surname",
+                    "given_names",
+                    "orcid"
+                ],
+                "if": {
+                    "properties": {
+                        "role": {
+                            "type": "array",
+                            "contains": {
+                                "const": "collector"
+                            }
                         }
-                    },
-                    "required": ["surname", "given_names", "orcid"]
+                    }
+                },
+                "then": {
+                    "required": [
+                        "gal_association"
+                    ]
                 }
             }
         }

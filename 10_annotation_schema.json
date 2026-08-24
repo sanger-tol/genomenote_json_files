@@ -44,8 +44,7 @@
                             "properties": {
                                 "tool_version": {
                                     "type": "string",
-                                    "help": "Version of the BUSCO tool used",
-                                    "required": true
+                                    "help": "Version of the BUSCO tool used"
                                 },
                                 "results": {
                                     "type": "array",
@@ -56,8 +55,7 @@
                                                 "transcriptome",
                                                 "NA"
                                             ],
-                                            "type": "string",
-                                            "required": true
+                                            "type": "string"
                                         },
                                         "lineages": {
                                             "odb_name": "string",
@@ -88,17 +86,22 @@
                                                 "help": "Number/Percentage of missing busco genes"
                                             }
                                         }
-                                    }
+                                    },
+                                    "required": [
+                                        "mode"
+                                    ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "tool_version"
+                            ]
                         },
                         "omark": {
                             "type": "object",
                             "properties": {
                                 "tool_version": {
                                     "type": "string",
-                                    "help": "Version of the OMARK tool used",
-                                    "required": true
+                                    "help": "Version of the OMARK tool used"
                                 },
                                 "assessments": {
                                     "type": "array",
@@ -353,7 +356,10 @@
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "required": [
+                                "tool_version"
+                            ]
                         }
                     }
                 }

@@ -19,8 +19,7 @@
                 },
                 "assembly_method_text": {
                     "type": "string",
-                    "help": "Publication-ready or template-generated text describing the assembly method.",
-                    "required": true
+                    "help": "Publication-ready or template-generated text describing the assembly method."
                 },
                 "assembly_software": {
                     "type": "array",
@@ -99,7 +98,10 @@
                         }
                     }
                 }
-            }
+            },
+            "required": [
+                "assembly_method_text"
+            ]
         },
         "assembly_stats": {
             "type": "array",
@@ -121,8 +123,7 @@
                         },
                         "assembly_accession": {
                             "type": "string",
-                            "help": "INSDC Accession",
-                            "required": true
+                            "help": "INSDC Accession"
                         },
                         "assembly_id": {
                             "type": "string"
@@ -130,26 +131,22 @@
                         "no_of_contigs": {
                             "type": "integer",
                             "minimum": 1,
-                            "help": "Number of contigs in assembly",
-                            "required": true
+                            "help": "Number of contigs in assembly"
                         },
                         "contig_n50_length": {
                             "type": "integer",
                             "minimum": 1,
-                            "help": "N50 length of contigs in assembly",
-                            "required": true
+                            "help": "N50 length of contigs in assembly"
                         },
                         "no_of_scaffolds": {
                             "type": "integer",
                             "minimum": 1,
-                            "help": "Number of scaffolds in assembly",
-                            "required": true
+                            "help": "Number of scaffolds in assembly"
                         },
                         "scaffold_n50_length": {
                             "type": "integer",
                             "minimum": 1,
-                            "help": "N50 length of scaffolds in assembly",
-                            "required": true
+                            "help": "N50 length of scaffolds in assembly"
                         },
                         "longest_scaffold_length": {
                             "type": "integer",
@@ -159,8 +156,7 @@
                         "genome_size": {
                             "type": "number",
                             "minimum": 1,
-                            "help": "Length of assembly in bp",
-                            "required": true
+                            "help": "Length of assembly in bp"
                         },
                         "percent_assembled": {
                             "type": "number",
@@ -169,6 +165,14 @@
                             "help": "Percentage of the assembly assigned to chromosomes. 1 item per haplotype in the array. HAP_KEY"
                         }
                     },
+                    "required": [
+                        "assembly_accession",
+                        "no_of_contigs",
+                        "contig_n50_length",
+                        "no_of_scaffolds",
+                        "scaffold_n50_length",
+                        "genome_size"
+                    ],
                     "organelles": {
                         "type": "array",
                         "help": "Organelle sequences included in the assembly, such as mitochondrial and plastid genomes.",

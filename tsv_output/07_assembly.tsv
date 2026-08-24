@@ -1,31 +1,95 @@
-property_name	parent_property	type	description	pattern	required
-assembly_methods		object			No
-involved_persons	assembly_methods	array			No
-id	involved_persons	string	ID from author list of those who assembled the genome(s)		No
-assembly_method_text	assembly_methods	string	Publication-ready or template-generated text describing the assembly method.		No
-assembly_software	assembly_methods	array	Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.		No
-name	assembly_software	string			No
-ID	assembly_software	string	Identifier from the references list		No
-contig_assembly_details	assembly_methods	object			No
-phasing_mode	contig_assembly_details		Whether the contig assembly was generated in a haplotype-aware mode using Hi-C, parental or other data. NB: HiFiasm is not the only assembler		No
-cli_options	contig_assembly_details	string	Command-line options passed to the contig assemblier where these affect the published assembly method, for example --primary -l0. NB: Setting -l0 disables internal purging, so this is reduntant with the option below		No
-formatted_cli_options	contig_assembly_details	string	Publication-ready sentence derived from Hifiasm options by data_note.		No
-primary_mode	contig_assembly_details	boolean	Whether the contig assembler generated primary/alternate contig sets, or haplotype sets. NB: I also feel this is reduntant with the CLI options above, but maybe good to keep in case other assemblers have different modes		No
-organelle_assembly	assembly_methods	array	Organelle assembly steps or decisions, including assembler and comparator where relevant.		No
-organelle_type	organelle_assembly				No
-assembler	organelle_assembly	object	Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk. Should be a link to an object in the reference list		No
-comparator	organelle_assembly	array	Comparator species, assembly or reference used for organelle assembly, where applicable.		No
-decision_notes	organelle_assembly	string	Short note on organelle assembly choices or review decisions.		No
-assembly_stats		array			No
-assembly_information	assembly_stats	object			No
-assembly_level	assembly_information				No
-accession_haplotype	assembly_information	string	This should be Primary, Alternate OR Primary followed by Haplotype_{int}. This should act as a key where noted HAP_KEY		No
-assembly_accession	assembly_information	string			No
-assembly_id	assembly_information	string			No
-no_of_contigs	assembly_information	integer			No
-contig_n50_length	assembly_information	number			No
-no_of_scaffolds	assembly_information	integer			No
-scaffold_n50_length	assembly_information	number			No
-longest_scaffold_length	assembly_information	number			No
-genome_size	assembly_information	number			No
-percent_assembled	assembly_information	array			No
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+assembly_methods		assembly_methods	object				No	No	ToLQC	
+involved_persons	assembly_methods	assembly_methods.involved_persons	array				No	No	AuthorsDB	
+authorsdb_id	involved_persons	assembly_methods.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
+role	involved_persons	assembly_methods.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+email	involved_persons	assembly_methods.involved_persons.email	string				Yes	No	AuthorsDB	
+corresponding	involved_persons	assembly_methods.involved_persons.corresponding	boolean				No	No	AuthorsDB	
+affiliations	involved_persons	assembly_methods.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
+name	involved_persons	assembly_methods.involved_persons.name	string	Name of the consortia or contributing group			Conditional	No	AuthorsDB	if/then
+surname	involved_persons	assembly_methods.involved_persons.surname	string	Family name of the author			Conditional	No	AuthorsDB	if/else
+middle_names	involved_persons	assembly_methods.involved_persons.middle_names	string	Middle names of the author			No	No	AuthorsDB	if/else
+given_names	involved_persons	assembly_methods.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
+gal_association	involved_persons	assembly_methods.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
+gal_hub	involved_persons	assembly_methods.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
+orcid	involved_persons	assembly_methods.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+assembly_method_text	assembly_methods	assembly_methods.assembly_method_text	string	Publication-ready or template-generated text describing the assembly method.			Yes	No	ToLQC	
+assembly_software	assembly_methods	assembly_methods.assembly_software	array	Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.			No	No	ToLQC	
+protocol_id	assembly_software	assembly_methods.assembly_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	ToLQC	
+type	assembly_software	assembly_methods.assembly_software.type	array	Type of Protocol			No	No	ToLQC	
+role	assembly_software	assembly_methods.assembly_software.role	array				No	No	ToLQC	
+version	assembly_software	assembly_methods.assembly_software.version	string	Version of the protocol/workflow/tool/software			No	No	ToLQC	
+source	assembly_software	assembly_methods.assembly_software.source	string	Source of the Protocol			No	No	ToLQC	
+doi	assembly_software	assembly_methods.assembly_software.doi	string	DOI of the Protocol			No	No	ToLQC	
+parameters	assembly_software	assembly_methods.assembly_software.parameters	string	Any specific parameters for the Protocol			No	No	ToLQC	
+notes	assembly_software	assembly_methods.assembly_software.notes	string	Any notes or comments about the Protocol			No	No	ToLQC	
+contig_assembly_details	assembly_methods	assembly_methods.contig_assembly_details	object				No	No	ToLQC	
+phasing_mode	contig_assembly_details	assembly_methods.contig_assembly_details.phasing_mode		Whether the contig assembly was generated in a haplotype-aware mode using Hi-C, parental or other data. NB: HiFiasm is not the only assembler	hic_phasing, trio_illumina, original, other		No	No	ToLQC	
+cli_options	contig_assembly_details	assembly_methods.contig_assembly_details.cli_options	string	Command-line options passed to the contig assemblier where these affect the published assembly method, for example --primary -l0. NB: Setting -l0 disables internal purging, so this is reduntant with the option below			No	No	ToLQC	
+formatted_cli_options	contig_assembly_details	assembly_methods.contig_assembly_details.formatted_cli_options	string	Publication-ready sentence derived from Hifiasm options by data_note.			No	No	ToLQC	
+primary_mode	contig_assembly_details	assembly_methods.contig_assembly_details.primary_mode	boolean	Whether the contig assembler generated primary/alternate contig sets, or haplotype sets. NB: I also feel this is reduntant with the CLI options above, but maybe good to keep in case other assemblers have different modes			No	No	ToLQC	
+organelle_assembly	assembly_methods	assembly_methods.organelle_assembly	array	Organelle assembly steps or decisions, including assembler and comparator where relevant.			No	No	ToLQC	
+organelle_type	organelle_assembly	assembly_methods.organelle_assembly.organelle_type			mitochondrion, plastid, chloroplast, other		No	No	ToLQC	
+circularised	organelle_assembly	assembly_methods.organelle_assembly.circularised	boolean	Whether the organelle was circularised during assembly			No	No	ToLQC	
+assembler	organelle_assembly	assembly_methods.organelle_assembly.assembler	object	Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk. Should be a link to an object in the reference list			No	No	ToLQC	
+name	assembler	assembly_methods.organelle_assembly.assembler.name	string				No	No	ToLQC	
+ID	assembler	assembly_methods.organelle_assembly.assembler.ID	string				No	No	ToLQC	
+comparator	organelle_assembly	assembly_methods.organelle_assembly.comparator	array	Comparator species, assembly or reference used for organelle assembly, where applicable.			No	No	ToLQC	
+name	comparator	assembly_methods.organelle_assembly.comparator.name	string				No	No	ToLQC	
+accession	comparator	assembly_methods.organelle_assembly.comparator.accession	string				No	No	ToLQC	
+decision_notes	organelle_assembly	assembly_methods.organelle_assembly.decision_notes	string	Short note on organelle assembly choices or review decisions.			No	No	ToLQC	
+assembly_stats		assembly_stats	array				No	No	ToLQC	
+assembly_information	assembly_stats	assembly_stats.assembly_information	object				No	No	ToLQC	
+id	assembly_information	assembly_stats.assembly_information.id	string				No	No	ToLQC	
+assembly_level	assembly_information	assembly_stats.assembly_information.assembly_level			contig, scaffold, chromosome		No	No	ToLQC	
+accession_haplotype	assembly_information	assembly_stats.assembly_information.accession_haplotype	string	This should be Primary, Alternate OR Primary followed by Haplotype_{int}. This should act as a key where noted HAP_KEY			No	No	ToLQC	
+assembly_accession	assembly_information	assembly_stats.assembly_information.assembly_accession	string	INSDC Accession			Yes	No	ToLQC	
+assembly_id	assembly_information	assembly_stats.assembly_information.assembly_id	string				No	No	ToLQC	
+no_of_contigs	assembly_information	assembly_stats.assembly_information.no_of_contigs	integer	Number of contigs in assembly			Yes	No	ToLQC	
+contig_n50_length	assembly_information	assembly_stats.assembly_information.contig_n50_length	integer	N50 length of contigs in assembly			Yes	No	ToLQC	
+no_of_scaffolds	assembly_information	assembly_stats.assembly_information.no_of_scaffolds	integer	Number of scaffolds in assembly			Yes	No	ToLQC	
+scaffold_n50_length	assembly_information	assembly_stats.assembly_information.scaffold_n50_length	integer	N50 length of scaffolds in assembly			Yes	No	ToLQC	
+longest_scaffold_length	assembly_information	assembly_stats.assembly_information.longest_scaffold_length	integer	Length of longest scaffold in assembly			No	No	ToLQC	
+genome_size	assembly_information	assembly_stats.assembly_information.genome_size	number	Length of assembly in bp			Yes	No	ToLQC	
+percent_assembled	assembly_information	assembly_stats.assembly_information.percent_assembled	number	Percentage of the assembly assigned to chromosomes. 1 item per haplotype in the array. HAP_KEY			No	No	ToLQC	
+organelles	assembly_information	assembly_stats.assembly_information.organelles	array	Organelle sequences included in the assembly, such as mitochondrial and plastid genomes.			No	No	ToLQC	
+assembly_role	organelles	assembly_stats.assembly_information.organelles.assembly_role	string	Assembly role containing this organelle record. HAP_KEY			No	No	ToLQC	
+organelle_type	organelles	assembly_stats.assembly_information.organelles.organelle_type			mitochondrion, plastid, chloroplast		No	No	ToLQC	
+accession	organelles	assembly_stats.assembly_information.organelles.accession	string				No	No	ToLQC	
+name	organelles	assembly_stats.assembly_information.organelles.name	string	Molecule name, for example MT or PLTD.			No	No	ToLQC	
+description	organelles	assembly_stats.assembly_information.organelles.description	string				No	No	ToLQC	
+length_kb	organelles	assembly_stats.assembly_information.organelles.length_kb	number				No	No	ToLQC	
+gc_percent	organelles	assembly_stats.assembly_information.organelles.gc_percent	number				No	No	ToLQC	
+assembly_analysis	assembly_stats	assembly_stats.assembly_analysis	object				No	No	ToLQC	
+ncbi_taxonomy_id	assembly_analysis	assembly_stats.assembly_analysis.ncbi_taxonomy_id	string				No	No	ToLQC	
+ploidy	assembly_analysis	assembly_stats.assembly_analysis.ploidy					No	No	ToLQC	
+method	ploidy	assembly_stats.assembly_analysis.ploidy.method	object				No	No	ToLQC	
+software	method	assembly_stats.assembly_analysis.ploidy.method.software	string				No	No	ToLQC	
+doi	method	assembly_stats.assembly_analysis.ploidy.method.doi	string				No	No	ToLQC	
+url	method	assembly_stats.assembly_analysis.ploidy.method.url	string				No	No	ToLQC	
+count	ploidy	assembly_stats.assembly_analysis.ploidy.count	number	Ploidy count			No	No	ToLQC	
+formatted_count	ploidy	assembly_stats.assembly_analysis.ploidy.formatted_count	string	Whether the count equates to diploid, triploid, etc.			No	No	ToLQC	
+kmer_analysis	assembly_analysis	assembly_stats.assembly_analysis.kmer_analysis	array				No	No	ToLQC	
+name	kmer_analysis	assembly_stats.assembly_analysis.kmer_analysis.name			genomescope, smudgeplot		No	No	ToLQC	
+path	kmer_analysis	assembly_stats.assembly_analysis.kmer_analysis.path	string	Path to directory containing results			No	No	ToLQC	
+est_size_bp	kmer_analysis	assembly_stats.assembly_analysis.kmer_analysis.est_size_bp	number	Estimated length of assembly from analysis, recorded in base-pairs			No	No	ToLQC	
+raw_data_object	assembly_analysis	assembly_stats.assembly_analysis.raw_data_object	array	Linked to raw_data in sample_prep_schema			No	No	ToLQC	
+accession	raw_data_object	assembly_stats.assembly_analysis.raw_data_object.accession	string				No	No	ToLQC	
+data_type	raw_data_object	assembly_stats.assembly_analysis.raw_data_object.data_type	string				No	No	ToLQC	
+chromosome_tables	assembly_analysis	assembly_stats.assembly_analysis.chromosome_tables	array	Chromosomal pseudomolecules			No	No	ToLQC	
+insdc_accession	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.insdc_accession	string				No	No	ToLQC	
+chromosome	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.chromosome	string				No	No	ToLQC	
+size_mb	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.size_mb	number				No	No	ToLQC	
+gc_percent	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.gc_percent	number				No	No	ToLQC	
+taxonomy	assembly_analysis	assembly_stats.assembly_analysis.taxonomy	array	What species			No	No	ToLQC	
+assembly_id	taxonomy	assembly_stats.assembly_analysis.taxonomy.assembly_id	string				No	No	ToLQC	
+tax_authority	taxonomy	assembly_stats.assembly_analysis.taxonomy.tax_authority	string				No	No	ToLQC	
+ncbi_taxonomy_id	taxonomy	assembly_stats.assembly_analysis.taxonomy.ncbi_taxonomy_id	string				Yes	No	ToLQC	
+lineage	taxonomy	assembly_stats.assembly_analysis.taxonomy.lineage	string				No	No	ToLQC	
+class	taxonomy	assembly_stats.assembly_analysis.taxonomy.class	string				No	No	ToLQC	
+family	taxonomy	assembly_stats.assembly_analysis.taxonomy.family	string				No	No	ToLQC	
+order	taxonomy	assembly_stats.assembly_analysis.taxonomy.order	string				No	No	ToLQC	
+phylum	taxonomy	assembly_stats.assembly_analysis.taxonomy.phylum	string				No	No	ToLQC	
+common_name	taxonomy	assembly_stats.assembly_analysis.taxonomy.common_name	string	Common name used in the genome note. In data_note this is taken from GBIF when available, or NCBI Datasets as fallback.			No	No	ToLQC	
+common_name_source	taxonomy	assembly_stats.assembly_analysis.taxonomy.common_name_source		Source used for common_name.	gbif, ncbi_datasets		No	No	ToLQC	
+species	taxonomy	assembly_stats.assembly_analysis.taxonomy.species	string				No	No	ToLQC	
