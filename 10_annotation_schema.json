@@ -51,7 +51,7 @@
                                     "properties": {
                                         "mode": {
                                             "enum": [
-                                                "genome",
+                                                "protein",
                                                 "transcriptome",
                                                 "NA"
                                             ],
