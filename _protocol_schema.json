@@ -36,13 +36,10 @@
                             "library_preparation",
                             "sequencing",
                             "assembly",
-                            "assembly-genomic",
-                            "assembly-metagenomic",
-                            "assembly-organellar",
                             "decontamination",
                             "curation",
                             "annotation",
-                            "gap-analysis",
+                            "analysis",
                             "genomenote",
                             "research"
                         ]
@@ -50,7 +47,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "help": "Version of the Protocol"
+                    "help": "Version of the protocol/workflow/tool/software"
                 },
                 "source": {
                     "type": "string",
