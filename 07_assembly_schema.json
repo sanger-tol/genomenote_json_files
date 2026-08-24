@@ -10,11 +10,11 @@
             "properties": {
                 "involved_persons": {
                     "type": "array",
-                    "properties": {
-                        "id": {
-                            "type": "string",
-                            "help": "ID from author list of those who assembled the genome(s)"
-                        }
+                    "source": [
+                        "AuthorsDB"
+                    ],
+                    "items": {
+                        "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
                 "assembly_method_text": {
@@ -25,16 +25,7 @@
                     "type": "array",
                     "help": "Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "ID": {
-                                "type": "string",
-                                "help": "Identifier from the references list"
-                            }
-                        }
+                        "$ref": "_protocol_schema.json#/$defs/protocol"
                     }
                 },
                 "contig_assembly_details": {
@@ -80,6 +71,10 @@
                                     "other"
                                 ]
                             },
+                            "circularised": {
+                                "type": "boolean",
+                                "help": "Whether the organelle was circularised during assembly"
+                            },
                             "assembler": {
                                 "type": "object",
                                 "properties": {
@@ -103,7 +98,10 @@
                         }
                     }
                 }
-            }
+            },
+            "required": [
+                "assembly_method_text"
+            ]
         },
         "assembly_stats": {
             "type": "array",
@@ -124,39 +122,57 @@
                             "help": "This should be Primary, Alternate OR Primary followed by Haplotype_{int}. This should act as a key where noted HAP_KEY"
                         },
                         "assembly_accession": {
-                            "type": "string"
+                            "type": "string",
+                            "help": "INSDC Accession"
                         },
                         "assembly_id": {
                             "type": "string"
                         },
                         "no_of_contigs": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": 1,
+                            "help": "Number of contigs in assembly"
                         },
                         "contig_n50_length": {
-                            "type": "number"
+                            "type": "integer",
+                            "minimum": 1,
+                            "help": "N50 length of contigs in assembly"
                         },
                         "no_of_scaffolds": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": 1,
+                            "help": "Number of scaffolds in assembly"
                         },
                         "scaffold_n50_length": {
-                            "type": "number"
+                            "type": "integer",
+                            "minimum": 1,
+                            "help": "N50 length of scaffolds in assembly"
                         },
                         "longest_scaffold_length": {
-                            "type": "number"
+                            "type": "integer",
+                            "minimum": 1,
+                            "help": "Length of longest scaffold in assembly"
                         },
                         "genome_size": {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1,
+                            "help": "Length of assembly in bp"
                         },
                         "percent_assembled": {
-                            "type": "array",
-                            "properties": {
-                                "haplotype": "string",
-                                "minimum": 0,
-                                "maximum": 100,
-                                "help": "Percentage of the assembly assigned to chromosomes. 1 item per haplotype in the array. HAP_KEY"
-                            }
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100,
+                            "help": "Percentage of the assembly assigned to chromosomes. 1 item per haplotype in the array. HAP_KEY"
                         }
                     },
+                    "required": [
+                        "assembly_accession",
+                        "no_of_contigs",
+                        "contig_n50_length",
+                        "no_of_scaffolds",
+                        "scaffold_n50_length",
+                        "genome_size"
+                    ],
                     "organelles": {
                         "type": "array",
                         "help": "Organelle sequences included in the assembly, such as mitochondrial and plastid genomes.",

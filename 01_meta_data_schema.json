@@ -45,7 +45,9 @@
                     "items": {
                         "type": "string"
                     },
-                    "help": "Child BioProjects associated with the main BioProject; used to ID sequencing run metadata."
+                    "help": "Child BioProjects associated with the main BioProject; used to ID sequencing run metadata.",
+                    "recommended": true
+
                 },
                 "parent_projects": {
                     "type": "array",
@@ -66,74 +68,22 @@
                             }
                         }
                     },
-                    "help": "Parent (i.e. Project-level) BioProjects associated with the main BioProject. Used to derive formatted_parent_projects."
+                    "help": "Parent (i.e. Project-level) BioProjects associated with the main BioProject. Used to derive formatted_parent_projects.",
+                    "recommended": true
                 },
                 "formatted_parent_projects": {
                     "type": "string",
-                    "help": "Publication-ready parent project string derived from parent_projects by data_note. Describes, e.g. Project Psyche."
+                    "help": "Publication-ready parent project string derived from parent_projects by data_note. Describes, e.g. Project Psyche.",
+                    "recommended": true
                 },
                 "authors": {
                     "type": "array",
                     "source": [
-                        "AuthorsDB"
+                        "AuthorsDB",
+                        "AllJson"
                     ],
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "authorsdb_id": {
-                                "type": "string",
-                                "help": "ID from AuthorsDB"
-                            },
-                            "surname": {
-                                "type": "string",
-                                "help": "Family name of the author"
-                            },
-                            "middle_names": {
-                                "type": "string",
-                                "help": "Middle names of the author"
-                            },
-                            "given_names": {
-                                "type": "string",
-                                "help": "Given names of the author (First name)"
-                            },
-                            "gal_association": {
-                                "type": "string",
-                                "help": "GAL association if applicable - Collectors ONLY"
-                            },
-                            "role": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "assembler",
-                                        "curator",
-                                        "data_generator",
-                                        "annotation",
-                                        "collection",
-                                        "extraction",
-                                        "sequencing",
-                                        "researcher",
-                                        "other"
-                                    ]
-                                },
-                                "minItems": 1,
-                                "uniqueItems": true,
-                                "help": "Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section"
-                            },
-                            "orcid": {
-                                "type": "string"
-                            },
-                            "corresponding": {
-                                "type": "boolean"
-                            },
-                            "affiliations": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                },
-                                "help": "Array of affiliations for each author should be a list of IDs, determined by the affiliation array below"
-                            }
-                        }
+                        "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
                 "affiliations": {
@@ -157,7 +107,10 @@
                 "bioproject",
                 "authors",
                 "affiliations",
-                "data_availability"
+                "data_availability",
+                "child_bioprojects",
+                "parent_projects",
+                "formatted_parent_projects"
             ]
         },
         "publication_metadata": {
@@ -198,6 +151,10 @@
                     "help": "If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here"
                 },
                 "genome_note_data": {
+                    "existing_genome_note": {
+                        "type": "string",
+                        "help": "Link to an existing genome note, if this is not a v1 genome note"
+                    },
                     "submission_date": "string",
                     "publication_date": "string"
                 },
@@ -205,7 +162,8 @@
                     "type": "array"
                 },
                 "acknowledgements": {
-                    "type": "string"
+                    "type": "string",
+                    "recommended": true
                 },
                 "ethics_and_consent": {
                     "type": "string",
@@ -217,12 +175,16 @@
                 }
             },
             "required": [
+                "journal_data",
                 "genome_note_data",
                 "ebp_analysis_metrics",
                 "ethics_and_consent",
-                "competeing_interests",
-                "genome_note_data"
+                "competing_interests"
             ]
         }
-    }
+    },
+    "required": [
+        "metadata",
+        "publication_metadata"
+    ]
 }

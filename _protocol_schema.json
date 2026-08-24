@@ -1,0 +1,71 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "title": "Protocol Schema",
+    "description": "Reusable Protocol (ANY OF tool/software/workflow/pipeline/protocol) schema",
+    "$defs": {
+        "protocol": {
+            "type": "object",
+            "properties": {
+                "protocol_id": {
+                    "type": "string",
+                    "help": "Link to the reference ID of the protocol - citation_key of references_schema.json"
+                },
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "software",
+                            "tool",
+                            "pipeline",
+                            "workflow",
+                            "protocol",
+                            "other"
+                        ]
+                    },
+                    "help": "Type of Protocol"
+                },
+                "role": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "collection",
+                            "extraction",
+                            "library_preparation",
+                            "sequencing",
+                            "assembly",
+                            "decontamination",
+                            "curation",
+                            "annotation",
+                            "analysis",
+                            "genomenote",
+                            "research"
+                        ]
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "help": "Version of the protocol/workflow/tool/software"
+                },
+                "source": {
+                    "type": "string",
+                    "help": "Source of the Protocol"
+                },
+                "doi": {
+                    "type": "string",
+                    "help": "DOI of the Protocol"
+                },
+                "parameters": {
+                    "type": "string",
+                    "help": "Any specific parameters for the Protocol"
+                },
+                "notes": {
+                    "type": "string",
+                    "help": "Any notes or comments about the Protocol"
+                }
+            }
+        }
+    }
+}

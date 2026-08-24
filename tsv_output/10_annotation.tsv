@@ -1,0 +1,95 @@
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+annotation		annotation	array	Annotation method performed and output. Ideally link to workflow (doi) and optional free text description			No	No		
+involved_persons	annotation	annotation.involved_persons	array				No	No	AuthorsDB	
+authorsdb_id	involved_persons	annotation.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
+role	involved_persons	annotation.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+email	involved_persons	annotation.involved_persons.email	string				Yes	No	AuthorsDB	
+corresponding	involved_persons	annotation.involved_persons.corresponding	boolean				No	No	AuthorsDB	
+affiliations	involved_persons	annotation.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
+name	involved_persons	annotation.involved_persons.name	string	Name of the consortia or contributing group			Conditional	No	AuthorsDB	if/then
+surname	involved_persons	annotation.involved_persons.surname	string	Family name of the author			Conditional	No	AuthorsDB	if/else
+middle_names	involved_persons	annotation.involved_persons.middle_names	string	Middle names of the author			No	No	AuthorsDB	if/else
+given_names	involved_persons	annotation.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
+gal_association	involved_persons	annotation.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
+gal_hub	involved_persons	annotation.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
+orcid	involved_persons	annotation.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+annotation_software	annotation	annotation.annotation_software	array	Software/Pipelines used for the annotation of the assembly set. Should be listed in the references.			No	No		
+protocol_id	annotation_software	annotation.annotation_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No		
+type	annotation_software	annotation.annotation_software.type	array	Type of Protocol			No	No		
+role	annotation_software	annotation.annotation_software.role	array				No	No		
+version	annotation_software	annotation.annotation_software.version	string	Version of the protocol/workflow/tool/software			No	No		
+source	annotation_software	annotation.annotation_software.source	string	Source of the Protocol			No	No		
+doi	annotation_software	annotation.annotation_software.doi	string	DOI of the Protocol			No	No		
+parameters	annotation_software	annotation.annotation_software.parameters	string	Any specific parameters for the Protocol			No	No		
+notes	annotation_software	annotation.annotation_software.notes	string	Any notes or comments about the Protocol			No	No		
+accession	annotation	annotation.accession	string				No	No		
+data_used	annotation	annotation.data_used	array				No	No		
+accession	data_used	annotation.data_used.accession	string				No	No		
+methods	annotation	annotation.methods	string				No	No		
+statistics	annotation	annotation.statistics	object	Key statistics of annotation outcomes, to be updated in future			No	No		
+total_gene_count	statistics	annotation.statistics.total_gene_count	integer				No	No		
+mean_gene_length	statistics	annotation.statistics.mean_gene_length	number				No	No		
+mean_mrna_length	statistics	annotation.statistics.mean_mrna_length	number				No	No		
+number_single_exon_genes	statistics	annotation.statistics.number_single_exon_genes	integer				No	No		
+busco	statistics	annotation.statistics.busco	object				No	No		
+tool_version	busco	annotation.statistics.busco.tool_version	string	Version of the BUSCO tool used			Yes	No		
+results	busco	annotation.statistics.busco.results	array				No	No		
+mode	results	annotation.statistics.busco.results.mode	string		genome, transcriptome, NA		Yes	No		
+lineages	results	annotation.statistics.busco.results.lineages					No	No		
+odb_name	lineages	annotation.statistics.busco.results.lineages.odb_name	string				No	No		
+web_url	lineages	annotation.statistics.busco.results.lineages.web_url	string				No	No		
+complete	lineages	annotation.statistics.busco.results.lineages.complete	number	Number/Percentage of complete busco genes			No	No		
+single	lineages	annotation.statistics.busco.results.lineages.single	number	Number/Percentage of single busco genes			No	No		
+duplicate	lineages	annotation.statistics.busco.results.lineages.duplicate	number	Number/Percentage of duplicate busco genes			No	No		
+fragmented	lineages	annotation.statistics.busco.results.lineages.fragmented	number	Number/Percentage of fragmented busco genes			No	No		
+missing	lineages	annotation.statistics.busco.results.lineages.missing	number	Number/Percentage of missing busco genes			No	No		
+omark	statistics	annotation.statistics.omark	object				No	No		
+tool_version	omark	annotation.statistics.omark.tool_version	string	Version of the OMARK tool used			Yes	No		
+assessments	omark	annotation.statistics.omark.assessments	array				No	No		
+clades	assessments	annotation.statistics.omark.assessments.clades					No	No		
+clade_name	clades	annotation.statistics.omark.assessments.clades.clade_name	string				No	No		
+web_url	clades	annotation.statistics.omark.assessments.clades.web_url	string				No	No		
+conserved_HOGs	clades	annotation.statistics.omark.assessments.clades.conserved_HOGs	number				No	No	Completeness Assessment	
+completeness	clades	annotation.statistics.omark.assessments.clades.completeness	object				No	No	Completeness Assessment	
+count	completeness	annotation.statistics.omark.assessments.clades.completeness.count	number	Completeness count			No	No	Completeness Assessment	
+percentage	completeness	annotation.statistics.omark.assessments.clades.completeness.percentage	number	Completeness percentage			No	No	Completeness Assessment	
+inc_single	clades	annotation.statistics.omark.assessments.clades.inc_single	object				No	No	Completeness Assessment	
+count	inc_single	annotation.statistics.omark.assessments.clades.inc_single.count	number	Including single count, from completeness assessment			No	No	Completeness Assessment	
+percentage	inc_single	annotation.statistics.omark.assessments.clades.inc_single.percentage	number	Including single percentage, from completeness assessment			No	No	Completeness Assessment	
+duplicated	clades	annotation.statistics.omark.assessments.clades.duplicated	object				No	No	Completeness Assessment	
+summary	duplicated	annotation.statistics.omark.assessments.clades.duplicated.summary	object				No	No	Completeness Assessment	
+count	summary	annotation.statistics.omark.assessments.clades.duplicated.summary.count	number	Overall duplicated count			No	No	Completeness Assessment	
+percentage	summary	annotation.statistics.omark.assessments.clades.duplicated.summary.percentage	number	Overall duplicated percentage			No	No	Completeness Assessment	
+expected	duplicated	annotation.statistics.omark.assessments.clades.duplicated.expected	object				No	No	Completeness Assessment	
+count	expected	annotation.statistics.omark.assessments.clades.duplicated.expected.count	number	Including expected duplicated count, from completeness assessment			No	No	Completeness Assessment	
+percentage	expected	annotation.statistics.omark.assessments.clades.duplicated.expected.percentage	number	Including expected duplicated percentage, from completeness assessment			No	No	Completeness Assessment	
+unexpected	duplicated	annotation.statistics.omark.assessments.clades.duplicated.unexpected	object				No	No	Completeness Assessment	
+count	unexpected	annotation.statistics.omark.assessments.clades.duplicated.unexpected.count	number	Including unexpected duplicated count, from completeness assessment			No	No	Completeness Assessment	
+percentage	unexpected	annotation.statistics.omark.assessments.clades.duplicated.unexpected.percentage	number	Including unexpected duplicated percentage, from completeness assessment			No	No	Completeness Assessment	
+missing	clades	annotation.statistics.omark.assessments.clades.missing	object				No	No	Completeness Assessment	
+count	missing	annotation.statistics.omark.assessments.clades.missing.count	number	Number of missing genes from completeness assessment			No	No	Completeness Assessment	
+percentage	missing	annotation.statistics.omark.assessments.clades.missing.percentage	number	Percentage of missing genes from completeness assessment			No	No	Completeness Assessment	
+total_unknown_proteins	clades	annotation.statistics.omark.assessments.clades.total_unknown_proteins	object				No	No	Whole Proteome Assessment	
+count	total_unknown_proteins	annotation.statistics.omark.assessments.clades.total_unknown_proteins.count	number	Number of unknown proteins			No	No	Whole Proteome Assessment	
+percentage	total_unknown_proteins	annotation.statistics.omark.assessments.clades.total_unknown_proteins.percentage	number	Percentage of unknown proteins			No	No	Whole Proteome Assessment	
+protein_count	clades	annotation.statistics.omark.assessments.clades.protein_count	number	Number of proteins in whole proteome, from whole proteome assessment			No	No	Whole Proteome Assessment	
+consistent_lineage_placement	clades	annotation.statistics.omark.assessments.clades.consistent_lineage_placement	object				No	No	Whole Proteome Assessment	
+summary	consistent_lineage_placement	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.summary	object				No	No	Whole Proteome Assessment	
+count	summary	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.summary.count	number	Number of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+percentage	summary	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.summary.percentage	number	Percentage of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+consistent	consistent_lineage_placement	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.consistent	object				No	No	Whole Proteome Assessment	
+count	consistent	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.consistent.count	number	Number of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+percentage	consistent	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.consistent.percentage	number	Percentage of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+inconsistent	consistent_lineage_placement	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.inconsistent	object				No	No	Whole Proteome Assessment	
+count	inconsistent	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.inconsistent.count	number	Number of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+percentage	inconsistent	annotation.statistics.omark.assessments.clades.consistent_lineage_placement.inconsistent.percentage	number	Percentage of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+contamination	clades	annotation.statistics.omark.assessments.clades.contamination	object				No	No	Whole Proteome Assessment	
+summary	contamination	annotation.statistics.omark.assessments.clades.contamination.summary	object				No	No	Whole Proteome Assessment	
+count	summary	annotation.statistics.omark.assessments.clades.contamination.summary.count	number	Number of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+percentage	summary	annotation.statistics.omark.assessments.clades.contamination.summary.percentage	number	Percentage of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+consistent	contamination	annotation.statistics.omark.assessments.clades.contamination.consistent	object				No	No	Whole Proteome Assessment	
+count	consistent	annotation.statistics.omark.assessments.clades.contamination.consistent.count	number	Number of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+percentage	consistent	annotation.statistics.omark.assessments.clades.contamination.consistent.percentage	number	Percentage of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+inconsistent	contamination	annotation.statistics.omark.assessments.clades.contamination.inconsistent	object				No	No	Whole Proteome Assessment	
+count	inconsistent	annotation.statistics.omark.assessments.clades.contamination.inconsistent.count	number	Number of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	
+percentage	inconsistent	annotation.statistics.omark.assessments.clades.contamination.inconsistent.percentage	number	Percentage of proteins with consistent lineage placement, from partial proteome assessment			No	No	Whole Proteome Assessment	

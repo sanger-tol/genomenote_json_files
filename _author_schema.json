@@ -1,0 +1,143 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "type": "object",
+    "title": "Author Schema",
+    "description": "Reusable author schema for genomic databases",
+    "$defs": {
+        "author": {
+            "type": "object",
+            "properties": {
+                "authorsdb_id": {
+                    "type": "string",
+                    "help": "ID from AuthorsDB"
+                },
+                "role": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "analysis_runner",
+                            "assembler",
+                            "curator",
+                            "consortia",
+                            "contributing_group",
+                            "data_generator",
+                            "annotation",
+                            "collection",
+                            "extraction",
+                            "sequencing",
+                            "researcher",
+                            "other"
+                        ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "help": "Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "corresponding": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "affiliations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "help": "Array of affiliations for each author should be a list of IDs, determined by the affiliation array below"
+                }
+            },
+            "required": [
+                "role",
+                "email",
+                "affiliations"
+            ],
+            "if": {
+                "anyOf": [
+                    {
+                        "properties": {
+                            "role": {
+                                "type": "array",
+                                "contains": {
+                                    "const": "consortia"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "properties": {
+                            "role": {
+                                "type": "array",
+                                "contains": {
+                                    "const": "contributing_group"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "help": "Name of the consortia or contributing group"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            },
+            "else": {
+                "properties": {
+                    "surname": {
+                        "type": "string",
+                        "help": "Family name of the author"
+                    },
+                    "middle_names": {
+                        "type": "string",
+                        "help": "Middle names of the author"
+                    },
+                    "given_names": {
+                        "type": "string",
+                        "help": "Given names of the author (First name)"
+                    },
+                    "gal_association": {
+                        "type": "string",
+                        "help": "GAL association if applicable - Collectors ONLY"
+                    },
+                    "gal_hub": {
+                        "type": "string",
+                        "help": "GAL Hub/Institute responsible for the collection",
+                        "recommended": true
+                    },
+                    "orcid": {
+                        "type": "string",
+                        "help": "ORCID of the author/person"
+                    }
+                },
+                "required": [
+                    "surname",
+                    "given_names",
+                    "orcid"
+                ],
+                "if": {
+                    "properties": {
+                        "role": {
+                            "type": "array",
+                            "contains": {
+                                "const": "collector"
+                            }
+                        }
+                    }
+                },
+                "then": {
+                    "required": [
+                        "gal_association"
+                    ]
+                }
+            }
+        }
+    }
+}

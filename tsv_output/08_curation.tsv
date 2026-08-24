@@ -1,0 +1,51 @@
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+curation		curation	object				No	No		
+involved_persons	curation	curation.involved_persons	array				No	No	AuthorsDB	
+authorsdb_id	involved_persons	curation.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
+role	involved_persons	curation.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+email	involved_persons	curation.involved_persons.email	string				Yes	No	AuthorsDB	
+corresponding	involved_persons	curation.involved_persons.corresponding	boolean				No	No	AuthorsDB	
+affiliations	involved_persons	curation.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
+name	involved_persons	curation.involved_persons.name	string	Name of the consortia or contributing group			Conditional	No	AuthorsDB	if/then
+surname	involved_persons	curation.involved_persons.surname	string	Family name of the author			Conditional	No	AuthorsDB	if/else
+middle_names	involved_persons	curation.involved_persons.middle_names	string	Middle names of the author			No	No	AuthorsDB	if/else
+given_names	involved_persons	curation.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
+gal_association	involved_persons	curation.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
+gal_hub	involved_persons	curation.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
+orcid	involved_persons	curation.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+curation_software	curation	curation.curation_software	array	Software/Pipelines used for curation of the assembly set. Should be listed in the references.			No	No		
+protocol_id	curation_software	curation.curation_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No		
+type	curation_software	curation.curation_software.type	array	Type of Protocol			No	No		
+role	curation_software	curation.curation_software.role	array				No	No		
+version	curation_software	curation.curation_software.version	string	Version of the protocol/workflow/tool/software			No	No		
+source	curation_software	curation.curation_software.source	string	Source of the Protocol			No	No		
+doi	curation_software	curation.curation_software.doi	string	DOI of the Protocol			No	No		
+parameters	curation_software	curation.curation_software.parameters	string	Any specific parameters for the Protocol			No	No		
+notes	curation_software	curation.curation_software.notes	string	Any notes or comments about the Protocol			No	No		
+chromosome_naming	curation	curation.chromosome_naming	object				No	No		
+naming_method	chromosome_naming	curation.chromosome_naming.naming_method		How chromosome names or numbers were assigned during curation.	size, synteny, other		No	No		
+synteny_source	chromosome_naming	curation.chromosome_naming.synteny_source	string	Comparator assembly, species or reference source used when chromosomes were named by synteny.			No	No		
+autosome_count	chromosome_naming	curation.chromosome_naming.autosome_count	integer	Number of autosomes recorded by curation.			No	No		
+b_chromosome_count	chromosome_naming	curation.chromosome_naming.b_chromosome_count	integer	Number of supernumerary B chromosomes identified during curation.			No	No		
+chromosome_result	chromosome_naming	curation.chromosome_naming.chromosome_result	string	Curation chromosome assignment summary from the curation/JIRA record. data_note may parse jira_perc_assem from this text, but that value is not used for the published percentage of assembly assigned to chromosomes.			No	No		
+sex_annotation	curation	curation.sex_annotation	object				No	No		
+observed_sex	sex_annotation	curation.sex_annotation.observed_sex	string	Observed or recorded sex of the specimen used for assembly, where curated.			No	No		
+sex_chromosome_complement	sex_annotation	curation.sex_annotation.sex_chromosome_complement	string	Curated sex chromosome complement, for example XX, XY, ZZ, ZW or Z0.			No	No		
+curator_note	curation	curation.curator_note	string	Free-text curator note from the curation record, including chromosome assignment rationale, comparator information or assembly caveats.			No	No		
+curation_evidence	curation	curation.curation_evidence	array	Evidence or data types used during curation, for example Hi-C contact maps and JBrowse.			No	No		
+curation_statistics	curation	curation.curation_statistics	object				No	No		
+manual_interventions_per_gb	curation_statistics	curation.curation_statistics.manual_interventions_per_gb	number	Manual interventions in the assembly, normalised per Giga-base			No	No		
+breaks	curation_statistics	curation.curation_statistics.breaks	number	Breaks performed across assembly			No	No		
+joins	curation_statistics	curation.curation_statistics.joins	number	Joins performed across assembly			No	No		
+haplotypic_duplications_removed	curation_statistics	curation.curation_statistics.haplotypic_duplications_removed	number	Manual removals of haplotypic duplications during curation; used with breaks and joins to derive the curation intervention sentence.			No	No		
+manual_inversions	curation_statistics	curation.curation_statistics.manual_inversions	number	Manual inversions recorded in the curation/JIRA record. data_note pulls this field in.			No	No		
+change_in_length_bp	curation_statistics	curation.curation_statistics.change_in_length_bp	number	Change in the length of the assembly, can be positive or negative. Recorded in base pairs.			No	No		
+change_in_length_percent	curation_statistics	curation.curation_statistics.change_in_length_percent	number	Percentage change in total assembly length after curation; used in the derived curation intervention sentence.			No	No		
+change_in_scaffold_count_percent	curation_statistics	curation.curation_statistics.change_in_scaffold_count_percent	number	Percentage change in scaffold count after curation; used in the derived curation intervention sentence.			No	No		
+change_in_n50	curation_statistics	curation.curation_statistics.change_in_n50	number	Change in the scaffold N50 metric, recorded in base-pairs.			No	No		
+change_in_n50_percent	curation_statistics	curation.curation_statistics.change_in_n50_percent	number	Percentage change in scaffold N50 after curation; used in the derived curation intervention sentence.			No	No		
+manual_interventions_notes	curation_statistics	curation.curation_statistics.manual_interventions_notes	string	Short summary description of the interventions made during manual curation and their effect on scaffold count, scaffold N50 and assembly length.			No	No		
+contaminants_removed	curation	curation.contaminants_removed	object	Generalised statistics about the contaminats removed, do we need to include a file for specific data?			No	No		
+scaffolds_removed	contaminants_removed	curation.contaminants_removed.scaffolds_removed	number	Number of scaffolds marked as contaminant and removed from the assembly			No	No		
+percentage_scaffolds_removed	contaminants_removed	curation.contaminants_removed.percentage_scaffolds_removed	number	Percentage of scaffolds marked as contaminant and removed from the assembly			No	No		
+total_length_of_scaffolds_removed	contaminants_removed	curation.contaminants_removed.total_length_of_scaffolds_removed	number	Total length of scaffolds removed, recorded in base-pairs			No	No		

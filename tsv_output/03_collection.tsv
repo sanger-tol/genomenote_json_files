@@ -1,0 +1,44 @@
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+sample_accession		sample_accession	string	BioSample accession for the sample used for this workflow role.			Yes	No	STS	
+sample_derived_from		sample_derived_from	string	Source individual or parent BioSample accession, where different from sample_accession.			No	No	STS	
+tolid		tolid	string				No	Yes	STS	
+specimen_id		specimen_id	string	Specimen identifier reported in the Genome Note.			Yes	No	STS	
+organism_part		organism_part	string				Yes	No	STS	
+flow_cytometry		flow_cytometry	object	Direct genome-size estimate obtained by flow cytometry for this sample, together with the method used.			No	No	STS	
+method	flow_cytometry	flow_cytometry.method	object				Yes	No	STS	
+buffer	method	flow_cytometry.method.buffer	string	Buffer used to isolate nuclei for the flow cytometry measurement.			Yes	No	STS	
+standard	method	flow_cytometry.method.standard	string	Internal calibration standard used for the flow cytometry measurement, including its assumed genome size where available.			Yes	No	STS	
+one_c_value_pg	flow_cytometry	flow_cytometry.one_c_value_pg	number	Measured 1C nuclear DNA content in picograms.			No	No	STS	
+genome_size_estimate_mb	flow_cytometry	flow_cytometry.genome_size_estimate_mb	number	Equivalent 1C genome size estimate in megabases.			No	No	STS	
+collection_protocol		collection_protocol	array	Protocols used for the collection of the assembly set. Should be listed in the references.			No	No	STS	
+protocol_id	collection_protocol	collection_protocol.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	STS	
+type	collection_protocol	collection_protocol.type	array	Type of Protocol			No	No	STS	
+role	collection_protocol	collection_protocol.role	array				No	No	STS	
+version	collection_protocol	collection_protocol.version	string	Version of the protocol/workflow/tool/software			No	No	STS	
+source	collection_protocol	collection_protocol.source	string	Source of the Protocol			No	No	STS	
+doi	collection_protocol	collection_protocol.doi	string	DOI of the Protocol			No	No	STS	
+parameters	collection_protocol	collection_protocol.parameters	string	Any specific parameters for the Protocol			No	No	STS	
+notes	collection_protocol	collection_protocol.notes	string	Any notes or comments about the Protocol			No	No	STS	
+preservation_data		preservation_data	array				No	No	STS	
+preservation_method	preservation_data	preservation_data.preservation_method	string	How the sample was preserved, for example snap frozen, on dry ice, in ethanol, lyophilised or air dried.			No	Yes	STS	
+preservative_solution	preservation_data	preservation_data.preservative_solution	string	Solution used to preserve the sample, for example RNAlater, RLT buffer or DESS.			No	No	STS	
+identification_data		identification_data	array				No	No	STS	
+scientific_name	identification_data	identification_data.scientific_name	string				Yes	No	STS	
+method	identification_data	identification_data.method	string	How was the organism identified?			No	No	STS	
+sex	identification_data	identification_data.sex	string				Yes	No	STS	
+lifestage	identification_data	identification_data.lifestage	string				Yes	No	STS	
+collection_data		collection_data	array				No	No	STS	
+museum_voucher_id	collection_data	collection_data.museum_voucher_id	string	Museum voucher identifier, where available.			No	No	STS	
+collection_method	collection_data	collection_data.collection_method	string	How the sample was collected, for example using a light trap, hand net or naturalist dredge.			Yes	No	STS	
+collection_date	collection_data	collection_data.collection_date	string	Date on which the sample was collected, in YYYY-MM-DD format.			No	Yes	STS	
+geographic_location	collection_data	collection_data.geographic_location	string	Geographic location where the sample was collected, using an INSDC country or sea name, optionally followed by region and locality, for example 'United Kingdom: Berkshire, Wytham Woods'.			Yes	No	STS	
+latitude	collection_data	collection_data.latitude	number	Latitude of the collection location in decimal degrees (DD); 3 to 8 decimal places are recommended.			No	Yes	STS	
+longitude	collection_data	collection_data.longitude	number	Longitude of the collection location in decimal degrees (DD); 3 to 8 decimal places are recommended.			No	Yes	STS	
+elevation	collection_data	collection_data.elevation	number	Elevation at which the sample was collected, in metres.			No	Yes	STS	
+involved_persons		involved_persons	array				No	No	AuthorsDB	
+authorsdb_id	involved_persons	involved_persons.authorsdb_id	string	Identifier for the person in AuthorsDB.			Yes	No	AuthorsDB	
+roles	involved_persons	involved_persons.roles	array	Sample-level roles performed by this person.			Yes	No	AuthorsDB	
+specimen_images		specimen_images	array	Images of the collected specimen or source individual used in the genome note.			No	Yes	STS	
+image	specimen_images	specimen_images.image	string				No	No	STS	
+link	specimen_images	specimen_images.link	string				No	No	STS	
+caption	specimen_images	specimen_images.caption	string				No	No	STS	

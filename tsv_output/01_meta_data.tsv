@@ -1,0 +1,52 @@
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+metadata		metadata	object				Yes	No	tolqc, STS	
+template_version	metadata	metadata.template_version	string				No	No	tolqc, STS	
+doi	metadata	metadata.doi	string	DOI, without the https://doi.org/ prefix, example is: 10.1080/10509585.2015.1092083		^10\.\d{4,9}/\S+$	Yes	No	tolqc, STS	
+data_availability	metadata	metadata.data_availability	string				Yes	No	tolqc, STS	
+title	metadata	metadata.title	string				Yes	No	tolqc, STS	
+abstract	metadata	metadata.abstract	string	Markdown is fine			No	No	tolqc, STS	
+keywords	metadata	metadata.keywords	array				No	No	tolqc, STS	
+background	metadata	metadata.background	string				No	No	tolqc, STS	
+bioproject	metadata	metadata.bioproject	string	Umbrella BioProject in INSDC containing all sequencing data, genome assembly/assemblies and links to relevant BioSample information.			Yes	No	tolqc, STS	
+child_bioprojects	metadata	metadata.child_bioprojects	array	Child BioProjects associated with the main BioProject; used to ID sequencing run metadata.			Yes	Yes	tolqc, STS	
+parent_projects	metadata	metadata.parent_projects	array	Parent (i.e. Project-level) BioProjects associated with the main BioProject. Used to derive formatted_parent_projects.			Yes	Yes	tolqc, STS	
+accession	parent_projects	metadata.parent_projects.accession	string				No	No	tolqc, STS	
+name	parent_projects	metadata.parent_projects.name	string				No	No	tolqc, STS	
+project_name	parent_projects	metadata.parent_projects.project_name	string				No	No	tolqc, STS	
+title	parent_projects	metadata.parent_projects.title	string				No	No	tolqc, STS	
+formatted_parent_projects	metadata	metadata.formatted_parent_projects	string	Publication-ready parent project string derived from parent_projects by data_note. Describes, e.g. Project Psyche.			Yes	Yes	tolqc, STS	
+authors	metadata	metadata.authors	array				Yes	No	AuthorsDB, AllJson	
+authorsdb_id	authors	metadata.authors.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB, AllJson	
+role	authors	metadata.authors.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB, AllJson	
+email	authors	metadata.authors.email	string				Yes	No	AuthorsDB, AllJson	
+corresponding	authors	metadata.authors.corresponding	boolean				No	No	AuthorsDB, AllJson	
+affiliations	authors	metadata.authors.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB, AllJson	
+name	authors	metadata.authors.name	string	Name of the consortia or contributing group			Conditional	No	AuthorsDB, AllJson	if/then
+surname	authors	metadata.authors.surname	string	Family name of the author			Conditional	No	AuthorsDB, AllJson	if/else
+middle_names	authors	metadata.authors.middle_names	string	Middle names of the author			No	No	AuthorsDB, AllJson	if/else
+given_names	authors	metadata.authors.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB, AllJson	if/else
+gal_association	authors	metadata.authors.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB, AllJson	if/else
+gal_hub	authors	metadata.authors.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB, AllJson	if/else
+orcid	authors	metadata.authors.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB, AllJson	if/else
+affiliations	metadata	metadata.affiliations	array				Yes	No	tolqc, STS	
+id	affiliations	metadata.affiliations.id	string				No	No	tolqc, STS	
+affiliation	affiliations	metadata.affiliations.affiliation	string				No	No	tolqc, STS	
+publication_metadata		publication_metadata	object				Yes	No	AuthorsDB	
+funding	publication_metadata	publication_metadata.funding	array				No	No	AuthorsDB	
+source	funding	publication_metadata.funding.source	string				No	No	AuthorsDB	
+award_ids	funding	publication_metadata.funding.award_ids	array				No	No	AuthorsDB	
+funding_statement	funding	publication_metadata.funding.funding_statement	string				No	No	AuthorsDB	
+journal_data	publication_metadata	publication_metadata.journal_data	array	If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here			Yes	No	AuthorsDB	
+journal_name	journal_data	publication_metadata.journal_data.journal_name	string				No	No	AuthorsDB	
+e_location_id	journal_data	publication_metadata.journal_data.e_location_id	string				No	No	AuthorsDB	
+license	journal_data	publication_metadata.journal_data.license	string				No	No	AuthorsDB	
+submission_date	journal_data	publication_metadata.journal_data.submission_date	string				No	No	AuthorsDB	
+publication_date	journal_data	publication_metadata.journal_data.publication_date	string				No	No	AuthorsDB	
+genome_note_data	publication_metadata	publication_metadata.genome_note_data					Yes	No	AuthorsDB	
+existing_genome_note	genome_note_data	publication_metadata.genome_note_data.existing_genome_note	string	Link to an existing genome note, if this is not a v1 genome note			No	No	AuthorsDB	
+submission_date	genome_note_data	publication_metadata.genome_note_data.submission_date	string				No	No	AuthorsDB	
+publication_date	genome_note_data	publication_metadata.genome_note_data.publication_date	string				No	No	AuthorsDB	
+ebp_analysis_metrics	publication_metadata	publication_metadata.ebp_analysis_metrics	array				Yes	No	AuthorsDB	
+acknowledgements	publication_metadata	publication_metadata.acknowledgements	string				No	Yes	AuthorsDB	
+ethics_and_consent	publication_metadata	publication_metadata.ethics_and_consent	string	Where necessary, please detail any ethical or legal permits that were acquired in order to carry out the steps to generate this genome report. If not applicaable, please put N/A			Yes	No	AuthorsDB	
+competing_interests	publication_metadata	publication_metadata.competing_interests	string	Please details any conflicting interests. If not applicable, please put N/A			Yes	No	AuthorsDB	

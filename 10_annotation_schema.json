@@ -7,6 +7,22 @@
             "type": "array",
             "help": "Annotation method performed and output. Ideally link to workflow (doi) and optional free text description",
             "properties": {
+                "involved_persons": {
+                    "type": "array",
+                    "source": [
+                        "AuthorsDB"
+                    ],
+                    "items": {
+                        "$ref": "_author_schema.json#/$defs/author"
+                    }
+                },
+                "annotation_software": {
+                    "type": "array",
+                    "help": "Software/Pipelines used for the annotation of the assembly set. Should be listed in the references.",
+                    "items": {
+                        "$ref": "_protocol_schema.json#/$defs/protocol"
+                    }
+                },
                 "accession": "string",
                 "data_used": {
                     "type": "array",
@@ -26,14 +42,18 @@
                         "busco": {
                             "type": "object",
                             "properties": {
-                                "tool_version": "string",
+                                "tool_version": {
+                                    "type": "string",
+                                    "help": "Version of the BUSCO tool used"
+                                },
                                 "results": {
                                     "type": "array",
                                     "properties": {
                                         "mode": {
                                             "enum": [
-                                                "genome",
-                                                "proteome"
+                                                "protein",
+                                                "transcriptome",
+                                                "NA"
                                             ],
                                             "type": "string"
                                         },
@@ -66,14 +86,23 @@
                                                 "help": "Number/Percentage of missing busco genes"
                                             }
                                         }
-                                    }
+                                    },
+                                    "required": [
+                                        "mode"
+                                    ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "tool_version"
+                            ]
                         },
                         "omark": {
                             "type": "object",
                             "properties": {
-                                "tool_version": "string",
+                                "tool_version": {
+                                    "type": "string",
+                                    "help": "Version of the OMARK tool used"
+                                },
                                 "assessments": {
                                     "type": "array",
                                     "items": {
@@ -327,7 +356,10 @@
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "required": [
+                                "tool_version"
+                            ]
                         }
                     }
                 }

@@ -1,0 +1,66 @@
+property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
+methods		methods	object	Methods used to sequence genomic material.			No	No	ToLPortal	
+involved_persons	methods	methods.involved_persons	array				No	No	AuthorsDB	
+authorsdb_id	involved_persons	methods.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
+role	involved_persons	methods.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+email	involved_persons	methods.involved_persons.email	string				Yes	No	AuthorsDB	
+corresponding	involved_persons	methods.involved_persons.corresponding	boolean				No	No	AuthorsDB	
+affiliations	involved_persons	methods.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
+name	involved_persons	methods.involved_persons.name	string	Name of the consortia or contributing group			Conditional	No	AuthorsDB	if/then
+surname	involved_persons	methods.involved_persons.surname	string	Family name of the author			Conditional	No	AuthorsDB	if/else
+middle_names	involved_persons	methods.involved_persons.middle_names	string	Middle names of the author			No	No	AuthorsDB	if/else
+given_names	involved_persons	methods.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
+gal_association	involved_persons	methods.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
+gal_hub	involved_persons	methods.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
+orcid	involved_persons	methods.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+sequencing_protocol	methods	methods.sequencing_protocol	array	Protocols used for the sequencing of the assembly set. Should be listed in the references.			No	No	ToLPortal	
+protocol_id	sequencing_protocol	methods.sequencing_protocol.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	ToLPortal	
+type	sequencing_protocol	methods.sequencing_protocol.type	array	Type of Protocol			No	No	ToLPortal	
+role	sequencing_protocol	methods.sequencing_protocol.role	array				No	No	ToLPortal	
+version	sequencing_protocol	methods.sequencing_protocol.version	string	Version of the protocol/workflow/tool/software			No	No	ToLPortal	
+source	sequencing_protocol	methods.sequencing_protocol.source	string	Source of the Protocol			No	No	ToLPortal	
+doi	sequencing_protocol	methods.sequencing_protocol.doi	string	DOI of the Protocol			No	No	ToLPortal	
+parameters	sequencing_protocol	methods.sequencing_protocol.parameters	string	Any specific parameters for the Protocol			No	No	ToLPortal	
+notes	sequencing_protocol	methods.sequencing_protocol.notes	string	Any notes or comments about the Protocol			No	No	ToLPortal	
+sample_processing	methods	methods.sample_processing	array	Details of sequencing methods/protocols.			No	No	ToLPortal	
+raw_data	sample_processing	methods.sample_processing.raw_data	array	Public data records. This is the data actually produced by the sequencing workflow, not the acquisition or extraction metadata.			No	No	ToLPortal	
+sample_accession	raw_data	methods.sample_processing.raw_data.sample_accession	string				No	No	ToLPortal	
+data_type	raw_data	methods.sample_processing.raw_data.data_type		Type of data represented by this raw-data record.	pacbio_hifi, longread_pacbio, hic, hic_arima2, hic_cifi, rna_seq, rnaseq, isoseq, isoseq_pacbio, 10x_chromium, chromium, ont, bionano, wgs, other		No	No	ToLPortal	
+run_accession	raw_data	methods.sample_processing.raw_data.run_accession	string				No	No	ToLPortal	
+experiment_accession	raw_data	methods.sample_processing.raw_data.experiment_accession	string				No	No	ToLPortal	
+library_name	raw_data	methods.sample_processing.raw_data.library_name	string				No	No	ToLPortal	
+library_layout	raw_data	methods.sample_processing.raw_data.library_layout	string				No	No	ToLPortal	
+library_selection	raw_data	methods.sample_processing.raw_data.library_selection	string				No	No	ToLPortal	
+library_source	raw_data	methods.sample_processing.raw_data.library_source	string				No	No	ToLPortal	
+instrument_model	raw_data	methods.sample_processing.raw_data.instrument_model	string				No	No	ToLPortal	
+submitted_bytes	raw_data	methods.sample_processing.raw_data.submitted_bytes	number				No	No	ToLPortal	
+read_count	raw_data	methods.sample_processing.raw_data.read_count	number				No	No	ToLPortal	
+base_count_gb	raw_data	methods.sample_processing.raw_data.base_count_gb	number				No	No	ToLPortal	
+metadata_source	raw_data	methods.sample_processing.raw_data.metadata_source	string				No	No	ToLPortal	
+cumulative_raw_data_statistics	sample_processing	methods.sample_processing.cumulative_raw_data_statistics	object	Cumulative sequencing statistics, normally derived from raw_data records.			No	No	ToLPortal	
+sequencing_data_source	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_data_source	string	For example public, portal or public-with-portal.			No	No	ToLPortal	
+sequencing_public_source_accessions	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_public_source_accessions	string				No	No	ToLPortal	
+sequencing_portal_enrichment_applied	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_portal_enrichment_applied	boolean				No	No	ToLPortal	
+sequencing_portal_matched_runs	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_portal_matched_runs	string				No	No	ToLPortal	
+sequencing_portal_unmatched_runs	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_portal_unmatched_runs	string				No	No	ToLPortal	
+sequencing_portal_excluded_runs	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_portal_excluded_runs	string				No	No	ToLPortal	
+sequencing_portal_warnings	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.sequencing_portal_warnings	string				No	No	ToLPortal	
+cumulative_stats	cumulative_raw_data_statistics	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats	array				No	No	ToLPortal	
+data_type	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.data_type	string	Per datatype in raw_data.data_type.			No	No	ToLPortal	
+sample_accession	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.sample_accession	string				No	No	ToLPortal	
+instrument_model	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.instrument_model	string				No	No	ToLPortal	
+read_count_unit	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.read_count_unit	string	Unit used for read_count-derived totals, for example reads or read pairs.			No	No	ToLPortal	
+read_count_source	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.read_count_source	string	Source used for read-count totals, for example ENA, NCBI RunInfo or portal_tolqc.			No	No	ToLPortal	
+base_count_source	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.base_count_source	string	Source used for base-count totals, for example ENA, NCBI RunInfo or portal_tolqc.			No	No	ToLPortal	
+reads_in_millions	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.reads_in_millions	number	Total number of reads in millions.			No	No	ToLPortal	
+total_yield_mbp	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.total_yield_mbp	number	Total yield of data in megabase pairs.			No	No	ToLPortal	
+total_yield_gbp	cumulative_stats	methods.sample_processing.cumulative_raw_data_statistics.cumulative_stats.total_yield_gbp	number	Total yield of data in gigabase pairs.			No	No	ToLPortal	
+sample_role	sample_processing	methods.sample_processing.sample_role		Role of this sample in the genome note workflow.	pacbio, hic, ont, rna, isoseq, chromium, other		No	No	ToLPortal	
+library_sequencing	sample_processing	methods.sample_processing.library_sequencing	array	Library sequencing platform and method metadata. Counts and yields are represented under raw_data and raw_data_statistics.			No	No	ToLPortal	
+technology	library_sequencing	methods.sample_processing.library_sequencing.technology		Sequencing or data-generation technology.	PacBio HiFi, Hi-C, RNA-seq, Iso-Seq, 10x Chromium, ONT, Bionano, Illumina, other		No	No	ToLPortal	
+sample_accession	library_sequencing	methods.sample_processing.library_sequencing.sample_accession	string				Yes	No	ToLPortal	
+sample_derived_from	library_sequencing	methods.sample_processing.library_sequencing.sample_derived_from	string				No	No	ToLPortal	
+sequencing_accession	library_sequencing	methods.sample_processing.library_sequencing.sequencing_accession	string	INSDC accession of data derived from this sequencing run (ERR/SRR)			Yes	No	ToLPortal	
+sequencing_protocol	library_sequencing	methods.sample_processing.library_sequencing.sequencing_protocol	string	Identifier of sequencing protocol from reference list			Yes	No	ToLPortal	
+sequencing_protocol_plaintext	library_sequencing	methods.sample_processing.library_sequencing.sequencing_protocol_plaintext	string	Publication-ready plaintext summary of the sequencing protocol			Yes	No	ToLPortal	
+instrument_model	library_sequencing	methods.sample_processing.library_sequencing.instrument_model	string	Model of sequencing instrument used			Yes	No	ToLPortal	

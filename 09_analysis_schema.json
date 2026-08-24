@@ -10,6 +10,22 @@
         "analysis": {
             "type": "array",
             "properties": {
+                "involved_persons": {
+                    "type": "array",
+                    "source": [
+                        "AuthorsDB"
+                    ],
+                    "items": {
+                        "$ref": "_author_schema.json#/$defs/author"
+                    }
+                },
+                "analysis_software": {
+                    "type": "array",
+                    "help": "Software/Pipelines used for the analysis of the assembly set. Should be listed in the references.",
+                    "items": {
+                        "$ref": "_protocol_schema.json#/$defs/protocol"
+                    }
+                },
                 "sample_id": {
                     "type": "string",
                     "help": "Links to HAP_KEY, e.g. Haplotype_1, Primary, etc."
