@@ -132,6 +132,9 @@
                         "worfklow": "id",
                         "type": "object",
                         "properties": {
+                            "doi" : {
+                                "type": "string"
+                            },
                             "snail_plot": {
                                 "type": "string",
                                 "help": "Publication figure asset for the BlobToolKit snail plot, usually generated for hap1 or the primary assembly."
