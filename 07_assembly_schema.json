@@ -23,7 +23,7 @@
                 },
                 "assembly_software": {
                     "type": "array",
-                    "help": "Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.",
+                    "help": "Software/Pipelines used for assembly generation, scaffolding, purging, decontamination or other processing before manual curation. For example this could include Hifiasm, purge_dups, YaHS, ASCC, FCS-GX. Should be listed in the references.",
                     "items": {
                         "$ref": "_protocol_schema.json#/$defs/protocol"
                     }
