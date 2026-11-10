@@ -9,6 +9,10 @@
         "metadata": {
             "type": "object",
             "properties": {
+                "notes": {
+                    "type": "string",
+                    "help": "Optional notes about the dataset"
+                },
                 "template_version": {
                     "type": "string"
                 },

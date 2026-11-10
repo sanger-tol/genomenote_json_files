@@ -14,6 +14,10 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
+                "notes": {
+                    "type": "string",
+                    "help": "Optional notes about the curation"
+                },
                 "curation_software": {
                     "type": "array",
                     "help": "Software/Pipelines used for curation of the assembly set. Should be listed in the references.",

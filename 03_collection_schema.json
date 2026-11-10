@@ -5,6 +5,10 @@
         "STS"
     ],
     "properties": {
+        "notes": {
+            "type": "string",
+            "help": "Optional notes about the collection"
+        },
         "sample_accession": {
             "type": "string",
             "help": "BioSample accession for the sample used for this workflow role."

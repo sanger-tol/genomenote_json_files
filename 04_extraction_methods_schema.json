@@ -18,6 +18,10 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
+                "notes": {
+                    "type": "string",
+                    "help": "Optional notes about the extraction methods"
+                },
                 "extraction_id": {
                     "type": "string",
                     "help": "Optional ID for the extraction record"

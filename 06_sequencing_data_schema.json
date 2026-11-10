@@ -22,6 +22,10 @@
                     "type": "string",
                     "help": "Optional ID for the library record used for this sequencing run"
                 },
+                "notes": {
+                    "type": "string",
+                    "help": "Optional notes about the sequencing data"
+                },
                 "sequencing_protocol": {
                     "type": "array",
                     "help": "Protocols used for the sequencing of the assembly set. Should be listed in the references.",
