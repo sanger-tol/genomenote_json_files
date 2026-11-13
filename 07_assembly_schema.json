@@ -17,9 +17,9 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
-                "notes": {
+                "text": {
                     "type": "string",
-                    "help": "Optional notes about the assembly"
+                    "help": "Formatted text with assembly methods, statistics and notes"
                 },
                 "assembly_method_text": {
                     "type": "string",

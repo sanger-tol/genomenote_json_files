@@ -5,9 +5,9 @@
         "STS"
     ],
     "properties": {
-        "notes": {
+        "text": {
             "type": "string",
-            "help": "Optional notes about the collection"
+            "help": "Formatted text with the collection methods and outcomes"
         },
         "sample_accession": {
             "type": "string",

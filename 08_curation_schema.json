@@ -14,9 +14,9 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
-                "notes": {
+                "text": {
                     "type": "string",
-                    "help": "Optional notes about the curation"
+                    "help": "Formatted text with notes on assembly curation methods, statistics and outcomes"
                 },
                 "curation_software": {
                     "type": "array",

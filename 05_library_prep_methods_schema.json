@@ -18,9 +18,9 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
-                "notes": {
+                "text": {
                     "type": "string",
-                    "help": "Optional notes about the library prep methods"
+                    "help": "Formatted text with methods and outcomes from the library preparation"
                 },
                 "prep_protocol": {
                     "type": "array",

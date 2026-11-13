@@ -22,9 +22,9 @@
                     "type": "string",
                     "help": "Optional ID for the library record used for this sequencing run"
                 },
-                "notes": {
+                "text": {
                     "type": "string",
-                    "help": "Optional notes about the sequencing data"
+                    "help": "Formatted text with methods, statistics and outcomes from the sequencing"
                 },
                 "sequencing_protocol": {
                     "type": "array",
