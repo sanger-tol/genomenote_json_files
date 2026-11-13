@@ -17,6 +17,10 @@
                         "$ref": "_author_schema.json#/$defs/author"
                     }
                 },
+                "text": {
+                    "type": "string",
+                    "help": "Formatted text with assembly methods, statistics and notes"
+                },
                 "assembly_method_text": {
                     "type": "string",
                     "help": "Publication-ready or template-generated text describing the assembly method."

@@ -5,6 +5,10 @@
         "STS"
     ],
     "properties": {
+        "text": {
+            "type": "string",
+            "help": "Formatted text with the collection methods and outcomes"
+        },
         "sample_accession": {
             "type": "string",
             "help": "BioSample accession for the sample used for this workflow role."
