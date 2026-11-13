@@ -107,28 +107,28 @@
                     },
                     "GAP_analysis_data": {
                         "readmapping": {
-                            "worfklow": "id",
-                            "datablob_id": "string",
+                            "worfklow": {"type": "string", "help": "Workflow ID for pipeline run"},
+                            "datablob_id": {"type": "string", "help": "Unique ID of workflow outputs"},
                             "aligned_reads": {
                                 "type": "array",
                                 "properties": {
-                                    "accession": "string",
-                                    "data_type": "string",
-                                    "file_path": "string",
-                                    "weblink": "string"
+                                    "accession": {"type": "string"},
+                                    "data_type": {"type": "string"},
+                                    "file_path": {"type": "string"},
+                                    "weblink": {"type": "string"}
                                 }
                             }
                         },
                         "sequence_composition": {
-                            "worfklow": "id",
+                            "worfklow": {"type": "string"},
                             "type": "array",
                             "help": "K-mer based sequence composition track of each asssembly role",
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "accession": "string",
-                                    "file_path": "string",
-                                    "weblink": "string"
+                                    "accession": {"type": "string"},
+                                    "file_path": {"type": "string"},
+                                    "weblink": {"type": "string"}
                                 }
                             }
                         },
@@ -155,28 +155,28 @@
                             }
                         },
                         "ancestral_linkage_group": {
-                            "worfklow": "id",
-                            "assembly_id": "string",
-                            "lineage_odb": "string",
-                            "ancestral_linkage_tsv": "string",
-                            "ancestral_linkage_plot": "string"
+                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
+                            "assembly_id": {"type": "string"},
+                            "lineage_odb": {"type": "string", "help": "ODB that the ancestral analysis is based on"},
+                            "ancestral_linkage_tsv": {"type": "string"},
+                            "ancestral_linkage_plot": {"type": "string"}
                         },
                         "pretext": {
-                            "worfklow": "id",
-                            "assembly_id": "string",
-                            "haplotype": "string",
-                            "file_path": "string",
-                            "weblink": "string"
+                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
+                            "assembly_id": {"type": "string"},
+                            "haplotype": {"type": "string"},
+                            "file_path": {"type": "string"},
+                            "weblink": {"type": "string"}
                         },
                         "higlass": {
-                            "worfklow": "id",
-                            "assembly_id": "string",
-                            "haplotype": "string",
-                            "mcool_file": "string",
-                            "weblink": "string"
+                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
+                            "assembly_id": {"type": "string"},
+                            "haplotype": {"type": "string"},
+                            "mcool_file": {"type": "string"},
+                            "weblink": {"type": "string"}
                         },
                         "merqury": {
-                            "worfklow": "id",
+                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
                             "type": "array",
                             "help": "Merqury consensus quality and k-mer completeness values reported for each assembly role.",
                             "items": {
@@ -206,7 +206,7 @@
                             }
                         },
                         "busco": {
-                            "worfklow": "id",
+                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
                             "type": "array",
                             "help": "BUSCO completeness results.",
                             "items": {
