@@ -64,6 +64,10 @@
                                 "items": {
                                     "type": "object",
                                     "properties": {
+                                        "library_id": {
+                                            "type": "string",
+                                            "help": "Optional ID for the library record"
+                                        },
                                         "technology": {
                                             "enum": [
                                                 "PacBio HiFi",
