@@ -9,119 +9,118 @@
             "type": "array",
             "help": "Methods used to extract genomic material from provided samples. These are kept as separate subsections because they are populated from different workflow sources.",
             "items": {
-                "extraction_id": {
-                    "type": "string",
-                    "help": "Optional ID for the extraction record"
-                }
-                "involved_persons": {
-                    "type": "array",
-                    "source": [
-                        "AuthorsDB"
-                    ],
-                    "items": {
-                        "$ref": "_author_schema.json#/$defs/author"
-                    }
-                },
-                "text": {
-                    "type": "string",
-                    "help": "Formatted text regarding the methods and outcomes from the extraction procedures"
-                },
-                "extraction_id": {
-                    "type": "string",
-                    "help": "Optional ID for the extraction record"
-                },
-                "extraction_protocol": {
-                    "type": "array",
-                    "help": "Protocols used for the extraction of the assembly set. Should be listed in the references.",
-                    "items": {
-                        "$ref": "_protocol_schema.json#/$defs/protocol"
-                    }
-                },
-                "sample_processing": {
-                    "type": "array",
-                    "help": "Details of extraction methods/protocols.",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "sample_role": {
-                                "enum": [
-                                    "pacbio",
-                                    "hic",
-                                    "ont",
-                                    "rna",
-                                    "isoseq",
-                                    "chromium",
-                                    "other"
-                                ],
-                                "help": "Role of this sample in the genome note workflow."
-                            },
-                            "nucleic_acid_extraction": {
-                                "type": "array",
-                                "help": "Wet-lab extraction and tissue-preparation metadata.",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "sample_role": {
-                                            "enum": [
-                                                "pacbio",
-                                                "hic",
-                                                "rna",
-                                                "isoseq",
-                                                "chromium",
-                                                "other"
-                                            ]
-                                        },
-                                        "sample_accession": {
-                                            "type": "string"
-                                        },
-                                        "extraction_protocol": {
-                                            "type": "string",
-                                            "help": "Give identifier of protocol in References"
-                                        },
-                                        "extraction_protocol_plaintext": {
-                                            "type": "string",
-                                            "help": "Publication-ready plaintext summary of the extraction protocol"
-                                        },
-                                        "protocol": {
-                                            "type": "string",
-                                            "help": "Display name for the extraction protocol, where separate from extraction_protocol."
-                                        },
-                                        "ratio_260_280": {
-                                            "type": "number"
-                                        },
-                                        "ratio_260_230": {
-                                            "type": "number"
-                                        },
-                                        "nanodrop_concentration_ngul": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "gqn": {
-                                            "type": "number",
-                                            "minimum": 0
-                                        },
-                                        "disruption_method": {
-                                            "type": "string"
-                                        },
-                                        "tissue_type": {
-                                            "type": "string"
-                                        },
-                                        "tissue_weight_mg": {
-                                            "type": "number",
-                                            "minimum": 0,
-                                            "help": "Mass/weight of tissue taken for extraction, in milligrams."
-                                        },
-                                        "qc_stats": {
-                                            "type": "object",
-                                            "items": {
-                                                "$ref": "_nucleic_acid_qc_schema.json#/$defs/quality_metrics"
+                "type": "object",
+                "properties": {
+                    "involved_persons": {
+                        "type": "array",
+                        "source": [
+                            "AuthorsDB"
+                        ],
+                        "items": {
+                            "$ref": "_author_schema.json#/$defs/author"
+                        }
+                    },
+                    "text": {
+                        "type": "string",
+                        "help": "Formatted text regarding the methods and outcomes from the extraction procedures"
+                    },
+                    "extraction_id": {
+                        "type": "string",
+                        "help": "Optional ID for the extraction record"
+                    },
+                    "extraction_protocol": {
+                        "type": "array",
+                        "help": "Protocols used for the extraction of the assembly set. Should be listed in the references.",
+                        "items": {
+                            "$ref": "_protocol_schema.json#/$defs/protocol"
+                        }
+                    },
+                    "sample_processing": {
+                        "type": "array",
+                        "help": "Details of extraction methods/protocols.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "sample_role": {
+                                    "enum": [
+                                        "pacbio",
+                                        "hic",
+                                        "ont",
+                                        "rna",
+                                        "isoseq",
+                                        "chromium",
+                                        "other"
+                                    ],
+                                    "help": "Role of this sample in the genome note workflow."
+                                },
+                                "nucleic_acid_extraction": {
+                                    "type": "array",
+                                    "help": "Wet-lab extraction and tissue-preparation metadata.",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "sample_role": {
+                                                "enum": [
+                                                    "pacbio",
+                                                    "hic",
+                                                    "rna",
+                                                    "isoseq",
+                                                    "chromium",
+                                                    "other"
+                                                ]
+                                            },
+                                            "sample_accession": {
+                                                "type": "string"
+                                            },
+                                            "extraction_protocol": {
+                                                "type": "string",
+                                                "help": "Give identifier of protocol in References"
+                                            },
+                                            "extraction_protocol_plaintext": {
+                                                "type": "string",
+                                                "help": "Publication-ready plaintext summary of the extraction protocol"
+                                            },
+                                            "protocol": {
+                                                "type": "string",
+                                                "help": "Display name for the extraction protocol, where separate from extraction_protocol."
+                                            },
+                                            "ratio_260_280": {
+                                                "type": "number"
+                                            },
+                                            "ratio_260_230": {
+                                                "type": "number"
+                                            },
+                                            "nanodrop_concentration_ngul": {
+                                                "type": "number",
+                                                "minimum": 0
+                                            },
+                                            "gqn": {
+                                                "type": "number",
+                                                "minimum": 0
+                                            },
+                                            "disruption_method": {
+                                                "type": "string"
+                                            },
+                                            "tissue_type": {
+                                                "type": "string"
+                                            },
+                                            "tissue_weight_mg": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "help": "Mass/weight of tissue taken for extraction, in milligrams."
+                                            },
+                                            "qc_stats": {
+                                                "type": "object",
+                                                "items": {
+                                                    "$ref": "_nucleic_acid_qc_schema.json#/$defs/quality_metrics"
+                                                }
                                             }
-                                        }
-                                    },
-                                    "required": [
-                                        "sample_accession",
-                                        "tissue_type"
-                                    ]
+                                        },
+                                        "required": [
+                                            "sample_accession",
+                                            "tissue_type"
+                                        ]
+                                    }
                                 }
                             }
                         }

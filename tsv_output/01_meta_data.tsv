@@ -1,5 +1,6 @@
 property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
 metadata		metadata	object				Yes	No	tolqc, STS	
+notes	metadata	metadata.notes	string	Optional notes about the dataset			No	No	tolqc, STS	
 template_version	metadata	metadata.template_version	string				No	No	tolqc, STS	
 doi	metadata	metadata.doi	string	DOI, without the https://doi.org/ prefix, example is: 10.1080/10509585.2015.1092083		^10\.\d{4,9}/\S+$	Yes	No	tolqc, STS	
 data_availability	metadata	metadata.data_availability	string				Yes	No	tolqc, STS	
@@ -18,6 +19,7 @@ formatted_parent_projects	metadata	metadata.formatted_parent_projects	string	Pub
 authors	metadata	metadata.authors	array				Yes	No	AuthorsDB, AllJson	
 authorsdb_id	authors	metadata.authors.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB, AllJson	
 role	authors	metadata.authors.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB, AllJson	
+contribution	authors	metadata.authors.contribution	array	CRediT contributor roles (https://credit.niso.org/).			No	No	AuthorsDB, AllJson	
 email	authors	metadata.authors.email	string				Yes	No	AuthorsDB, AllJson	
 corresponding	authors	metadata.authors.corresponding	boolean				No	No	AuthorsDB, AllJson	
 affiliations	authors	metadata.authors.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB, AllJson	
@@ -27,7 +29,7 @@ middle_names	authors	metadata.authors.middle_names	string	Middle names of the au
 given_names	authors	metadata.authors.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB, AllJson	if/else
 gal_association	authors	metadata.authors.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB, AllJson	if/else
 gal_hub	authors	metadata.authors.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB, AllJson	if/else
-orcid	authors	metadata.authors.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB, AllJson	if/else
+orcid	authors	metadata.authors.orcid	string	ORCID of the author/person			No	No	AuthorsDB, AllJson	if/else
 affiliations	metadata	metadata.affiliations	array				Yes	No	tolqc, STS	
 id	affiliations	metadata.affiliations.id	string				No	No	tolqc, STS	
 affiliation	affiliations	metadata.affiliations.affiliation	string				No	No	tolqc, STS	
@@ -42,7 +44,7 @@ e_location_id	journal_data	publication_metadata.journal_data.e_location_id	strin
 license	journal_data	publication_metadata.journal_data.license	string				No	No	AuthorsDB	
 submission_date	journal_data	publication_metadata.journal_data.submission_date	string				No	No	AuthorsDB	
 publication_date	journal_data	publication_metadata.journal_data.publication_date	string				No	No	AuthorsDB	
-genome_note_data	publication_metadata	publication_metadata.genome_note_data					Yes	No	AuthorsDB	
+genome_note_data	publication_metadata	publication_metadata.genome_note_data	object				Yes	No	AuthorsDB	
 existing_genome_note	genome_note_data	publication_metadata.genome_note_data.existing_genome_note	string	Link to an existing genome note, if this is not a v1 genome note			No	No	AuthorsDB	
 submission_date	genome_note_data	publication_metadata.genome_note_data.submission_date	string				No	No	AuthorsDB	
 publication_date	genome_note_data	publication_metadata.genome_note_data.publication_date	string				No	No	AuthorsDB	

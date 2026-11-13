@@ -10,6 +10,7 @@
         "analysis": {
             "type": "array",
             "items": {
+                "type": "object",
                 "properties": {
                     "involved_persons": {
                         "type": "array",
@@ -29,10 +30,10 @@
                     },
                     "sample_id": {
                         "type": "string",
-                        "help": "Links to HAP_KEY, e.g. Haplotype_1, Primary, etc."
+                        "help": "ID of the sample"
                     },
                     "assembly_role": {
-                        "assembly": "string",
+                        "type": "string",
                         "help": "Links to HAP_KEY, e.g. Haplotype_1"
                     },
                     "ebp_statistics": {
@@ -106,154 +107,297 @@
                         }
                     },
                     "GAP_analysis_data": {
-                        "readmapping": {
-                            "worfklow": {"type": "string", "help": "Workflow ID for pipeline run"},
-                            "datablob_id": {"type": "string", "help": "Unique ID of workflow outputs"},
-                            "aligned_reads": {
-                                "type": "array",
-                                "properties": {
-                                    "accession": {"type": "string"},
-                                    "data_type": {"type": "string"},
-                                    "file_path": {"type": "string"},
-                                    "weblink": {"type": "string"}
-                                }
-                            }
-                        },
-                        "sequence_composition": {
-                            "worfklow": {"type": "string"},
-                            "type": "array",
-                            "help": "K-mer based sequence composition track of each asssembly role",
-                            "items": {
+                        "type": "object",
+                        "properties": {
+                            "readmapping": {
                                 "type": "object",
                                 "properties": {
-                                    "accession": {"type": "string"},
-                                    "file_path": {"type": "string"},
-                                    "weblink": {"type": "string"}
-                                }
-                            }
-                        },
-                        "blobtoolkit": {
-                            "worfklow": "id",
-                            "type": "object",
-                            "properties": {
-                                "snail_plot": {
-                                    "type": "string",
-                                    "help": "Publication figure asset for the BlobToolKit snail plot, usually generated for hap1 or the primary assembly."
-                                },
-                                "blob_plot": {
-                                    "type": "string",
-                                    "help": "Publication figure asset for the BlobToolKit blob plot, usually generated for hap1 or the primary assembly."
-                                },
-                                "snail_plot_url": {
-                                    "type": "string",
-                                    "help": "BlobToolKit viewer URL for the snail plot, included in the genome note text."
-                                },
-                                "blob_plot_url": {
-                                    "type": "string",
-                                    "help": "BlobToolKit viewer URL for the blob plot, included in the genome note text."
-                                }
-                            }
-                        },
-                        "ancestral_linkage_group": {
-                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
-                            "assembly_id": {"type": "string"},
-                            "lineage_odb": {"type": "string", "help": "ODB that the ancestral analysis is based on"},
-                            "ancestral_linkage_tsv": {"type": "string"},
-                            "ancestral_linkage_plot": {"type": "string"}
-                        },
-                        "pretext": {
-                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
-                            "assembly_id": {"type": "string"},
-                            "haplotype": {"type": "string"},
-                            "file_path": {"type": "string"},
-                            "weblink": {"type": "string"}
-                        },
-                        "higlass": {
-                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
-                            "assembly_id": {"type": "string"},
-                            "haplotype": {"type": "string"},
-                            "mcool_file": {"type": "string"},
-                            "weblink": {"type": "string"}
-                        },
-                        "merqury": {
-                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
-                            "type": "array",
-                            "help": "Merqury consensus quality and k-mer completeness values reported for each assembly role.",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "qv": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "help": "Merqury consensus quality value."
-                                    },
-                                    "kmer_completeness_percent": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 100,
-                                        "help": "Merqury k-mer completeness percentage."
-                                    },
-                                    "kmer_length": {
-                                        "type": "integer",
-                                        "minimum": 0,
-                                        "help": "Length of the k-mer used for analysis."
-                                    },
-                                    "spectra_plot": {
+                                    "workflow": {
                                         "type": "string",
-                                        "help": "Optional publication figure or asset for the Merqury spectra plot."
+                                        "help": "Workflow ID for pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                    "accession": {
+                                                        "type": "string"
+                                                    },
+                                                    "data_type": {
+                                                        "type": "string"
+                                                    },
+                                                    "file_path": {
+                                                        "type": "string"
+                                                    },
+                                                    "weblink": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        "busco": {
-                            "worfklow": {"type": "string", "help": "Workflow ID of the pipeline run"},
-                            "type": "array",
-                            "help": "BUSCO completeness results.",
-                            "items": {
+                            },
+                            "sequence_composition": {
                                 "type": "object",
                                 "properties": {
-                                    "lineage": {
+                                    "workflow": {
                                         "type": "string",
-                                        "help": "BUSCO lineage dataset, for example lepidoptera_odb10."
+                                        "help": "Workflow ID of the pipeline run"
                                     },
-                                    "complete_percent": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 100,
-                                        "help": "Percentage of complete BUSCOs."
-                                    },
-                                    "single_percent": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 100,
-                                        "help": "Percentage of single-copy complete BUSCOs."
-                                    },
-                                    "duplicated_percent": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 100,
-                                        "help": "Percentage of duplicated complete BUSCOs."
-                                    },
-                                    "fragmented_percent": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 100,
-                                        "help": "Percentage of fragmented BUSCOs."
-                                    },
-                                    "missing_percent": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 100,
-                                        "help": "Percentage of missing BUSCOs."
-                                    },
-                                    "n_markers": {
-                                        "type": "integer",
-                                        "minimum": 0,
-                                        "help": "Number of BUSCOs in the lineage dataset."
-                                    },
-                                    "summary": {
+                                    "datablob_id": {
                                         "type": "string",
-                                        "help": "Display string, for example C:99.0% [S:98.6%, D:0.4%], F:0.2%, M:0.8%, n:5286."
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "array",
+                                        "help": "K-mer based sequence composition track of each asssembly role",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "accession": { "type": "string" },
+                                                "file_path": { "type": "string" },
+                                                "weblink":   { "type": "string" }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "blobtoolkit": {
+                                "type": "object",
+                                "properties": {
+                                    "workflow": {
+                                        "type": "string",
+                                        "help": "Workflow ID of the pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "object",
+                                        "help": "BlobToolKit analysis results",
+                                        "properties": {
+                                            "snail_plot": {
+                                                "type": "string",
+                                                "help": "Publication figure asset for the BlobToolKit snail plot, usually generated for hap1 or the primary assembly."
+                                            },
+                                            "blob_plot": {
+                                                "type": "string",
+                                                "help": "Publication figure asset for the BlobToolKit blob plot, usually generated for hap1 or the primary assembly."
+                                            },
+                                            "snail_plot_url": {
+                                                "type": "string",
+                                                "help": "BlobToolKit viewer URL for the snail plot, included in the genome note text."
+                                            },
+                                            "blob_plot_url": {
+                                                "type": "string",
+                                                "help": "BlobToolKit viewer URL for the blob plot, included in the genome note text."
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "ancestral_linkage_group": {
+                                "type": "object",
+                                "properties": {
+                                    "workflow": {
+                                        "type": "string",
+                                        "help": "Workflow ID of the pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "object",
+                                        "properties": {
+                                            "assembly_id": {
+                                                "type": "string"
+                                            },
+                                            "lineage_odb": {
+                                                "type": "string",
+                                                "help": "ODB that the ancestral analysis is based on"
+                                            },
+                                            "ancestral_linkage_tsv": {
+                                                "type": "string"
+                                            },
+                                            "ancestral_linkage_plot": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "pretext": {
+                                "type": "object",
+                                "properties": {
+                                    "workflow": {
+                                        "type": "string",
+                                        "help": "Workflow ID of the pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "object",
+                                        "properties": {
+                                            "assembly_id": {
+                                                "type": "string"
+                                            },
+                                            "haplotype": {
+                                                "type": "string"
+                                            },
+                                            "file_path": {
+                                                "type": "string"
+                                            },
+                                            "weblink": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "higlass": {
+                                "type": "object",
+                                "properties": {
+                                    "workflow": {
+                                        "type": "string",
+                                        "help": "Workflow ID of the pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "object",
+                                        "properties": {
+                                            "assembly_id": {
+                                                "type": "string"
+                                            },
+                                            "haplotype": {
+                                                "type": "string"
+                                            },
+                                            "mcool_file": {
+                                                "type": "string"
+                                            },
+                                            "weblink": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "merqury": {
+                                "type": "object",
+                                "properties": {
+                                    "workflow": {
+                                        "type": "string",
+                                        "help": "Workflow ID of the pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "array",
+                                        "help": "Merqury results",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "qv": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "help": "Merqury consensus quality value."
+                                                },
+                                                "kmer_completeness_percent": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "maximum": 100,
+                                                    "help": "Merqury k-mer completeness percentage."
+                                                },
+                                                "kmer_length": {
+                                                    "type": "integer",
+                                                    "minimum": 0,
+                                                    "help": "Length of the k-mer used for analysis."
+                                                },
+                                                "spectra_plot": {
+                                                    "type": "string",
+                                                    "help": "Optional publication figure or asset for the Merqury spectra plot."
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "busco": {
+                                "type": "object",
+                                "properties": {
+                                    "workflow": {
+                                        "type": "string",
+                                        "help": "Workflow ID of the pipeline run"
+                                    },
+                                    "datablob_id": {
+                                        "type": "string",
+                                        "help": "Unique ID of workflow outputs"
+                                    },
+                                    "results": {
+                                        "type": "array",
+                                        "help": "BUSCO completeness results.",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "lineage": {
+                                                    "type": "string",
+                                                    "help": "BUSCO lineage dataset, for example lepidoptera_odb10."
+                                                },
+                                                "complete_percent": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "maximum": 100,
+                                                    "help": "Percentage of complete BUSCOs."
+                                                },
+                                                "single_percent": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "maximum": 100,
+                                                    "help": "Percentage of single-copy complete BUSCOs."
+                                                },
+                                                "duplicated_percent": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "maximum": 100,
+                                                    "help": "Percentage of duplicated complete BUSCOs."
+                                                },
+                                                "fragmented_percent": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "maximum": 100,
+                                                    "help": "Percentage of fragmented BUSCOs."
+                                                },
+                                                "missing_percent": {
+                                                    "type": "number",
+                                                    "minimum": 0,
+                                                    "maximum": 100,
+                                                    "help": "Percentage of missing BUSCOs."
+                                                },
+                                                "n_markers": {
+                                                    "type": "integer",
+                                                    "minimum": 0,
+                                                    "help": "Number of BUSCOs in the lineage dataset."
+                                                },
+                                                "summary": {
+                                                    "type": "string",
+                                                    "help": "Display string, for example C:99.0% [S:98.6%, D:0.4%], F:0.2%, M:0.8%, n:5286."
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

@@ -165,15 +165,18 @@
                     "help": "If a genome note already exists for this assembly or set of assemblies in another publication platform/journal, place a link here"
                 },
                 "genome_note_data": {
-                    "existing_genome_note": {
-                        "type": "string",
-                        "help": "Link to an existing genome note, if this is not a v1 genome note"
-                    },
-                    "submission_date": {
-                        "type": "string"
-                    },
-                    "publication_date": {
-                        "type": "string"
+                    "type": "object",
+                    "properties": {
+                        "existing_genome_note": {
+                            "type": "string",
+                            "help": "Link to an existing genome note, if this is not a v1 genome note"
+                        },
+                        "submission_date": {
+                            "type": "string"
+                        },
+                        "publication_date": {
+                            "type": "string"
+                        }
                     }
                 },
                 "ebp_analysis_metrics": {

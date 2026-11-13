@@ -3,6 +3,7 @@ methods		methods	object	Methods used to prepare a genomic library for sequencing
 involved_persons	methods	methods.involved_persons	array				No	No	AuthorsDB	
 authorsdb_id	involved_persons	methods.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
 role	involved_persons	methods.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+contribution	involved_persons	methods.involved_persons.contribution	array	CRediT contributor roles (https://credit.niso.org/).			No	No	AuthorsDB	
 email	involved_persons	methods.involved_persons.email	string				Yes	No	AuthorsDB	
 corresponding	involved_persons	methods.involved_persons.corresponding	boolean				No	No	AuthorsDB	
 affiliations	involved_persons	methods.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
@@ -12,7 +13,8 @@ middle_names	involved_persons	methods.involved_persons.middle_names	string	Middl
 given_names	involved_persons	methods.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
 gal_association	involved_persons	methods.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
 gal_hub	involved_persons	methods.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
-orcid	involved_persons	methods.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+orcid	involved_persons	methods.involved_persons.orcid	string	ORCID of the author/person			No	No	AuthorsDB	if/else
+text	methods	methods.text	string	Formatted text with methods and outcomes from the library preparation			No	No	ToLPortal	
 prep_protocol	methods	methods.prep_protocol	array	Protocols used for the library preparation of the assembly set. Should be listed in the references.			No	No	ToLPortal	
 protocol_id	prep_protocol	methods.prep_protocol.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	ToLPortal	
 type	prep_protocol	methods.prep_protocol.type	array	Type of Protocol			No	No	ToLPortal	
@@ -22,12 +24,22 @@ source	prep_protocol	methods.prep_protocol.source	string	Source of the Protocol	
 doi	prep_protocol	methods.prep_protocol.doi	string	DOI of the Protocol			No	No	ToLPortal	
 parameters	prep_protocol	methods.prep_protocol.parameters	string	Any specific parameters for the Protocol			No	No	ToLPortal	
 notes	prep_protocol	methods.prep_protocol.notes	string	Any notes or comments about the Protocol			No	No	ToLPortal	
+library_id	methods	methods.library_id	string	Optional ID for the library record			No	No	ToLPortal	
+source_extraction	methods	methods.source_extraction	array	Optional list of IDs for the extraction_id used in this library			No	No	ToLPortal	
 library_prep	methods	methods.library_prep	array	Details of library preparation methods/protocols.			No	No	ToLPortal	
 sample_role	library_prep	methods.library_prep.sample_role		Role of this sample in the genome note workflow.	pacbio, hic, ont, rna, isoseq, chromium, other		Yes	No	ToLPortal	
 library_preparation_and_sequencing	library_prep	methods.library_prep.library_preparation_and_sequencing	array	Library preparation, sequencing platform and method metadata.			No	No	ToLPortal	
+library_id	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.library_id	string	Optional ID for the library record			No	No	ToLPortal	
 technology	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.technology		Sequencing or data-generation technology.	PacBio HiFi, Hi-C, RNA-seq, Iso-Seq, 10x Chromium, ONT, Bionano, Illumina, other		No	No	ToLPortal	
 sample_accession	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.sample_accession	string				No	No	ToLPortal	
 experiment_accession	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.experiment_accession	string	Accession from INSDC of output sequencing data from this library (ERR/ERX/SRR/SRX)			No	No	ToLPortal	
 library_name	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.library_name	string				No	No	ToLPortal	
 library_construction_protocol	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.library_construction_protocol	string	Give identifier of protocol detailed in references			No	No	ToLPortal	
 library_construction_protocol_plaintext	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.library_construction_protocol_plaintext	string	Short publication-ready plaintext-summary of the library construction protocol			No	No	ToLPortal	
+qc_stats	library_preparation_and_sequencing	methods.library_prep.library_preparation_and_sequencing.qc_stats	object				No	No	ToLPortal	
+notes	qc_stats	methods.library_prep.library_preparation_and_sequencing.qc_stats.notes	string	Notes about the quality metrics			No	No	ToLPortal	
+yield_ng	qc_stats	methods.library_prep.library_preparation_and_sequencing.qc_stats.yield_ng	number	Yield of nucleic acid in nanograms			No	No	ToLPortal	
+qubit_ngul	qc_stats	methods.library_prep.library_preparation_and_sequencing.qc_stats.qubit_ngul	number	Nanogram per microliter			No	No	ToLPortal	
+fragment_size_kb	qc_stats	methods.library_prep.library_preparation_and_sequencing.qc_stats.fragment_size_kb	number	Fragment size in kilobases			No	No	ToLPortal	
+spri_type	qc_stats	methods.library_prep.library_preparation_and_sequencing.qc_stats.spri_type	string	Type of SPRI used			No	No	ToLPortal	
+volume_ul	qc_stats	methods.library_prep.library_preparation_and_sequencing.qc_stats.volume_ul	number	Volume in microliters			No	No	ToLPortal	

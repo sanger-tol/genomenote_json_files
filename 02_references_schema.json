@@ -17,11 +17,8 @@
                 "required": [
                     "title",
                     "citation_key",
-                    "publication_type",
                     "authors",
-                    "entry_type",
-                    "accession",
-                    "accession_type"
+                    "entry_type"
                 ],
                 "properties": {
                     "title": {

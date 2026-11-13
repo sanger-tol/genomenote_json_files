@@ -3,6 +3,7 @@ annotation		annotation	array	Annotation method performed and output. Ideally lin
 involved_persons	annotation	annotation.involved_persons	array				No	No	AuthorsDB	
 authorsdb_id	involved_persons	annotation.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
 role	involved_persons	annotation.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+contribution	involved_persons	annotation.involved_persons.contribution	array	CRediT contributor roles (https://credit.niso.org/).			No	No	AuthorsDB	
 email	involved_persons	annotation.involved_persons.email	string				Yes	No	AuthorsDB	
 corresponding	involved_persons	annotation.involved_persons.corresponding	boolean				No	No	AuthorsDB	
 affiliations	involved_persons	annotation.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
@@ -12,7 +13,7 @@ middle_names	involved_persons	annotation.involved_persons.middle_names	string	Mi
 given_names	involved_persons	annotation.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
 gal_association	involved_persons	annotation.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
 gal_hub	involved_persons	annotation.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
-orcid	involved_persons	annotation.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+orcid	involved_persons	annotation.involved_persons.orcid	string	ORCID of the author/person			No	No	AuthorsDB	if/else
 annotation_software	annotation	annotation.annotation_software	array	Software/Pipelines used for the annotation of the assembly set. Should be listed in the references.			No	No		
 protocol_id	annotation_software	annotation.annotation_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No		
 type	annotation_software	annotation.annotation_software.type	array	Type of Protocol			No	No		
@@ -34,8 +35,8 @@ number_single_exon_genes	statistics	annotation.statistics.number_single_exon_gen
 busco	statistics	annotation.statistics.busco	object				No	No		
 tool_version	busco	annotation.statistics.busco.tool_version	string	Version of the BUSCO tool used			Yes	No		
 results	busco	annotation.statistics.busco.results	array				No	No		
-mode	results	annotation.statistics.busco.results.mode	string		genome, transcriptome, NA		Yes	No		
-lineages	results	annotation.statistics.busco.results.lineages					No	No		
+mode	results	annotation.statistics.busco.results.mode	string		protein, transcriptome, NA		Yes	No		
+lineages	results	annotation.statistics.busco.results.lineages	object				No	No		
 odb_name	lineages	annotation.statistics.busco.results.lineages.odb_name	string				No	No		
 web_url	lineages	annotation.statistics.busco.results.lineages.web_url	string				No	No		
 complete	lineages	annotation.statistics.busco.results.lineages.complete	number	Number/Percentage of complete busco genes			No	No		
@@ -46,7 +47,7 @@ missing	lineages	annotation.statistics.busco.results.lineages.missing	number	Num
 omark	statistics	annotation.statistics.omark	object				No	No		
 tool_version	omark	annotation.statistics.omark.tool_version	string	Version of the OMARK tool used			Yes	No		
 assessments	omark	annotation.statistics.omark.assessments	array				No	No		
-clades	assessments	annotation.statistics.omark.assessments.clades					No	No		
+clades	assessments	annotation.statistics.omark.assessments.clades	object				No	No		
 clade_name	clades	annotation.statistics.omark.assessments.clades.clade_name	string				No	No		
 web_url	clades	annotation.statistics.omark.assessments.clades.web_url	string				No	No		
 conserved_HOGs	clades	annotation.statistics.omark.assessments.clades.conserved_HOGs	number				No	No	Completeness Assessment	

@@ -1,8 +1,9 @@
 property_name	parent_property	path	type	description	enum	pattern	required	recommended	source	condition
-methods		methods	object	Methods used to extract genomic material from provided samples. These are kept as separate subsections because they are populated from different workflow sources.			No	No	ToLPortal	
+methods		methods	array	Methods used to extract genomic material from provided samples. These are kept as separate subsections because they are populated from different workflow sources.			No	No	ToLPortal	
 involved_persons	methods	methods.involved_persons	array				No	No	AuthorsDB	
 authorsdb_id	involved_persons	methods.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
 role	involved_persons	methods.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+contribution	involved_persons	methods.involved_persons.contribution	array	CRediT contributor roles (https://credit.niso.org/).			No	No	AuthorsDB	
 email	involved_persons	methods.involved_persons.email	string				Yes	No	AuthorsDB	
 corresponding	involved_persons	methods.involved_persons.corresponding	boolean				No	No	AuthorsDB	
 affiliations	involved_persons	methods.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
@@ -12,7 +13,9 @@ middle_names	involved_persons	methods.involved_persons.middle_names	string	Middl
 given_names	involved_persons	methods.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
 gal_association	involved_persons	methods.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
 gal_hub	involved_persons	methods.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
-orcid	involved_persons	methods.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+orcid	involved_persons	methods.involved_persons.orcid	string	ORCID of the author/person			No	No	AuthorsDB	if/else
+text	methods	methods.text	string	Formatted text regarding the methods and outcomes from the extraction procedures			No	No	ToLPortal	
+extraction_id	methods	methods.extraction_id	string	Optional ID for the extraction record			No	No	ToLPortal	
 extraction_protocol	methods	methods.extraction_protocol	array	Protocols used for the extraction of the assembly set. Should be listed in the references.			No	No	ToLPortal	
 protocol_id	extraction_protocol	methods.extraction_protocol.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	ToLPortal	
 type	extraction_protocol	methods.extraction_protocol.type	array	Type of Protocol			No	No	ToLPortal	
@@ -30,15 +33,17 @@ sample_accession	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_
 extraction_protocol	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.extraction_protocol	string	Give identifier of protocol in References			No	No	ToLPortal	
 extraction_protocol_plaintext	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.extraction_protocol_plaintext	string	Publication-ready plaintext summary of the extraction protocol			No	No	ToLPortal	
 protocol	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.protocol	string	Display name for the extraction protocol, where separate from extraction_protocol.			No	No	ToLPortal	
-dna_yield_ng	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.dna_yield_ng	number				No	No	ToLPortal	
-volume_ul	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.volume_ul	number				No	No	ToLPortal	
-qubit_ngul	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.qubit_ngul	number				No	No	ToLPortal	
 ratio_260_280	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.ratio_260_280	number				No	No	ToLPortal	
 ratio_260_230	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.ratio_260_230	number				No	No	ToLPortal	
 nanodrop_concentration_ngul	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.nanodrop_concentration_ngul	number				No	No	ToLPortal	
-fragment_size_kb	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.fragment_size_kb	number				No	No	ToLPortal	
 gqn	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.gqn	number				No	No	ToLPortal	
-spri_type	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.spri_type	string				No	No	ToLPortal	
 disruption_method	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.disruption_method	string				No	No	ToLPortal	
 tissue_type	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.tissue_type	string				Yes	No	ToLPortal	
 tissue_weight_mg	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.tissue_weight_mg	number	Mass/weight of tissue taken for extraction, in milligrams.			No	No	ToLPortal	
+qc_stats	nucleic_acid_extraction	methods.sample_processing.nucleic_acid_extraction.qc_stats	object				No	No	ToLPortal	
+notes	qc_stats	methods.sample_processing.nucleic_acid_extraction.qc_stats.notes	string	Notes about the quality metrics			No	No	ToLPortal	
+yield_ng	qc_stats	methods.sample_processing.nucleic_acid_extraction.qc_stats.yield_ng	number	Yield of nucleic acid in nanograms			No	No	ToLPortal	
+qubit_ngul	qc_stats	methods.sample_processing.nucleic_acid_extraction.qc_stats.qubit_ngul	number	Nanogram per microliter			No	No	ToLPortal	
+fragment_size_kb	qc_stats	methods.sample_processing.nucleic_acid_extraction.qc_stats.fragment_size_kb	number	Fragment size in kilobases			No	No	ToLPortal	
+spri_type	qc_stats	methods.sample_processing.nucleic_acid_extraction.qc_stats.spri_type	string	Type of SPRI used			No	No	ToLPortal	
+volume_ul	qc_stats	methods.sample_processing.nucleic_acid_extraction.qc_stats.volume_ul	number	Volume in microliters			No	No	ToLPortal	

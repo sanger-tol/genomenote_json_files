@@ -3,6 +3,7 @@ assembly_methods		assembly_methods	object				No	No	ToLQC
 involved_persons	assembly_methods	assembly_methods.involved_persons	array				No	No	AuthorsDB	
 authorsdb_id	involved_persons	assembly_methods.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
 role	involved_persons	assembly_methods.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+contribution	involved_persons	assembly_methods.involved_persons.contribution	array	CRediT contributor roles (https://credit.niso.org/).			No	No	AuthorsDB	
 email	involved_persons	assembly_methods.involved_persons.email	string				Yes	No	AuthorsDB	
 corresponding	involved_persons	assembly_methods.involved_persons.corresponding	boolean				No	No	AuthorsDB	
 affiliations	involved_persons	assembly_methods.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
@@ -12,9 +13,10 @@ middle_names	involved_persons	assembly_methods.involved_persons.middle_names	str
 given_names	involved_persons	assembly_methods.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
 gal_association	involved_persons	assembly_methods.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
 gal_hub	involved_persons	assembly_methods.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
-orcid	involved_persons	assembly_methods.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+orcid	involved_persons	assembly_methods.involved_persons.orcid	string	ORCID of the author/person			No	No	AuthorsDB	if/else
+text	assembly_methods	assembly_methods.text	string	Formatted text with assembly methods, statistics and notes			No	No	ToLQC	
 assembly_method_text	assembly_methods	assembly_methods.assembly_method_text	string	Publication-ready or template-generated text describing the assembly method.			Yes	No	ToLQC	
-assembly_software	assembly_methods	assembly_methods.assembly_software	array	Software/Pipelines used for assembly generation, scaffolding or purging, for example Hifiasm, purge_dups or YaHS. Should be listed in the references.			No	No	ToLQC	
+assembly_software	assembly_methods	assembly_methods.assembly_software	array	Software/Pipelines used for assembly generation, scaffolding, purging, decontamination or other processing before manual curation. For example this could include Hifiasm, purge_dups, YaHS, ASCC, FCS-GX. Should be listed in the references.			No	No	ToLQC	
 protocol_id	assembly_software	assembly_methods.assembly_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No	ToLQC	
 type	assembly_software	assembly_methods.assembly_software.type	array	Type of Protocol			No	No	ToLQC	
 role	assembly_software	assembly_methods.assembly_software.role	array				No	No	ToLQC	
@@ -60,36 +62,36 @@ name	organelles	assembly_stats.assembly_information.organelles.name	string	Molec
 description	organelles	assembly_stats.assembly_information.organelles.description	string				No	No	ToLQC	
 length_kb	organelles	assembly_stats.assembly_information.organelles.length_kb	number				No	No	ToLQC	
 gc_percent	organelles	assembly_stats.assembly_information.organelles.gc_percent	number				No	No	ToLQC	
-assembly_analysis	assembly_stats	assembly_stats.assembly_analysis	object				No	No	ToLQC	
-ncbi_taxonomy_id	assembly_analysis	assembly_stats.assembly_analysis.ncbi_taxonomy_id	string				No	No	ToLQC	
-ploidy	assembly_analysis	assembly_stats.assembly_analysis.ploidy					No	No	ToLQC	
-method	ploidy	assembly_stats.assembly_analysis.ploidy.method	object				No	No	ToLQC	
-software	method	assembly_stats.assembly_analysis.ploidy.method.software	string				No	No	ToLQC	
-doi	method	assembly_stats.assembly_analysis.ploidy.method.doi	string				No	No	ToLQC	
-url	method	assembly_stats.assembly_analysis.ploidy.method.url	string				No	No	ToLQC	
-count	ploidy	assembly_stats.assembly_analysis.ploidy.count	number	Ploidy count			No	No	ToLQC	
-formatted_count	ploidy	assembly_stats.assembly_analysis.ploidy.formatted_count	string	Whether the count equates to diploid, triploid, etc.			No	No	ToLQC	
-kmer_analysis	assembly_analysis	assembly_stats.assembly_analysis.kmer_analysis	array				No	No	ToLQC	
-name	kmer_analysis	assembly_stats.assembly_analysis.kmer_analysis.name			genomescope, smudgeplot		No	No	ToLQC	
-path	kmer_analysis	assembly_stats.assembly_analysis.kmer_analysis.path	string	Path to directory containing results			No	No	ToLQC	
-est_size_bp	kmer_analysis	assembly_stats.assembly_analysis.kmer_analysis.est_size_bp	number	Estimated length of assembly from analysis, recorded in base-pairs			No	No	ToLQC	
-raw_data_object	assembly_analysis	assembly_stats.assembly_analysis.raw_data_object	array	Linked to raw_data in sample_prep_schema			No	No	ToLQC	
-accession	raw_data_object	assembly_stats.assembly_analysis.raw_data_object.accession	string				No	No	ToLQC	
-data_type	raw_data_object	assembly_stats.assembly_analysis.raw_data_object.data_type	string				No	No	ToLQC	
-chromosome_tables	assembly_analysis	assembly_stats.assembly_analysis.chromosome_tables	array	Chromosomal pseudomolecules			No	No	ToLQC	
-insdc_accession	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.insdc_accession	string				No	No	ToLQC	
-chromosome	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.chromosome	string				No	No	ToLQC	
-size_mb	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.size_mb	number				No	No	ToLQC	
-gc_percent	chromosome_tables	assembly_stats.assembly_analysis.chromosome_tables.gc_percent	number				No	No	ToLQC	
-taxonomy	assembly_analysis	assembly_stats.assembly_analysis.taxonomy	array	What species			No	No	ToLQC	
-assembly_id	taxonomy	assembly_stats.assembly_analysis.taxonomy.assembly_id	string				No	No	ToLQC	
-tax_authority	taxonomy	assembly_stats.assembly_analysis.taxonomy.tax_authority	string				No	No	ToLQC	
-ncbi_taxonomy_id	taxonomy	assembly_stats.assembly_analysis.taxonomy.ncbi_taxonomy_id	string				Yes	No	ToLQC	
-lineage	taxonomy	assembly_stats.assembly_analysis.taxonomy.lineage	string				No	No	ToLQC	
-class	taxonomy	assembly_stats.assembly_analysis.taxonomy.class	string				No	No	ToLQC	
-family	taxonomy	assembly_stats.assembly_analysis.taxonomy.family	string				No	No	ToLQC	
-order	taxonomy	assembly_stats.assembly_analysis.taxonomy.order	string				No	No	ToLQC	
-phylum	taxonomy	assembly_stats.assembly_analysis.taxonomy.phylum	string				No	No	ToLQC	
-common_name	taxonomy	assembly_stats.assembly_analysis.taxonomy.common_name	string	Common name used in the genome note. In data_note this is taken from GBIF when available, or NCBI Datasets as fallback.			No	No	ToLQC	
-common_name_source	taxonomy	assembly_stats.assembly_analysis.taxonomy.common_name_source		Source used for common_name.	gbif, ncbi_datasets		No	No	ToLQC	
-species	taxonomy	assembly_stats.assembly_analysis.taxonomy.species	string				No	No	ToLQC	
+assembly_analysis		assembly_analysis	object				No	No	ToLQC	
+ncbi_taxonomy_id	assembly_analysis	assembly_analysis.ncbi_taxonomy_id	string				No	No	ToLQC	
+ploidy	assembly_analysis	assembly_analysis.ploidy	object				No	No	ToLQC	
+method	ploidy	assembly_analysis.ploidy.method	object				No	No	ToLQC	
+software	method	assembly_analysis.ploidy.method.software	string				No	No	ToLQC	
+doi	method	assembly_analysis.ploidy.method.doi	string				No	No	ToLQC	
+url	method	assembly_analysis.ploidy.method.url	string				No	No	ToLQC	
+count	ploidy	assembly_analysis.ploidy.count	number	Ploidy count			No	No	ToLQC	
+formatted_count	ploidy	assembly_analysis.ploidy.formatted_count	string	Whether the count equates to diploid, triploid, etc.			No	No	ToLQC	
+kmer_analysis	assembly_analysis	assembly_analysis.kmer_analysis	array				No	No	ToLQC	
+name	kmer_analysis	assembly_analysis.kmer_analysis.name			genomescope, smudgeplot		No	No	ToLQC	
+path	kmer_analysis	assembly_analysis.kmer_analysis.path	string	Path to directory containing results			No	No	ToLQC	
+est_size_bp	kmer_analysis	assembly_analysis.kmer_analysis.est_size_bp	number	Estimated length of assembly from analysis, recorded in base-pairs			No	No	ToLQC	
+raw_data_object	assembly_analysis	assembly_analysis.raw_data_object	array	Linked to raw_data in sample_prep_schema			No	No	ToLQC	
+accession	raw_data_object	assembly_analysis.raw_data_object.accession	string				No	No	ToLQC	
+data_type	raw_data_object	assembly_analysis.raw_data_object.data_type	string				No	No	ToLQC	
+chromosome_tables	assembly_analysis	assembly_analysis.chromosome_tables	array	Chromosomal pseudomolecules			No	No	ToLQC	
+insdc_accession	chromosome_tables	assembly_analysis.chromosome_tables.insdc_accession	string				No	No	ToLQC	
+chromosome	chromosome_tables	assembly_analysis.chromosome_tables.chromosome	string				No	No	ToLQC	
+size_mb	chromosome_tables	assembly_analysis.chromosome_tables.size_mb	number				No	No	ToLQC	
+gc_percent	chromosome_tables	assembly_analysis.chromosome_tables.gc_percent	number				No	No	ToLQC	
+taxonomy	assembly_analysis	assembly_analysis.taxonomy	array	What species			No	No	ToLQC	
+assembly_id	taxonomy	assembly_analysis.taxonomy.assembly_id	string				No	No	ToLQC	
+tax_authority	taxonomy	assembly_analysis.taxonomy.tax_authority	string				No	No	ToLQC	
+ncbi_taxonomy_id	taxonomy	assembly_analysis.taxonomy.ncbi_taxonomy_id	string				Yes	No	ToLQC	
+lineage	taxonomy	assembly_analysis.taxonomy.lineage	string				No	No	ToLQC	
+class	taxonomy	assembly_analysis.taxonomy.class	string				No	No	ToLQC	
+family	taxonomy	assembly_analysis.taxonomy.family	string				No	No	ToLQC	
+order	taxonomy	assembly_analysis.taxonomy.order	string				No	No	ToLQC	
+phylum	taxonomy	assembly_analysis.taxonomy.phylum	string				No	No	ToLQC	
+common_name	taxonomy	assembly_analysis.taxonomy.common_name	string	Common name used in the genome note. In data_note this is taken from GBIF when available, or NCBI Datasets as fallback.			No	No	ToLQC	
+common_name_source	taxonomy	assembly_analysis.taxonomy.common_name_source		Source used for common_name.	gbif, ncbi_datasets		No	No	ToLQC	
+species	taxonomy	assembly_analysis.taxonomy.species	string				No	No	ToLQC	

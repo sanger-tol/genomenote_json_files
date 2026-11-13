@@ -3,6 +3,7 @@ curation		curation	object				No	No
 involved_persons	curation	curation.involved_persons	array				No	No	AuthorsDB	
 authorsdb_id	involved_persons	curation.involved_persons.authorsdb_id	string	ID from AuthorsDB			No	No	AuthorsDB	
 role	involved_persons	curation.involved_persons.role	array	Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section			Yes	No	AuthorsDB	
+contribution	involved_persons	curation.involved_persons.contribution	array	CRediT contributor roles (https://credit.niso.org/).			No	No	AuthorsDB	
 email	involved_persons	curation.involved_persons.email	string				Yes	No	AuthorsDB	
 corresponding	involved_persons	curation.involved_persons.corresponding	boolean				No	No	AuthorsDB	
 affiliations	involved_persons	curation.involved_persons.affiliations	array	Array of affiliations for each author should be a list of IDs, determined by the affiliation array below			Yes	No	AuthorsDB	
@@ -12,7 +13,8 @@ middle_names	involved_persons	curation.involved_persons.middle_names	string	Midd
 given_names	involved_persons	curation.involved_persons.given_names	string	Given names of the author (First name)			Conditional	No	AuthorsDB	if/else
 gal_association	involved_persons	curation.involved_persons.gal_association	string	GAL association if applicable - Collectors ONLY			No	No	AuthorsDB	if/else
 gal_hub	involved_persons	curation.involved_persons.gal_hub	string	GAL Hub/Institute responsible for the collection			No	Yes	AuthorsDB	if/else
-orcid	involved_persons	curation.involved_persons.orcid	string	ORCID of the author/person			Conditional	No	AuthorsDB	if/else
+orcid	involved_persons	curation.involved_persons.orcid	string	ORCID of the author/person			No	No	AuthorsDB	if/else
+text	curation	curation.text	string	Formatted text with notes on assembly curation methods, statistics and outcomes			No	No		
 curation_software	curation	curation.curation_software	array	Software/Pipelines used for curation of the assembly set. Should be listed in the references.			No	No		
 protocol_id	curation_software	curation.curation_software.protocol_id	string	Link to the reference ID of the protocol - citation_key of references_schema.json			No	No		
 type	curation_software	curation.curation_software.type	array	Type of Protocol			No	No		
