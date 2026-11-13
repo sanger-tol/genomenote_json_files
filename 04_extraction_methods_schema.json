@@ -6,9 +6,13 @@
     ],
     "properties": {
         "methods": {
-            "type": "object",
+            "type": "array",
             "help": "Methods used to extract genomic material from provided samples. These are kept as separate subsections because they are populated from different workflow sources.",
-            "properties": {
+            "items": {
+                "extraction_id": {
+                    "type": "string",
+                    "help": "Optional ID for the extraction record"
+                }
                 "involved_persons": {
                     "type": "array",
                     "source": [
@@ -57,10 +61,6 @@
                                 "items": {
                                     "type": "object",
                                     "properties": {
-                                        "extraction_id": {
-                                            "type": "string",
-                                            "help": "Optional ID for the extraction record"
-                                        },
                                         "sample_role": {
                                             "enum": [
                                                 "pacbio",
