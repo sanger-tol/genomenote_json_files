@@ -26,6 +26,7 @@
                             "collection",
                             "extraction",
                             "sequencing",
+                            "preserver",
                             "researcher",
                             "other"
                         ]
@@ -33,6 +34,31 @@
                     "minItems": 1,
                     "uniqueItems": true,
                     "help": "Used to assign credit of author to the outputs in the Genome Note - currently also repeated in each section"
+                },
+                "contribution": {
+                    "type": "array",
+                    "help": "CRediT contributor roles (https://credit.niso.org/).",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "Conceptualization",
+                            "Data curation",
+                            "Formal analysis",
+                            "Funding acquisition",
+                            "Investigation",
+                            "Methodology",
+                            "Project administration",
+                            "Resources",
+                            "Software",
+                            "Supervision",
+                            "Validation",
+                            "Visualization",
+                            "Writing – original draft",
+                            "Writing – review & editing"
+                        ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
                 },
                 "email": {
                     "type": "string"

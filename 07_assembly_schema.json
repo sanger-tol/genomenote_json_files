@@ -82,18 +82,29 @@
                             "assembler": {
                                 "type": "object",
                                 "properties": {
-                                    "name": "string",
-                                    "ID": "string"
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "ID": {
+                                        "type": "string"
+                                    }
                                 },
                                 "help": "Tool or workflow used for organelle assembly, for example MitoHiFi or Oatk. Should be a link to an object in the reference list"
                             },
                             "comparator": {
                                 "type": "array",
-                                "properties": {
-                                    "name": "string",
-                                    "accession": "string"
-                                },
-                                "help": "Comparator species, assembly or reference used for organelle assembly, where applicable."
+                                "help": "Comparator species, assembly or reference used for organelle assembly, where applicable.",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "accession": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
                             },
                             "decision_notes": {
                                 "type": "string",
@@ -115,7 +126,9 @@
                     "assembly_information": {
                         "type": "object",
                         "properties": {
-                            "id": "string",
+                            "id": {
+                                "type": "string"
+                            },
                             "assembly_level": {
                                 "enum": [
                                     "contig",
@@ -209,17 +222,16 @@
                                     }
                                 }
                             }
-                        }
-                    },
-                    "required": [
-                        "assembly_accession",
-                        "no_of_contigs",
-                        "contig_n50_length",
-                        "no_of_scaffolds",
-                        "scaffold_n50_length",
-                        "genome_size"
-                    ]
-
+                        },
+                        "required": [
+                            "assembly_accession",
+                            "no_of_contigs",
+                            "contig_n50_length",
+                            "no_of_scaffolds",
+                            "scaffold_n50_length",
+                            "genome_size"
+                        ]
+                    }
                 }
             }
         },
@@ -231,21 +243,30 @@
                     "minLength": 1
                 },
                 "ploidy": {
-                    "method": {
-                        "type": "object",
-                        "properties": {
-                            "software": "string",
-                            "doi": "string",
-                            "url": "string"
+                    "type": "object",
+                    "properties": {
+                        "method": {
+                            "type": "object",
+                            "properties": {
+                                "software": {
+                                    "type": "string"
+                                },
+                                "doi": {
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "count": {
+                            "type": "number",
+                            "help": "Ploidy count"
+                        },
+                        "formatted_count": {
+                            "type": "string",
+                            "help": "Whether the count equates to diploid, triploid, etc."
                         }
-                    },
-                    "count": {
-                        "type": "number",
-                        "help": "Ploidy count"
-                    },
-                    "formatted_count": {
-                        "type": "string",
-                        "help": "Whether the count equates to diploid, triploid, etc."
                     }
                 },
                 "kmer_analysis": {
@@ -276,8 +297,12 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "accession": "string",
-                            "data_type": "string"
+                            "accession": {
+                                "type": "string"
+                            },
+                            "data_type": {
+                                "type": "string"
+                            }
                         }
                     },
                     "help": "Linked to raw_data in sample_prep_schema"
@@ -309,8 +334,12 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "assembly_id": "string",
-                            "tax_authority": "string",
+                            "assembly_id": {
+                                "type": "string"
+                            },
+                            "tax_authority": {
+                                "type": "string"
+                            },
                             "ncbi_taxonomy_id": {
                                 "type": "string",
                                 "minLength": 1

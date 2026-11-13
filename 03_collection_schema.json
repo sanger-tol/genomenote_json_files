@@ -196,7 +196,8 @@
                             "type": "string",
                             "enum": [
                                 "collector",
-                                "identifier"
+                                "identifier",
+                                "preserver"
                             ]
                         },
                         "minItems": 1,
